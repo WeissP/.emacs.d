@@ -44,7 +44,7 @@
 (wks-unset-key messages-buffer-mode-map '("h"))
 
 (with-eval-after-load 'image-mode
-  (wks-unset-key image-mode-map '("SPC" "a"))
+  (wks-unset-key image-mode-map '("SPC" "a" "s"))
   (wks-define-key
    image-mode-map ""
    '(
@@ -141,5 +141,4 @@
  )
 
 ;; (define-key key-translation-map (kbd "<f12>") (kbd "C-g"))
-
 (provide 'weiss_keybindings<wks)

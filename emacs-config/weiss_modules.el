@@ -20,8 +20,8 @@
          ;; :after-dump-all t
          :then (
                 wdired diredfl all-the-icons-dired dired-hacks-utils dired-avfs dired-collapse
-                       dired-quick-sort peep-dired dired-filter (weiss-dired-single-handed-mode :local t)
-                       )
+                dired-quick-sort peep-dired dired-filter (weiss-dired-single-handed-mode :local t)
+                )
          )
         (counsel
          :then (amx prescient ivy-prescient ivy-rich)
@@ -86,7 +86,7 @@
                  :skip-install t
                  :first (
                          ob-fsharp ob-C ob-go ob-rust ob-java ob-sql-mode
-                                   (ob-javascript :github "zweifisch/ob-javascript"))
+                         (ob-javascript :github "zweifisch/ob-javascript"))
                  )
                 (org-agenda :local t)
                 (org-tempo :local t)
@@ -115,9 +115,9 @@
          ;; :after-dump-all t
          :then (
                 wdired diredfl all-the-icons-dired dired-hacks-utils dired-avfs dired-collapse
-                       dired-quick-sort peep-dired dired-filter
-                       (weiss-dired-single-handed-mode :local t)
-                       )
+                dired-quick-sort peep-dired dired-filter
+                (weiss-dired-single-handed-mode :local t)
+                )
          )
         (counsel
          :then (amx prescient ivy-prescient ivy-rich)
@@ -153,7 +153,7 @@
         (xml-mode :skip-install t) web-mode php-mode dockerfile-mode
         (go-mode
          :then (
-                 go-impl go-fill-struct
+                go-impl go-fill-struct
                 (flycheck-golangci-lint :disabled t)
                 (go-tag :disabled t) (go-gen-test :disabled t) (gotest :disabled t)
                 )
@@ -174,7 +174,10 @@
         (flycheck :then ((flycheck-posframe :when (display-graphic-p))))
         (flyspell :skip-install t :then (wucuo))    
         rime
-        telega 
+        (telega :quelpa (telega :fetcher github
+                                :repo "zevlg/telega.el"
+                                :branch "master"
+                                :files (:defaults "contrib" "etc" "server" "Makefile"))) 
         (yasdcv :local t)
         projectile maxima magit
         (tramp :after-dump-all t :local t :then (sudo-edit counsel-tramp docker-tramp))
@@ -182,6 +185,7 @@
         (emacs-yakuake :local t )
         gcmh 
         (weiss-paredit :local t)
+        (citre :github "universal-ctags/citre")
         ))
 
 (provide 'weiss_modules)

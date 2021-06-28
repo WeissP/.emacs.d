@@ -9,11 +9,6 @@
 When  this was bound, it will expand abbrev at point if there're any possible
 abbrev.")
 
-(defun weiss-test ()
-  "DOCSTRING"
-  (interactive)
-  (message ": %s" (org-element-type (org-element-context (org-element-at-point)))))
-
 (defun weiss-check-or-expand-abbrev (&optional check)
   "Check the string between the cursor and the last space"
   (interactive)
@@ -60,9 +55,8 @@ abbrev.")
 This is for abbrev table property `:enable-function'.
 Version 2016-10-24"
   (let (($syntax-state (syntax-ppss)))
-    (not (or (nth 3 $syntax-state) (nth 4 $syntax-state))
-         )))
-
+    (and (not (or (nth 3 $syntax-state) (nth 4 $syntax-state)))
+         (not (weiss-command-mode-p)))))
 
 (defun xah-abbrev-position-cursor (&optional @pos)
   "Move cursor back to ▮ if exist, else put at end.

@@ -14,7 +14,9 @@
  ;; java-format-settings-url "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml"
  lsp-java-format-settings-url "file:///home/weiss/weiss/format-style/WeissGoogleStyle.xml"
  ;; lsp-java-format-settings-url "/home/weiss/Documents/Vorlesungen/Compiler-and-Language-Processing-Tools/bai-bozhou/rules.xml"
- lsp-java-vmargs '("-noverify" "-Xmx1G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication" "-javaagent:/home/weiss/.m2/repository/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar" "-Xbootclasspath/a:/home/weiss/.m2/repository/org/projectlombok/lombok/1.18.12/lombok-1.18.12.jar")
+ lsp-java-vmargs '("-noverify" "-Xmx1G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication" "-javaagent:/home/weiss/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar" "-Xbootclasspath/a:/home/weiss/.m2/repository/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar")
+ ;; lsp-java-vmargs '("-noverify" "-Xmx1G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication" "-javaagent:/home/weiss/weiss/lib/javafx-sdk-11.0.2/lib/javafx.fxml.jar" "-Xbootclasspath/a:/home/weiss/weiss/lib/javafx-sdk-11.0.2/lib/javafx.fxml.jar")
+;; lsp-java-configuration-check-project-settings-exclusions nil
  )
 
 ;; parent: lsp-mode

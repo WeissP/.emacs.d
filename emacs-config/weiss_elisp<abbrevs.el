@@ -360,7 +360,6 @@
     ("match-end" "(match-end ▮)" weiss--ahf)
     ("match-string" "(match-string ▮)" weiss--ahf)
     ("member" "(member ▮)" weiss--ahf)
-    ("member" "(member ▮)" weiss--ahf)
     ("member-ignore-case" "(member-ignore-case ▮)" weiss--ahf)
     ("memq" "(memq ▮)" weiss--ahf)
     ("memql" "(memql ▮)" weiss--ahf)

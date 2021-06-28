@@ -75,6 +75,12 @@
   (add-hook x #'wks-vanilla-mode-auto-enable)  
   )
 
+(defun weiss-command-mode-p ()
+  "DOCSTRING"
+  (interactive)
+  (not wks-vanilla-mode)  
+  )
+
 (define-minor-mode wks-vanilla-mode
   "insert mode"
   :keymap wks-vanilla-mode-map
