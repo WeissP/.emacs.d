@@ -74,6 +74,8 @@
 (advice-add 'org-roam-dailies--capture :before #'weiss-deactivate-mark-unless-in-select-mode)
 (advice-add 'weiss-move-to-next-block :before #'weiss-deactivate-mark-unless-in-select-mode)
 (advice-add 'weiss-move-to-previous-block :before #'weiss-deactivate-mark-unless-in-select-mode)
+(advice-add 'citre-jump :before #'weiss-deactivate-mark-unless-in-select-mode)
+(advice-add 'citre-peek :before #'weiss-deactivate-mark-unless-in-select-mode)
 ;; (advice-add 'newline :before #'weiss-deactivate-mark-unless-in-select-mode)
 
 (defun anzu-query-replace (arg)
