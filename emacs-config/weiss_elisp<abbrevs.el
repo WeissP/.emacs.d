@@ -119,7 +119,7 @@
     ("gnb" "generate-new-buffer" weiss--ahf)
     ("gsk" "global-set-key" weiss--ahf)
     ("ifc" "insert-file-contents" weiss--ahf)
-    ("lam" "lambda" weiss--ahf)
+    ("lbd" "lambda" weiss--ahf)
     ("lbp" "(line-beginning-position)" weiss--ahf)
     ("len" "length" weiss--ahf)
     ("lep" "(line-end-position)" weiss--ahf)

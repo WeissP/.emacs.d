@@ -68,8 +68,9 @@
  `(
    ("S-<dead-grave>" . weiss-open-line-and-indent)
    ("`" . weiss-open-line-and-indent)
-   ("&" . weiss-expand-region-by-sexp)
    ("ß" . save-buffer)
+   ("&" . paredit-forward)
+   ("|" . paredit-backward)
    ("$" . (wks-C-c-C-e (execute-kbd-macro ,(kbd "C-c C-e"))))
 
    ("," . xah-backward-left-bracket)
@@ -115,11 +116,6 @@
    ("r" . weiss-delete-forward-with-region)
    ("s" . snails)
 
-   ("t e" . (wks-C-c-C-c (execute-kbd-macro ,(kbd "C-c C-c"))))
-   ("t u" . (wks-C-c-quote (execute-kbd-macro ,(kbd "C-c '"))))
-   ("t k" . (wks-C-c-C-k (execute-kbd-macro ,(kbd "C-c C-k"))))
-   ("t o" . (wks-C-c-C-o (execute-kbd-macro ,(kbd "C-c C-o"))))
-   ("t l" . (wks-C-c-C-l (execute-kbd-macro ,(kbd "C-c C-l"))))
    ("t t" . weiss-move-next-bracket-contents)
    ("t f" . weiss-flycheck-diwm)
 
@@ -140,5 +136,15 @@
    )
  )
 
-;; (define-key key-translation-map (kbd "<f12>") (kbd "C-g"))
+(wks-trans-keys
+ '(
+   ("t d" . "C-c C-d")
+   ("t e" . "C-c C-e")
+   ("t u" . "C-c '")
+   ("t k" . "C-c C-k")
+   ("t o" . "C-c C-o")
+   ("t l" . "C-c C-l")
+   ("t c" . "C-c C-c")
+   ))
+
 (provide 'weiss_keybindings<wks)

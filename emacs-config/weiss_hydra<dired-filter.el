@@ -90,9 +90,9 @@ _v_: ?v? at point    ^                 ^    ^           ^ _z_: ?q? 朱音ゆい
     ("a" dired-filter-by-xunguo "")
     ("r" dired-filter-by-yingkong "")
     ("F" dired-filter-by-youban "")
-    ("v" dired-filter-by-yudugong "")
+    ("V" dired-filter-by-yudugong "")
     ("z" dired-filter-by-zhuyin "")
-    ("V" weiss-filter-video-by-actress-at-point "")
+    ("v" weiss-filter-video-by-actress-at-point "")
     ("C-g" nil)
     ("<escape>" nil))
 

@@ -145,9 +145,8 @@
         (rotate-text :github "nschum/rotate-text.el")
         (casease :github "DogLooksGood/casease" :disabled t)
         expand-region    
-
         (js :skip-install t :then (js-format))
-        json-mode
+        json-mode (cider :then (flycheck-clj-kondo))
         (python :local t :then (yapfify ein))
         (http :then (auto-rename-tag)) markdown-mode 
         (xml-mode :skip-install t) web-mode php-mode dockerfile-mode

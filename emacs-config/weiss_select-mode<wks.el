@@ -23,6 +23,14 @@
   (unless weiss-select-mode (weiss-select-mode 1))  
   )
 
+(defun weiss-select-mode-turn-on-mark (&rest args)
+  "DOCSTRING"
+  (interactive)
+  (unless (use-region-p)
+    (set-mark (point))    
+    )
+  )
+
 (defun weiss-select-mode-turn-on-interactive (&rest args)
   "turn on weiss select mode"
   (interactive "p")
@@ -30,53 +38,101 @@
   )
 
 (add-hook 'deactivate-mark-hook 'weiss-select-mode-turn-off)
-
 (advice-add 'keyboard-quit :before #'weiss-select-mode-turn-off)
-;; (advice-add 'deactivate-mark :before #'weiss-select-mode-turn-off)
 
-(advice-add 'xah-forward-right-bracket :after #'weiss-select-mode-turn-on)
-(advice-add 'xah-backward-left-bracket :after #'weiss-select-mode-turn-on)
-(advice-add 'xah-select-block :after #'weiss-select-mode-turn-on)
-(advice-add 'weiss-select-sexp :after #'weiss-select-mode-turn-on)
-(advice-add 'exchange-point-and-mark :after #'weiss-select-mode-turn-on)
-(advice-add 'weiss-mark-brackets :after #'weiss-select-mode-turn-on)
-(advice-add 'mark-defun :after #'weiss-select-mode-turn-on)
-(advice-add 'weiss-select-sexp :after #'weiss-select-mode-turn-on)
-(advice-add 'weiss-expand-region-by-word :after #'weiss-select-mode-turn-on)
-(advice-add 'weiss-contract-region-by-word :after #'weiss-select-mode-turn-on)
-(advice-add 'weiss-expand-region-by-sexp :after #'weiss-select-mode-turn-on)
-(advice-add 'weiss-contract-region-by-sexp :after #'weiss-select-mode-turn-on)
-(advice-add 'mark-whole-buffer :after #'weiss-select-mode-turn-on)
-(advice-add 'weiss-move-to-next-punctuation :after #'weiss-select-mode-turn-on)
-(advice-add 'weiss-move-to-previous-punctuation :after #'weiss-select-mode-turn-on)
-
-(with-eval-after-load 'expand-region
-  (advice-add 'er/expand-region :after #'weiss-select-mode-turn-on-interactive)
+(defun weiss-select-add-advice-turn-on (cmds)
+  "DOCSTRING"
+  (interactive)
+  (mapc (lambda (cmd)
+          (advice-add cmd :after #'weiss-select-mode-turn-on)
+          (advice-add cmd :before #'weiss-select-mode-turn-on-mark)
+          )
+        cmds)
   )
 
-(defun weiss-deactivate-mark-unless-in-select-mode (&optional a b c)
+(with-eval-after-load 'weiss-paredit
+  (with-eval-after-load 'expand-region
+    (let ((cmds '(xah-forward-right-bracket
+                  xah-backward-left-bracket
+                  xah-select-block
+                  weiss-select-sexp
+                  exchange-point-and-mark
+                  weiss-mark-brackets
+                  mark-defun
+                  weiss-select-sexp
+                  weiss-expand-region-by-word
+                  weiss-contract-region-by-word
+                  weiss-expand-region-by-sexp
+                  weiss-contract-region-by-sexp
+                  mark-whole-buffer
+                  weiss-move-to-next-punctuation
+                  weiss-move-to-previous-punctuation
+                  paredit-forward
+                  paredit-backward
+                  ;; er/expand-region
+                  ))
+          )
+      (weiss-select-add-advice-turn-on cmds)            
+      (advice-add 'er/expand-region :after #'weiss-select-mode-turn-on-interactive)
+      )
+    )
+  )
+
+(defun weiss-deactivate-mark-unless-in-select-mode (&rest args)
   "deactivate mark unless in select mode"
   (interactive)
   (unless weiss-select-mode (deactivate-mark)))
 
-(advice-add 'swiper-isearch :before #'weiss-deactivate-mark-unless-in-select-mode)
-(advice-add 'counsel-describe-function :before #'weiss-deactivate-mark-unless-in-select-mode)
-(advice-add 'counsel-describe-variable :before #'weiss-deactivate-mark-unless-in-select-mode)
-(advice-add 'weiss-add-parent-sexp :before #'weiss-deactivate-mark-unless-in-select-mode)
-(advice-add 'undo :before #'weiss-deactivate-mark-unless-in-select-mode)
-(advice-add 'weiss-indent :before #'weiss-deactivate-mark-unless-in-select-mode)
-(advice-add 'weiss-indent-paragraph :before #'weiss-deactivate-mark-unless-in-select-mode)
-(advice-add 'xah-select-block :before #'weiss-deactivate-mark-unless-in-select-mode)
-(advice-add 'weiss-comment-dwim :before #'weiss-deactivate-mark-unless-in-select-mode)
+(defun weiss-select-add-advice-deactivate-mark (cmds)
+  "DOCSTRING"
+  (interactive)
+  (mapc (lambda (cmd)
+          (advice-add cmd :before #'weiss-deactivate-mark-unless-in-select-mode)
+          )
+        cmds)
+  )
+
+(let ((cmds '(
+              swiper-isearch
+              counsel-describe-function
+              counsel-describe-variable
+              weiss-add-parent-sexp
+              weiss-indent
+              weiss-indent-paragraph
+              xah-select-block
+              weiss-comment-dwim
+              xah-open-file-at-cursor
+              weiss-delete-or-add-parent-sexp
+              org-roam-dailies--capture
+              weiss-move-to-next-block
+              weiss-move-to-previous-block
+              citre-jump
+              citre-peek
+              undo
+              ))
+      )
+  (weiss-select-add-advice-deactivate-mark cmds)  
+  )
+;; (advice-add 'swiper-isearch :before #'weiss-deactivate-mark-unless-in-select-mode)
+;; (advice-add 'counsel-describe-function :before #'weiss-deactivate-mark-unless-in-select-mode)
+;; (advice-add 'counsel-describe-variable :before #'weiss-deactivate-mark-unless-in-select-mode)
+;; (advice-add 'weiss-add-parent-sexp :before #'weiss-deactivate-mark-unless-in-select-mode)
+;; (advice-add 'undo :before #'weiss-deactivate-mark-unless-in-select-mode)
+;; (advice-add 'weiss-indent :before #'weiss-deactivate-mark-unless-in-select-mode)
+;; (advice-add 'weiss-indent-paragraph :before #'weiss-deactivate-mark-unless-in-select-mode)
+;; (advice-add 'xah-select-block :before #'weiss-deactivate-mark-unless-in-select-mode)
+;; (advice-add 'weiss-comment-dwim :before #'weiss-deactivate-mark-unless-in-select-mode)
 ;; (advice-add 'xah-paste-or-paste-previous :before #'weiss-deactivate-mark-unless-in-select-mode)
-(advice-add 'xah-open-file-at-cursor :before #'weiss-deactivate-mark-unless-in-select-mode)
-(advice-add 'weiss-delete-or-add-parent-sexp :before #'weiss-deactivate-mark-unless-in-select-mode)
-(advice-add 'org-roam-dailies--capture :before #'weiss-deactivate-mark-unless-in-select-mode)
-(advice-add 'weiss-move-to-next-block :before #'weiss-deactivate-mark-unless-in-select-mode)
-(advice-add 'weiss-move-to-previous-block :before #'weiss-deactivate-mark-unless-in-select-mode)
-(advice-add 'citre-jump :before #'weiss-deactivate-mark-unless-in-select-mode)
-(advice-add 'citre-peek :before #'weiss-deactivate-mark-unless-in-select-mode)
+;; (advice-add 'xah-open-file-at-cursor :before #'weiss-deactivate-mark-unless-in-select-mode)
+;; (advice-add 'weiss-delete-or-add-parent-sexp :before #'weiss-deactivate-mark-unless-in-select-mode)
+;; (advice-add 'org-roam-dailies--capture :before #'weiss-deactivate-mark-unless-in-select-mode)
+;; (advice-add 'weiss-move-to-next-block :before #'weiss-deactivate-mark-unless-in-select-mode)
+;; (advice-add 'weiss-move-to-previous-block :before #'weiss-deactivate-mark-unless-in-select-mode)
+;; (advice-add 'citre-jump :before #'weiss-deactivate-mark-unless-in-select-mode)
+;; (advice-add 'citre-peek :before #'weiss-deactivate-mark-unless-in-select-mode)
 ;; (advice-add 'newline :before #'weiss-deactivate-mark-unless-in-select-mode)
+
+
 
 (defun anzu-query-replace (arg)
   "anzu version of `query-replace'."

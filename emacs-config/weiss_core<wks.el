@@ -39,6 +39,16 @@
                                                         (number-sequence 97 122)))))
   )
 
+(defun wks-trans-keys (keys)
+  "DOCSTRING"
+  (interactive)
+  (mapc
+   (lambda (pair)
+     (define-key key-translation-map (kbd (car pair)) (kbd (cdr pair)))
+     )
+   keys)
+  )
+
 (defun wks-define-vanilla-keymap ()
   "DOCSTRING"
   (interactive)

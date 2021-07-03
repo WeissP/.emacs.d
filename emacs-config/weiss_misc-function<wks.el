@@ -110,7 +110,8 @@
   "eval last sexp this line"
   (interactive)
   (end-of-line)
-  (eval-last-sexp()))
+  (call-interactively 'eval-last-sexp)
+  )
 
 (defun weiss-universal-argument ()
   "Simulate C-u"
