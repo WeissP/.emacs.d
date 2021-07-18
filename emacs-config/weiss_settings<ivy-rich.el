@@ -257,18 +257,6 @@
          ((ivy-rich-file-icon)
           (ivy-rich-candidate))
          :delimiter "\t")
-        counsel-recentf
-        (:columns
-         ((ivy-rich-file-icon)
-          (ivy-rich-candidate (:width 0.8))
-          (ivy-rich-file-last-modified-time (:face font-lock-comment-face)))
-         :delimiter "\t")
-        counsel-buffer-or-recentf
-        (:columns
-         ((ivy-rich-file-icon)
-          (counsel-buffer-or-recentf-transformer (:width 0.8))
-          (ivy-rich-file-last-modified-time (:face font-lock-comment-face)))
-         :delimiter "\t")
         counsel-bookmark
         (:columns
          ((ivy-rich-bookmark-type)

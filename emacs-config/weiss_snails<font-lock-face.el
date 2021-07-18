@@ -1,11 +1,17 @@
+;; (font-installed-p "Secret Code")
 (with-eval-after-load 'weiss_after-dump-misc
   (when (featurep 'snails)
-    (set-face-attribute 'snails-header-line-face nil :inherit 'variable-pitch :foreground "#a626a4" :underline t :weight 'normal :slant 'italic :height 1.2)
-    (set-face-attribute 'snails-header-index-face nil :inherit 'snails-header-line-face :height 0.7 :slant 'italic)
-    (set-face-attribute 'snails-candiate-content-face nil :inherit 'variable-pitch :weight 'light :slant 'normal)
-    (set-face-attribute 'snails-input-buffer-face nil :inherit 'variable-pitch :font (font-spec :name "lato") :height 200)
-    (set-face-attribute 'snails-content-buffer-face nil :inherit 'variable-pitch :font (font-spec :name "lato") :height 150)
-    )
+    (set-face-attribute 'snails-header-line-face nil :inherit 'fixed-pitch  :font
+                        (font-spec :name "Liberation Serif")
+                        :foreground "black" :underline nil :weight 'bold :slant 'normal :height 1.2)
+    (set-face-attribute 'snails-header-index-face nil :inherit 'snails-header-line-face :height 0.8 :slant 'italic :underline nil)
+    (set-face-attribute 'snails-candiate-content-face nil :inherit 'fixed-pitch :weight 'light :slant 'normal)
+    (set-face-attribute 'snails-input-buffer-face nil :font
+                        (font-spec :name "Liberation Serif")
+                        :height 200  :slant 'normal)
+    (set-face-attribute 'snails-content-buffer-face nil :font
+                        (font-spec :name "Liberation Serif")
+                        :height 150  :slant 'normal))
   )
 
 ;; parent: ui

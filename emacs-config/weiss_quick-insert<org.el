@@ -4,7 +4,8 @@
  wks-org-quick-insert-keymap ""
  '(
    ("=" . (weiss-org-babel-insert-c++ (weiss-insert-pair "#+begin_src c++" "#+end_src" t)))
-   ("c" . (weiss-org-babel-insert-conf (weiss-insert-pair "#+begin_src c" "#+end_src" t)))
+   ("C" . (weiss-org-babel-insert-conf (weiss-insert-pair "#+begin_src c" "#+end_src" t)))
+   ("c" . (weiss-org-babel-insert-conf (weiss-insert-pair "#+begin_src clojure" "#+end_src" t)))
    ("e" . (weiss-org-babel-insert-elisp (weiss-insert-pair "#+begin_src elisp" "#+end_src" t)))
    ("g" . (weiss-org-babel-insert-go (weiss-insert-pair "#+begin_src go" "#+end_src" t)))
    ("h" . (weiss-org-babel-insert-haskell (weiss-insert-pair "#+begin_src haskell" "#+end_src" t)))

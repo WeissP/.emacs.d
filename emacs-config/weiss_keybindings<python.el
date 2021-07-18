@@ -3,7 +3,7 @@
    python-mode-map ""
    '(
      ("8" . weiss-execute-buffer-python)
-     ("t e" . weiss-ein-execute-all-cells-above-inclusively)
+     ("y e" . weiss-ein-execute-all-cells-above-inclusively)
      )
    )
   )

@@ -73,7 +73,7 @@
    ("i f" .  counsel-fzf)
    ("i j" .  yasdcv-translate-input)
    ("i m" .  all-the-icons-insert)
-   ("i p" .  bookmark-set)
+   ("i p" .  recentf-db-add-bookmark)
    ("i s" .  yasdcv-translate-at-point)
    ("i v" .  counsel-yank-pop)
 

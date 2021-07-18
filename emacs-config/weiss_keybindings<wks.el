@@ -62,16 +62,17 @@
   (wks-unset-key Man-mode-map '("k"))
   )
 
-(global-unset-key (kbd "t"))
+(global-unset-key (kbd "y"))
 (wks-define-key
  (current-global-map) ""
  `(
    ("S-<dead-grave>" . weiss-open-line-and-indent)
    ("`" . weiss-open-line-and-indent)
    ("ß" . save-buffer)
-   ("&" . paredit-forward)
+   ("&" . weiss-expand-region-by-word)
    ("|" . paredit-backward)
    ("$" . (wks-C-c-C-e (execute-kbd-macro ,(kbd "C-c C-e"))))
+   ("?" . weiss-undo-expand-region)
 
    ("," . xah-backward-left-bracket)
    (";" . weiss-insert-semicolon)
@@ -108,7 +109,7 @@
    ("l" . weiss-right-key)
    ("m" . er/expand-region)
    ("n" . swiper-isearch)
-   ("o" . weiss-expand-region-by-word)
+   ("o" . weiss-expand-region-by-sexp)
    ("O" . weiss-contract-region-by-word)
    ("p" . weiss-indent)
    ("P" . weiss-contract-region-by-sexp)
@@ -116,15 +117,17 @@
    ("r" . weiss-delete-forward-with-region)
    ("s" . snails)
 
-   ("t t" . weiss-move-next-bracket-contents)
-   ("t f" . weiss-flycheck-diwm)
+   ("y t" . paredit-forward-slurp-sexp)
+   ("y f" . weiss-flycheck-diwm)
+   ("y <right>" . transpose-sexps)
+   ("y <left>" . move-sexp-left)
 
    ("u" . undo)
    ("v" . xah-paste-or-paste-previous)
    ("V" .  weiss-paste-with-linebreak)
    ("w" . wks-repeat-command)
    ("x" . weiss-comment-dwim)
-   ("y" . weiss-delete-or-add-parent-sexp)
+   ("t" . weiss-delete-or-add-parent-sexp)
    ("z" . split-window-below)
    ("<end>" . weiss-simulate-c-g)
    ("SPC" . wks-leader-keymap)
@@ -138,13 +141,14 @@
 
 (wks-trans-keys
  '(
-   ("t d" . "C-c C-d")
-   ("t e" . "C-c C-e")
-   ("t u" . "C-c '")
-   ("t k" . "C-c C-k")
-   ("t o" . "C-c C-o")
-   ("t l" . "C-c C-l")
-   ("t c" . "C-c C-c")
+   ("y c" . "C-c C-c")
+   ("y d" . "C-c C-d")
+   ("y e" . "C-c C-e")
+   ("y k" . "C-c C-k")
+   ("y l" . "C-c C-l")
+   ("y o" . "C-c C-o")
+   ("y u" . "C-c '")
+   ("y y" . "C-c C-M-x")
    ))
 
 (provide 'weiss_keybindings<wks)

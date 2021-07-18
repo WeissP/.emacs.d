@@ -34,6 +34,9 @@
 
         (weiss-comment-dwim . weiss-comment-downward)
         (weiss-indent-paragraph . weiss-indent)
+
+        (weiss-expand-region-by-sexp . weiss-expand-region-to-line-beg-or-end)
+        (weiss-expand-region-by-word . weiss-expand-region-to-line-beg-or-end)
         ))
 
 (setq wks-repeat-command-blacklist

@@ -1,7 +1,7 @@
 (with-eval-after-load 'sql
   (setq sql-postgres-login-params
         '((user :default "weiss")
-          (database :default "tlc-trip")
+          (database :default "tlc_trip")
           (server :default "localhost")
           ))
   ;; (defalias 'sql-get-login 'ignore)

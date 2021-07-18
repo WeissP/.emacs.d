@@ -190,6 +190,13 @@ Version 2017-08-19"
   (forward-line -1)
   (indent-according-to-mode))
 
+(defun move-sexp-left ()
+  "DOCSTRING"
+  (interactive)
+  (call-interactively 'backward-sexp)
+  (call-interactively 'transpose-sexps)
+  )
+
 (defun weiss-insert-semicolon ()
   "insert semicolon at the end of line"
   (interactive)
@@ -661,18 +668,25 @@ Version 2017-08-19"
         (end-of-line)
         (comment-dwim nil)
         (wks-vanilla-mode))
-    (let (($lbp (line-beginning-position))
-          ($lep (line-end-position)))
-      (if (and (region-active-p)
-               (string-match "\n" (buffer-substring-no-properties (region-beginning) (region-end))))
-          (comment-dwim nil)
-        (if (eq $lbp $lep)
-            (progn
-              (comment-dwim nil))
-          (progn
-            (comment-or-uncomment-region $lbp $lep)
-            (forward-line ))))
-      ))
+    (if (weiss-region-p)
+        (comment-dwim nil)
+      (progn
+        (comment-or-uncomment-region (line-beginning-position) (line-end-position))
+        (forward-line ))  
+      )
+    ;; (let (($lbp (line-beginning-position))
+    ;;       ($lep (line-end-position)))
+    ;;   (if (and (region-active-p)
+    ;;            (string-match "\n" (buffer-substring-no-properties (region-beginning) (region-end))))
+    ;;       (comment-dwim nil)
+    ;;     (if (eq $lbp $lep)
+    ;;         (progn
+    ;;           (comment-dwim nil))
+    ;;       (progn
+    ;;         (comment-or-uncomment-region $lbp $lep)
+    ;;         (forward-line ))))
+    ;;   )
+    )
   )
 
 (defun weiss-comment-downward ()
@@ -924,6 +938,15 @@ Version 2017-08-19"
         ;; (ignore-errors (nox-format))
         )
     (cond
+     ((eq major-mode 'emacs-lisp-mode)
+      (deactivate-mark)
+      (elfmt)
+      )
+     ((eq major-mode 'clojure-mode)
+      (deactivate-mark)
+      ;; (cider-format-buffer)
+      (zprint)
+      )
      ((eq major-mode 'c++-mode)
       (deactivate-mark)
       (indent-region-line-by-line (point-min) (point-max))

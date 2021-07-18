@@ -9,7 +9,7 @@
  org-fontify-done-headline t
  org-pretty-entities nil
  ;; hide ** //
- org-hide-emphasis-markers nil
+ org-hide-emphasis-markers t
  )
 
 (with-eval-after-load 'org

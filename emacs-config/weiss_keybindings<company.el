@@ -2,8 +2,10 @@
   (wks-define-key
    company-active-map ""
    '(
-     ("<tab>" . company-complete-common-or-cycle)
-     ("TAB" . company-complete-common-or-cycle)
+     ;; ("<tab>" . company-complete-common-or-cycle)
+     ;; ("TAB" . company-complete-common-or-cycle)
+     ;; ("<right>" . company-complete-common-or-cycle)
+     ("@" . company-complete-common-or-cycle)
      ("C-M-S-s-j" . weiss-company-select-next-or-toggle-main-frame)
      ("C-M-S-s-k" . (weiss-company-select-previous (company-complete-common-or-cycle -1)))
      ;; ("<escape>" . nil)
@@ -17,6 +19,8 @@
   (define-key company-active-map (kbd "RET") nil)
   (define-key company-active-map (kbd "<return>") nil)
   (define-key company-active-map (kbd "SPC") nil)
+  (define-key company-active-map (kbd "<tab>") nil)
+  (define-key company-active-map (kbd "TAB") nil)
 
   ;; (define-key company-active-map (kbd "<tab>") #'company-complete-common-or-cycle)
   ;; (define-key company-active-map (kbd "TAB") #'company-complete-common-or-cycle)

@@ -4,7 +4,7 @@
      haskell-mode-map
      ""
      '(
-       ("t e" . hasky-stack-execute)
+       ("y e" . hasky-stack-execute)
        ))
     )
   )

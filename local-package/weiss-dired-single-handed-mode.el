@@ -2,27 +2,29 @@
 
 (wks-define-key
  weiss-dired-single-handed-mode-map ""
- '(
-   ("x" . hydra-dired-quick-sort/body)
+ '(("x" . hydra-dired-quick-sort/body)
    ("d" . next-line)
    ("e" . previous-line)
    ("f" . weiss-single-hand-play-movie)
-   ("g" . (weiss-dired-single-handed-open-dir (dired-find-alternate-file)(weiss-dired-single-handed-mode)))
+   ("g" .
+    (weiss-dired-single-handed-open-dir
+     (dired-find-alternate-file)
+     (weiss-dired-single-handed-mode)))
    ("q" . weiss-dired-single-handed-mode)
-   ("s" . (weiss-dired-single-handed-up-dir (find-alternate-file "..")(weiss-dired-single-handed-mode)))
+   ("s" .
+    (weiss-dired-single-handed-up-dir
+     (find-alternate-file "..")
+     (weiss-dired-single-handed-mode)))
    ("v" . hydra-dired-filter-actress/body)
    ("V" . hydra-dired-add-tag/body)
-   ("c" . hydra-dired-filter-tag/body)
-   )
+   ("c" . hydra-dired-filter-tag/body))
  )
 
 (defun weiss-single-hand-play-movie ()
   "DOCSTRING"
   (interactive)
   (let ((file (car (dired-get-marked-files nil nil nil nil t))))
-    (dired-shell-command
-     (format "mplayer -fs \"%s\"" file))
-    ))
+    (dired-shell-command (format "mplayer -fs \"%s\" &" file))))
 
 (define-minor-mode weiss-dired-single-handed-mode
   "weiss-dired-single-handed-mode"
@@ -37,13 +39,11 @@
         ;; (set (make-local-variable 'hl-line-face) 'emphasis-hl-line)
         ;; (hl-line-mode t)
         (set-face-background 'hl-line "#ffb5ff")
-        (set-face-background 'normal-hl-line "#ffb5ff")
-        )
+        (set-face-background 'normal-hl-line "#ffb5ff"))
     ;; (setq cursor-type t)
     ;; (hl-line-mode -1)
     (set-face-background 'hl-line "#ffe8e8")
-    (set-face-background 'normal-hl-line "#ffe8e8")
-    )
+    (set-face-background 'normal-hl-line "#ffe8e8"))
   )
 
 (provide 'weiss-dired-single-handed-mode)

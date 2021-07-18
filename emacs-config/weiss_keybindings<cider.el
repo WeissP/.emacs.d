@@ -9,12 +9,16 @@
    ""
    `(
      ("C-c C-c" . cider-interrupt)
-     ("t r" . cider-switch-to-repl-buffer)
-     ("t s" . cider-repl-set-ns)
-     ("t j" . cider-jack-in)
+     ("y r" . cider-switch-to-repl-buffer)
+     ("y s" . cider-repl-set-ns)
+     ("y j" . cider-jack-in)
      ("-" . weiss-cider-save-and-load)
-     ("t b" . cider-pop-back)
-     ("SPC , p" . cider-eval-last-sexp-to-repl)
+     ("y b" . cider-pop-back)
+     ("y k r" . cider-restart)
+     ("C-c C-M-x c" . weiss-cider-connect-babashka)
+     ("C-c C-M-x s" . cider-connect-sibling-clj)
+     ("SPC , i" . cider-eval-last-sexp-to-repl)
+     ("SPC , p" . cider-eval-list-at-point)
      ))
 
   (wks-unset-key cider-repl-mode-map '(","))
@@ -30,6 +34,14 @@
   (wks-unset-key cider-stacktrace-mode-map '("j"))
   (wks-define-key
    cider-stacktrace-mode-map
+   ""
+   '(
+     ("J" . cider-stacktrace-toggle-java)
+     ))
+
+  (wks-unset-key cider-docview-mode-map '("j"))
+  (wks-define-key
+   cider-docview-mode-map
    ""
    '(
      ("J" . cider-stacktrace-toggle-java)

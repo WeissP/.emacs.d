@@ -1,11 +1,10 @@
 (with-eval-after-load 'sql
-  (wks-unset-key sql-mode-map '("t"))
+  (wks-unset-key sql-mode-map '("y"))
   (wks-define-key
    sql-mode-map ""
    '(
      ("<backtab>" . weiss-indent-paragraph)
-     ("y" . weiss-sql-send-paragraph-or-region)
-     ("t s" . weiss-insert-semicolon)
+     ("t" . weiss-sql-send-paragraph-or-region)
      )
    )
 

@@ -1,14 +1,4 @@
 (with-eval-after-load 'lsp-java
-  (defun async-shell-command-no-window (command)
-    (interactive)
-    (let
-        ((display-buffer-alist
-          (list
-           (cons
-            "\\*Async Shell Command\\*.*"
-            (cons #'display-buffer-no-window nil)))))
-      (async-shell-command
-       command)))
   (defun weiss--format-java (dir)
     "DOCSTRING"
     (save-buffer)

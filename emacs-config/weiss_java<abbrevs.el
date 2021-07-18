@@ -15,6 +15,7 @@
     ("pb" "public " weiss--ahf)
     ("pri" "private " weiss--ahf)
     ("wh" "while (▮) {\n\n}" weiss--ahf-indent)
+    ("doc" "/**\n* ▮\n*/"  weiss--ahf-indent)
 ;;;;; for clp
     ("tv" "TemporaryVar ▮ = TemporaryVar(\"\");" weiss--ahf)
     ("ai" "addInstruction(▮)" weiss--ahf)

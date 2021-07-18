@@ -8,6 +8,8 @@
 
 (set-face-attribute 'region nil :background "#e8f2ff")
 
+(setq package-enable-at-startup nil)
+
 (when (file-exists-p (expand-file-name "~/.emacs.d/emacs.pdmp"))
   (setq package-enable-at-startup nil
         file-name-handler-alist nil

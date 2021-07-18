@@ -3,7 +3,7 @@
 (defvar weiss/launch-time (current-time))
 (defvar weiss/cursor-color "#4078f2")
 (defvar weiss/cursor-type '(bar . 2))
-(defvar after-dump-packages '(weiss_after-dump-misc all-the-icons display-line-numbers server rime telega recentf emacs-yakuake tramp gcmh))
+(defvar after-dump-packages '(weiss_after-dump-misc all-the-icons display-line-numbers server rime telega emacs-yakuake tramp gcmh))
 (when (string= emacs-host "ros-docker")
   (setq after-dump-packages '(weiss_after-dump-misc all-the-icons display-line-numbers server recentf tramp gcmh))
   )
@@ -55,6 +55,8 @@
 (setq weiss-right-top-window (selected-frame))
 (setq weiss-left-top-window (make-frame-command))
 (select-frame-set-input-focus weiss-right-top-window)
+
+(recentf-mode -1)
 
 (setq gc-cons-threshold (* (expt 1024 3) 6)
       gc-cons-percentage 0.5

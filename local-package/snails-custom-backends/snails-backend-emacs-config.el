@@ -4,10 +4,9 @@
 ;;; Code:
 (defvar snails-emacs-config-new-length 1)
 
-
 (snails-create-async-backend
  :name
- "emacs-config"
+ "EMACS-CONFIG"
 
  :build-command
  (lambda (input)

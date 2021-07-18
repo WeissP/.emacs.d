@@ -1,6 +1,6 @@
 (with-eval-after-load 'org-roam
   (wks-define-key
-   org-mode-map "t "
+   org-mode-map "y "
    '(
      ("i" . org-roam-insert)
      ("r" . org-roam)

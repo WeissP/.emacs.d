@@ -1,4 +1,5 @@
 (with-eval-after-load 'org
+
   (wks-define-key
    org-mode-map ""
    '(
@@ -18,20 +19,20 @@
      ("d" . weiss-org-cut-line-or-delete-region)
      ("j" . (weiss-org-next-line (next-line) (deactivate-mark)))
      ("k" . (weiss-org-previous-line (previous-line) (deactivate-mark)))
-     ("y" . weiss-org-preview-latex-and-image)
+     ("t" . weiss-org-preview-latex-and-image)
      ("n" . weiss-org-search)
      ("x" . weiss-org-exchange-point-or-switch-to-sp)
      ("X" . org-refile)
 
-     ("t a" . weiss-org-screenshot)
-     ("t o" . org-noter)
-     ("t d" . weiss-org-download-img)
-     ("t q" . weiss-set-org-tags)
-     ("t s" . org-noter-sync-current-note)
-     ("t t" . org-todo)
-     ("t b" . org-mark-ring-goto)
-     ("t <tab>" . org-table-create-with-table\.el)
-     ("t j s" . weiss-org-copy-heading-link)
+     ("y a" . weiss-org-screenshot)
+     ("y o" . org-noter)
+     ("y d" . weiss-org-download-img)
+     ("y q" . weiss-set-org-tags)
+     ("y s" . org-noter-sync-current-note)
+     ("y t" . org-todo)
+     ("y b" . org-mark-ring-goto)
+     ("y <tab>" . org-table-create-with-table\.el)
+     ("y j s" . weiss-org-copy-heading-link)
 
      ("<escape> <escape>" . wks-org-quick-insert-keymap)
      )

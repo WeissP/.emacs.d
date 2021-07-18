@@ -11,7 +11,7 @@
   (wks-define-key mhtml-mode-map ""
                   '(
                     ("<tab>" . weiss-indent)
-                    ("t s" . weiss-run-java-spring)
+                    ("y s" . weiss-run-java-spring)
                     ))
   )
 

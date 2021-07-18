@@ -24,5 +24,6 @@
 
   ;; (setq face-font-rescale-alist '(("LXGW WenKai" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))  
 )
+;; (font-installed-p "Futurist Fixed\-width")
 
 (provide 'weiss_font<ui)

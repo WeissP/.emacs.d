@@ -1,18 +1,15 @@
-(setq-default c-basic-offset   4
-              tab-width        4
-              indent-tabs-mode nil)
+(setq-default c-basic-offset   4 tab-width        4 indent-tabs-mode nil)
 (setq
  large-file-warning-threshold 100000000
  ring-bell-function 'ignore
  auto-save-default nil ; Disable auto save
  make-backup-files nil ; Forbide to make backup files
- )
+ create-lockfiles nil)
 
 (defun weiss--get-config-file-path (path)
   "get config path according to weiss/config-path"
   (interactive)
-  (concat weiss/config-path path)
-  )
+  (concat weiss/config-path path))
 
 (set-cursor-color weiss/cursor-color)
 (setq-default cursor-type weiss/cursor-type)
@@ -54,15 +51,15 @@
 (modify-coding-system-alist 'process "*" 'utf-8)
 
 (setq locale-coding-system 'utf-8
-      default-process-coding-system '(utf-8 . utf-8))
+      default-process-coding-system
+      '(utf-8 . utf-8))
 
 ;; save sh file auto with executable permission
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
 (setq
  eval-expression-print-level nil
- eval-expression-print-length nil
- )
+ eval-expression-print-length nil)
 
 ;; parent: 
 (provide 'weiss_user-settings<global)

@@ -1,8 +1,28 @@
+(defvar weiss-expand-region-stack nil)
+
+(defun weiss-push-expand-region-stack (p)
+  "DOCSTRING"
+  (interactive)
+  (when (> (length weiss-expand-region-stack) 10)
+    (setq weiss-expand-region-stack (butlast weiss-expand-region-stack 10))  
+    )
+  (push p weiss-expand-region-stack)
+  )
+
 (defun weiss-exchange-point-and-select-block-backward ()
   "DOCSTRING"
   (interactive)
   (exchange-point-and-mark)
   (xah-beginning-of-line-or-block)
+  )
+
+(defun weiss-expand-region-to-line-beg-or-end ()
+  "DOCSTRING"
+  (interactive)
+  (if (eq (point) (region-beginning))
+      (beginning-of-line)
+    (end-of-line)
+    )
   )
 
 (defun xah-select-current-block ()
@@ -34,6 +54,12 @@ Version 2019-12-26"
       (push-mark (point) t t)
       (re-search-forward "\n[ \t]*\n" nil "move"))))
 
+(defun weiss-region-p ()
+  "DOCSTRING"
+  (interactive)
+  (and (use-region-p) (> (- (region-end) (region-beginning)) 0))
+  )
+
 (defun weiss-deactivate-mark ()
   "DOCSTRING"
   (interactive)
@@ -41,14 +67,25 @@ Version 2019-12-26"
   (let (select-active-regions)
     (deactivate-mark)))
 
+(defun weiss-undo-expand-region ()
+  "DOCSTRING"
+  (interactive)
+  (goto-char (pop weiss-expand-region-stack))
+  )
+
 (defun weiss-expand-region-by-sexp ()
   "DOCSTRING"
   (interactive)
-  (unless (use-region-p) (push-mark nil t))
-  (if (and (use-region-p) (eq (point) (region-beginning)))
-      (call-interactively 'paredit-backward)
-    (call-interactively 'paredit-forward))
-  (setq mark-active t)
+  (weiss-push-expand-region-stack (point))
+  (if (weiss-region-p)    
+      (if (eq (point) (region-beginning))
+          (call-interactively 'paredit-backward)
+        (call-interactively 'paredit-forward))      
+    (if current-prefix-arg
+        (call-interactively 'paredit-backward)
+      (call-interactively 'paredit-forward)
+      )
+    )        
   )
 
 (defun weiss-contract-region-by-sexp ()
@@ -62,11 +99,15 @@ Version 2019-12-26"
 (defun weiss-expand-region-by-word ()
   "expand region word by word on the same side of cursor"
   (interactive)
-  (if current-prefix-arg
-      (insert " ")
-    (if (eq (point) (region-beginning))
+  (weiss-push-expand-region-stack (point))
+  (if (weiss-region-p)    
+      (if (eq (point) (region-beginning))
+          (backward-word)
+        (forward-word))      
+    (if current-prefix-arg
         (backward-word)
-      (forward-word))        
+      (forward-word)
+      )
     )
   )
 

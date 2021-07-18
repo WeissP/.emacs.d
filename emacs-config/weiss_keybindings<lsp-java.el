@@ -2,7 +2,7 @@
   (wks-unset-key java-mode-map '("," "/" ";"))
 
   (wks-define-key
-   java-mode-map "t"
+   java-mode-map "y"
    '(
      ;; ("t" . lsp-java-generate-to-string)
      ("s" . weiss-run-java-spring)

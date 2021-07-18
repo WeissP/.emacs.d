@@ -1,12 +1,15 @@
 (with-eval-after-load 'weiss_after-dump-misc
   (when (featurep 'org)
-    (add-hook 'org-mode-hook (lambda ()
-                               (variable-pitch-mode)
-                               ))
+    (add-hook 'org-mode-hook (lambda () (variable-pitch-mode)))
     ;; fix indentation when variable-pitch-mode is called
     (require 'org-indent)
-    (set-face-attribute 'org-indent nil :inherit '(org-hide fixed-pitch))  
+    (set-face-attribute 'org-indent nil :inherit
+                        '(org-hide fixed-pitch))
 
+    (set-face-attribute 'org-verbatim  nil
+                        :height 0.5
+                        :font "JetBrainsMono"
+                        :underline 'nil)
     (set-face-attribute 'bold  nil
                         :weight 'demibold
                         :slant 'normal
@@ -28,8 +31,7 @@
     (set-face-attribute 'org-link nil
                         :height 1.0
                         :inherit nil
-                        :underline t
-                        )
+                        :underline t)
     (set-face-attribute 'org-block-begin-line nil
                         :weight 'normal
                         :slant 'normal
@@ -39,12 +41,10 @@
                         :background "#FAFAFA")
     (set-face-attribute 'org-checkbox nil
                         :font "JetBrainsMono"
-                        :extend nil
-                        )
+                        :extend nil)
     (set-face-attribute 'org-table nil
                         :font "JetBrainsMono"
-                        :extend nil
-                        )
+                        :extend nil)
 
     (set-face-attribute 'org-block nil
                         :font "JetBrainsMono"
@@ -114,9 +114,8 @@
     (font-lock-add-keywords 'org-mode
                             '(("^.*:Frage:.*$" 0 'font-lock-keyword-face)))
 
-    (add-to-list 'org-tag-faces '("Frage" . (:foreground "red"  :weight 'bold)))
-  )  
-)
+    (add-to-list 'org-tag-faces
+                 '("Frage" . (:foreground "red"  :weight 'bold)))))
 
 ;; parent: ui
 (provide 'weiss_org<font-lock-face)
