@@ -3,10 +3,11 @@
 (defvar weiss/launch-time (current-time))
 (defvar weiss/cursor-color "#4078f2")
 (defvar weiss/cursor-type '(bar . 2))
-(defvar after-dump-packages '(weiss_after-dump-misc all-the-icons display-line-numbers server rime telega emacs-yakuake tramp gcmh))
+(defvar after-dump-packages
+  '(weiss_after-dump-misc all-the-icons display-line-numbers server rime telega emacs-yakuake tramp gcmh))
 (when (string= emacs-host "ros-docker")
-  (setq after-dump-packages '(weiss_after-dump-misc all-the-icons display-line-numbers server recentf tramp gcmh))
-  )
+  (setq after-dump-packages
+        '(weiss_after-dump-misc all-the-icons display-line-numbers server recentf tramp gcmh)))
 
 (setq vanilla-global-map (current-global-map))
 (defvar weiss-dumped-p nil)
@@ -19,26 +20,21 @@
       (require 'tramp)
       (setq tramp-mode 1)
       (global-font-lock-mode t)
-      (transient-mark-mode t)
-      )
+      (transient-mark-mode t))
   (load (concat weiss/config-path "weiss_startup.el"))
-  (if (string= emacs-host "ros-docker")
-      (load "~/.emacs.d/dumped-packages.el")
-    (weiss-load-module weiss/emacs-config-modules nil)
-    )
-  )
+  (pcase emacs-host
+    ("ros-docker" (load "~/.emacs.d/dumped-packages.el"))
+    ("arch without roam"
+     (weiss-load-module weiss/emacs-config-modules-without-roam nil))
+    (_ (weiss-load-module weiss/emacs-config-modules nil))))
 (when (string= emacs-host "ros-docker")
   (setq counsel-fzf-cmd "/home/weiss/fzf/bin/fzf -f \"%s\"")
-  (setq rg-executable "/home/weiss/ripgrep/rg")
-  )
+  (setq rg-executable "/home/weiss/ripgrep/rg"))
 
-(dolist (x after-dump-packages) 
-  (require x)
-  )
+(dolist (x after-dump-packages) (require x))
 
 (unless (string= emacs-host "ros-docker")
-  (load "/home/weiss/weiss/emacs/lisp/dired.el")
-  )
+  (load "/home/weiss/weiss/emacs/lisp/dired.el"))
 
 ;; (ignore-errors (bookmark-load "/home/weiss/.emacs.d/bookmarks" t t t))
 
@@ -48,9 +44,8 @@
 (save-place-mode 1)
 (winner-mode)
 
-(unless (string= emacs-host "ros-docker")
-  (dbus-init-bus :session)   ; for EAF DUMP
-  )
+(unless (string= emacs-host "ros-docker") (dbus-init-bus :session)   ; for EAF DUMP
+        )
 
 (setq weiss-right-top-window (selected-frame))
 (setq weiss-left-top-window (make-frame-command))
@@ -58,9 +53,11 @@
 
 (recentf-mode -1)
 
-(setq gc-cons-threshold (* (expt 1024 3) 6)
+(setq gc-cons-threshold
+      (* (expt 1024 3) 6)
       gc-cons-percentage 0.5
       garbage-collection-messages nil)
 
-(message "Emacs is ready, startup cost: %.3f seconds." (time-to-seconds (time-since weiss/launch-time)))
+(message "Emacs is ready, startup cost: %.3f seconds."
+         (time-to-seconds (time-since weiss/launch-time)))
 (setq weiss/launch-time nil)
