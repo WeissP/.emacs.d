@@ -7,8 +7,7 @@
     (call-interactively 'xah-paste-or-paste-previous)
     (save-excursion
       (goto-char (point-min))
-      (while (re-search-forward "\n" nil t) (replace-match "")))
-    )
+      (while (re-search-forward "\n" nil t) (replace-match ""))))
   ;; (defvar snails-current-dir nil)
   ;; (defun weiss-snails-get-current-dir ()
   ;;   "get the path of current file"
@@ -29,7 +28,8 @@
   (require 'snails-backend-current-buffer)
   (require 'snails-backend-search-pdf)
   (require 'snails-backend-emacs-config)
-  (require 'snails-backend-org-roam)
+  (unless (string= emacs-host "arch without roam")
+    (require 'snails-backend-org-roam))
   (require 'snails-backend-file-bookmark)
   (require 'snails-backend-filter-buffer)
   ;; (require 'snails-backend-recentf-weiss)
@@ -66,7 +66,6 @@
 (defun weiss-test ()
   "DOCSTRING"
   (interactive)
-  (snails
-   '(snails-backend-fd)))
+  (snails '(snails-backend-fd)))
 ;; parent: 
 (provide 'weiss_settings<snails)
