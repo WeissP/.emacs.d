@@ -90,8 +90,7 @@
                 (org-edit-latex :local t)
                 magic-latex-buffer))
         (snails :local t
-                ;; :then ((snails-roam :github "WeissP/snails-roam")))
-                :then ((snails-roam :local t)))
+                :then ((snails-roam :github "WeissP/snails-roam")))
         (dired
          :local t
          ;; :after-dump-all t
