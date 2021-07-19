@@ -76,10 +76,6 @@
                          (ob-javascript :github "zweifisch/ob-javascript")))
                 (org-agenda :local t)
                 (org-tempo :local t)
-                (org-roam
-                 :then (org-roam-server
-                        (org-roam-protocol :local t)
-                        (org-transclusion :disabled t)))
                 org-fancy-priorities
                 (org-table-to-qmk-keymap :local t)
                 (org-bullets :disabled t)
