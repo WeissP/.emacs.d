@@ -162,11 +162,11 @@
                (sudo-edit counsel-tramp docker-tramp))
         (recentf :local t :disabled t)
         (recentf-db :skip-install t)
-        (emacs-yakuake :local t )
         gcmh
         (weiss-paredit :local t)
         (citre :github "universal-ctags/citre")
-        (elfmt :github "git@github.com:riscy/elfmt.git")))
+        (elfmt :github "git@github.com:riscy/elfmt.git")
+        yaml-mode))
 
 (setq weiss/emacs-config-modules
       '((global :skip-install t)

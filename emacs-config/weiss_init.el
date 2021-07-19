@@ -3,11 +3,15 @@
 (defvar weiss/launch-time (current-time))
 (defvar weiss/cursor-color "#4078f2")
 (defvar weiss/cursor-type '(bar . 2))
-(defvar after-dump-packages
-  '(weiss_after-dump-misc all-the-icons display-line-numbers server rime telega emacs-yakuake tramp gcmh))
-(when (string= emacs-host "ros-docker")
-  (setq after-dump-packages
-        '(weiss_after-dump-misc all-the-icons display-line-numbers server recentf tramp gcmh)))
+
+(setq after-dump-packages
+      (pcase emacs-host
+        ("ros-docker"
+         '(weiss_after-dump-misc all-the-icons display-line-numbers server recentf tramp gcmh))
+        ("arch without roam"
+         '(weiss_after-dump-misc all-the-icons display-line-numbers server rime telega tramp gcmh))
+        (_
+         '(weiss_after-dump-misc all-the-icons display-line-numbers server rime telega emacs-yakuake tramp gcmh))))
 
 (setq vanilla-global-map (current-global-map))
 (defvar weiss-dumped-p nil)
