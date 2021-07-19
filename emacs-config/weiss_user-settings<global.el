@@ -18,8 +18,8 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;;Bookmarks
-(bookmark-load "/home/weiss/.emacs.d/bookmarks" t t t)
-(setq bookmark-save-flag 1)
+;; (bookmark-load "/home/weiss/.emacs.d/bookmarks" t t t)
+;; (setq bookmark-save-flag 1)
 ;;(bookmark-delete "org-capture-last-stored")
 ;;(bookmark-delete "org-refile-last-stored")
 

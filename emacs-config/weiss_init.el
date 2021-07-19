@@ -40,9 +40,9 @@
   (load "/home/weiss/weiss/emacs/lisp/dired.el")
   )
 
-(ignore-errors (bookmark-load "/home/weiss/.emacs.d/bookmarks" t t t))
+;; (ignore-errors (bookmark-load "/home/weiss/.emacs.d/bookmarks" t t t))
 
-(setq bookmark-save-flag 1)
+;; (setq bookmark-save-flag 1)
 
 (ignore-errors (savehist-mode 1))
 (save-place-mode 1)

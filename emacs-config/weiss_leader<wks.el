@@ -43,7 +43,7 @@
    ("d a" .  weiss-custom-daily-agenda)
    ("d b" .  weiss-save-current-content)
    ("d c" .  org-roam-capture)
-   ("d d" .  weiss-switch-and-bookmarks-search)
+   ;; ("d d" .  weiss-switch-and-bookmarks-search)
    ("d f" .  org-roam-find-file)
    ("d j" . yasdcv-translate-input)
    ("d l" .  list-buffers)
@@ -170,7 +170,7 @@
    ("u" . isearch-forward)
 
    ("w f" .  xref-find-definitions)
-   ("w m" .  list-bookmarks)
+   ;; ("w m" .  list-bookmarks)
    ("w n" .  weiss-new-frame)
    ("w t" .  weiss-test)
    ("w l" .  xref-pop-marker-stack)
