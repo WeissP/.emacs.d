@@ -1,3 +1,4 @@
+(setq emacs-host "arch without roam")
 (defvar weiss/config-path "/home/weiss/.emacs.d/emacs-config/")
 (defvar weiss/local-package-path "/home/weiss/.emacs.d/local-package/")
 (defvar weiss/launch-time (current-time))
@@ -20,7 +21,7 @@
 
 ;; (load "/home/weiss/.emacs.d/recentf")
 
-(weiss-load-module weiss/emacs-config-modules nil)
+(weiss-load-module weiss/emacs-config-modules-without-roam nil)
 ;; (load "/home/weiss/.emacs.d/dumped-packages.el")
 
 ;; We have to unload tramp in pdump, otherwise tramp will not work.

@@ -49,17 +49,17 @@
   (setq snails-default-backends
         '(snails-backend-preview
           snails-backend-filter-buffer
-          snails-backend-org-roam-new
+          ;; snails-backend-org-roam-new
           snails-backend-recentf-db
           snails-backend-emacs-config
           ;; snails-backend-file-bookmark
-          snails-backend-org-roam-link
-          snails-backend-org-roam-focusing
-          snails-backend-org-roam-uc
-          snails-backend-org-roam-project
-          snails-backend-org-roam-note
-          snails-backend-org-roam-tutorial
-          snails-backend-org-roam-all
+          ;; snails-backend-org-roam-link
+          ;; snails-backend-org-roam-focusing
+          ;; snails-backend-org-roam-uc
+          ;; snails-backend-org-roam-project
+          ;; snails-backend-org-roam-note
+          ;; snails-backend-org-roam-tutorial
+          ;; snails-backend-org-roam-all
           snails-backend-emacs-config-new))
 
   )

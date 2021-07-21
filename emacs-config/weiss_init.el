@@ -37,8 +37,8 @@
 
 (dolist (x after-dump-packages) (require x))
 
-(unless (string= emacs-host "ros-docker")
-  (load "/home/weiss/weiss/emacs/lisp/dired.el"))
+;; (unless (string= emacs-host "ros-docker")
+;;   (load "/home/weiss/weiss/emacs/lisp/dired.el"))
 
 ;; (ignore-errors (bookmark-load "/home/weiss/.emacs.d/bookmarks" t t t))
 
