@@ -118,6 +118,41 @@
       1)
      picky-list)))
 
+(defun weiss-gen-random-string (len)
+  "DOCSTRING"
+  (interactive)
+  (if (= len 0)
+      ""
+    (concat
+     (format "%c" (+ 97 (random 25)))
+     (weiss-gen-random-string (1- len)))))
+
+(defun weiss-test ()
+  "DOCSTRING"
+  (interactive)
+  (with-output-to-temp-buffer
+      (concat "*" (weiss-gen-random-string 8))
+    (print "asdf")))
+
+(defun weiss-call-process (exe &rest args)
+  "DOCSTRING"
+  (interactive)
+  (let ((b
+         (generate-new-buffer
+          (concat "*" (weiss-gen-random-string 8)))))
+    (apply 'call-process exe nil b t args)
+    (display-buffer b)))
+
+(defun weiss-start-process (proc-name command)
+  "DOCSTRING"
+  (interactive)
+  (let* ((name (concat "process:" proc-name))
+         (b (generate-new-buffer name))
+         ;; (default-directory "/")
+         )
+    (apply 'start-process-shell-command proc-name b command)
+    (display-buffer b)))
+
 (defun weiss-eval-last-sexp-this-line()
   "eval last sexp this line"
   (interactive)
@@ -217,7 +252,13 @@ Version 2019-12-02"
 (defun weiss-test (beg end)
   (interactive "@r")
   (narrow-to-region beg end)
-  (dolist (x '(("←" . "<-")("—" . "--")("’" . "'")("∶∶" . "::") ("⇒" . "=>") ("→" . "->")))
+  (dolist (x
+           '(("←" . "<-")
+             ("—" . "--")
+             ("’" . "'")
+             ("∶∶" . "::")
+             ("⇒" . "=>")
+             ("→" . "->")))
     (weiss-replace-text x))
   (widen))
 

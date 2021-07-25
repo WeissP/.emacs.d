@@ -37,6 +37,7 @@
   (require 'snails-backend-filter-buffer)
   (require 'snails-backend-preview)
   (require 'snails-backend-recentf-db)
+  (require 'snails-backend-tab-group)
 
   (setq snails-prefix-backends
         '((";"
@@ -44,6 +45,7 @@
           (","
            '(snails-backend-imenu snails-backend-directory-files snails-backend-current-buffer))
           ("=" '(snails-backend-buffer))
+          ("?" '(snails-backend-tab-group))
           ("!" '(snails-backend-search-pdf))))
 
   (setq snails-default-backends

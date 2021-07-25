@@ -1,17 +1,15 @@
 (wks-define-key
  prog-mode-map ""
- '(
-   ("<tab>" . weiss-indent-paragraph)
+ '(("<tab>" . weiss-indent-paragraph)
    ("<RET>" . weiss-deactivate-mark-and-new-line)
    ;; ("<right>" . right-char)
    ;; ("<left>" . left-char)
-   )
- )
+   ))
 
 (wks-define-key
- (current-global-map) ""
- '(
-   ("M-i" . wks-vanilla-mode-disable)
+ (current-global-map)
+ ""
+ '(("M-i" . wks-vanilla-mode-disable)
    ("<backtab>" . weiss-indent)
    ("<S-delete>" . (weiss-insert-single-slash (insert "\\")))
    ("M-DEL" . (weiss-insert-single-vertical-bar (insert "|")))
@@ -19,26 +17,23 @@
    ("M-e" . eldoc)
    ("C-n" . recenter-top-bottom)
    ("<dead-circumflex>" . (weiss-insert-grave (insert "^")))
-   ("C-<tab>" .  text-scale-increase)
-   ("C-S-<iso-lefttab>" .  text-scale-decrease)
    ("<left>" . scroll-up)
    ;; ("<down>" . scroll-up)
    ("<right>" . scroll-down)
    ;; ("<up>" . scroll-down)
-   )
+   ("<escape> <up>" . text-scale-increase)
+   ("<escape> <down>" . text-scale-decrease))
  )
 
 (global-unset-key (kbd "<escape>"))
 (with-eval-after-load 'weiss_quick-insert<wks
   (wks-define-key
-   (current-global-map) ""
-   '(
-     ("<escape>" . wks-global-quick-insert-keymap)
+   (current-global-map)
+   ""
+   '(("<escape>" . wks-global-quick-insert-keymap)
      ("<escape> ," . previous-buffer)
-     ("<escape> ." . next-buffer)
-     )
-   )
-  )
+     ("<escape> ." . next-buffer))
+   ))
 
 (wks-unset-key help-mode-map '("h"))
 (wks-unset-key messages-buffer-mode-map '("h"))
@@ -47,31 +42,26 @@
   (wks-unset-key image-mode-map '("SPC" "a" "s"))
   (wks-define-key
    image-mode-map ""
-   '(
-     ("j" . next-line)
+   '(("j" . next-line)
      ("k" . previous-line)
      ("i" . left-char)
      ("l" . right-char)
      ("C-<tab>" .  image-increase-size)
-     ("C-S-<iso-lefttab>" .  image-decrease-size)
-     )
-   )
-  )
+     ("C-S-<iso-lefttab>" .  image-decrease-size))
+   ))
 
-(with-eval-after-load 'man-mode
-  (wks-unset-key Man-mode-map '("k"))
-  )
+(with-eval-after-load 'man-mode (wks-unset-key Man-mode-map '("k")))
 
 (global-unset-key (kbd "y"))
 (wks-define-key
- (current-global-map) ""
- `(
-   ("S-<dead-grave>" . weiss-open-line-and-indent)
+ (current-global-map)
+ ""
+ `(("S-<dead-grave>" . weiss-open-line-and-indent)
    ("`" . weiss-open-line-and-indent)
    ("ß" . save-buffer)
    ("&" . weiss-expand-region-by-word)
    ("|" . paredit-backward)
-   ("$" . (wks-C-c-C-e (execute-kbd-macro ,(kbd "C-c C-e"))))
+   ("$" . weiss-delete-other-window)
    ("?" . weiss-undo-expand-region)
 
    ("," . xah-backward-left-bracket)
@@ -94,7 +84,7 @@
    ;; ("9" .  weiss-switch-to-otherside-top-frame)
    ;; ("0" .  weiss-switch-buffer-or-otherside-frame-without-top)
 
-   ("a" . weiss-split-or-delete-window)
+   ("a" . weiss-split-or-switch-window)
    ("b" . xah-toggle-letter-case)
    ("c" . xah-copy-line-or-region)
    ("C" . weiss-kill-append-with-comma)
@@ -135,20 +125,17 @@
 
    ("C-M-S-s-j" . weiss-switch-buffer-or-otherside-frame-without-top)
    ("C-M-S-s-k" . weiss-switch-to-same-side-frame)
-   ("C-M-S-s-l" . weiss-switch-to-otherside-top-frame)
-   )
+   ("C-M-S-s-l" . weiss-switch-to-otherside-top-frame))
  )
 
 (wks-trans-keys
- '(
-   ("y c" . "C-c C-c")
+ '(("y c" . "C-c C-c")
    ("y d" . "C-c C-d")
    ("y e" . "C-c C-e")
    ("y k" . "C-c C-k")
    ("y l" . "C-c C-l")
    ("y o" . "C-c C-o")
    ("y u" . "C-c '")
-   ("y y" . "C-c C-M-x")
-   ))
+   ("y y" . "C-c C-M-x")))
 
 (provide 'weiss_keybindings<wks)

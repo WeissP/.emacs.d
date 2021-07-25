@@ -6,31 +6,24 @@
     (re-search-forward "\n[ \t]*\n"))
   (let ((pb (point))
         )
-    (re-search-forward "\n[ \t]*\n" nil "move")    
-    (kill-region pb (point))
-    )
-  )
+    (re-search-forward "\n[ \t]*\n" nil "move")
+    (kill-region pb (point))))
 
 (defun weiss-insert-space ()
   "DOCSTRING"
   (interactive)
-  (save-excursion
-    (insert " ")
-    )
-  )
+  (save-excursion (insert " ")))
 
 (defun weiss-kill-line-backward ()
   "DOCSTRING"
   (interactive)
-  (kill-region (line-beginning-position) (point))
-  )
+  (kill-region (line-beginning-position) (point)))
 
 (defun weiss-deactivate-mark-and-new-line ()
   "DOCSTRING"
   (interactive)
   (deactivate-mark)
-  (call-interactively 'newline)
-  )
+  (call-interactively 'newline))
 
 ;; comes from xah-fly-key
 (defun weiss-insert-pair (@left-bracket @right-bracket &optional @new-line)
@@ -41,8 +34,7 @@
 "
   (if (use-region-p)
       (progn ; there's active region
-        (let (
-              ($p1 (region-beginning))
+        (let (($p1 (region-beginning))
               ($p2 (region-end)))
           (goto-char $p2)
           (when @new-line (insert "\n"))
@@ -54,11 +46,8 @@
           (when @new-line
             (insert "\n")
             (indent-region $p1 $p2)
-            (indent-according-to-mode)
-            )
-          (goto-char $p1)
-          )
-        )
+            (indent-according-to-mode))
+          (goto-char $p1)))
     (progn ; no text selection
       (let ($p1 $p2)
         (cond
@@ -70,25 +59,23 @@
             (setq $p1 (point) $p2 (point))
             (if @new-line
                 (insert @left-bracket "\n\n" @right-bracket)
-              (insert @left-bracket @right-bracket)  
-              )            
+              (insert @left-bracket @right-bracket))
             (search-backward @right-bracket)
-            (when @new-line (previous-line))
-            ))
-         (t (progn
-              ;; wrap around “word”. basically, want all alphanumeric, plus hyphen and underscore, but don't want space or punctuations. Also want chinese chars
-              (skip-chars-backward "-_[:alnum:]")
-              (setq $p1 (point))
-              (skip-chars-forward "-_[:alnum:]")
-              (setq $p2 (point))
-              (goto-char $p2)
-              (when @new-line (insert "\n"))
-              (insert @right-bracket)
-              (goto-char $p1)
-              (insert @left-bracket)
-              (when @new-line (insert "\n"))
-              (goto-char (+ $p2 (length @left-bracket)))))))))
-  )
+            (when @new-line (previous-line))))
+         (t
+          (progn
+            ;; wrap around “word”. basically, want all alphanumeric, plus hyphen and underscore, but don't want space or punctuations. Also want chinese chars
+            (skip-chars-backward "-_[:alnum:]")
+            (setq $p1 (point))
+            (skip-chars-forward "-_[:alnum:]")
+            (setq $p2 (point))
+            (goto-char $p2)
+            (when @new-line (insert "\n"))
+            (insert @right-bracket)
+            (goto-char $p1)
+            (insert @left-bracket)
+            (when @new-line (insert "\n"))
+            (goto-char (+ $p2 (length @left-bracket))))))))))
 
 
 
@@ -102,16 +89,11 @@
     (save-restriction
       (narrow-to-region @begin @end)
       (goto-char (point-min))
-      (while
-          (search-forward "\n" nil "move")
-        (replace-match " "))
+      (while (search-forward "\n" nil "move") (replace-match " "))
       (goto-char (point-min))
-      (while
-          (search-forward "\t" nil "move")
-        (replace-match " "))
+      (while (search-forward "\t" nil "move") (replace-match " "))
       (goto-char (point-min))
-      (while
-          (re-search-forward "  +" nil "move")
+      (while (re-search-forward "  +" nil "move")
         (replace-match " ")))))
 
 (defun xah-reformat-to-multi-lines ( &optional @begin @end @min-length)
@@ -123,31 +105,34 @@
   URL `http://ergoemacs.org/emacs/emacs_reformat_lines.html'
   Version 2018-12-16"
   (interactive)
-  (let (
-        $p1 $p2
-        ($blanks-regex "\n[ \t]*\n")
-        ($minlen (if @min-length
-                     @min-length
-                   (if current-prefix-arg (prefix-numeric-value current-prefix-arg) fill-column))))
+  (let ($p1 $p2
+            ($blanks-regex "\n[ \t]*\n")
+            ($minlen
+             (if @min-length
+                 @min-length
+               (if current-prefix-arg
+                   (prefix-numeric-value current-prefix-arg)
+                 fill-column))))
     (if (and  @begin @end)
         (setq $p1 @begin $p2 @end)
       (if (region-active-p)
           (progn (setq $p1 (region-beginning) $p2 (region-end)))
         (save-excursion
           (if (re-search-backward $blanks-regex nil "move")
-              (progn (re-search-forward $blanks-regex)
-                     (setq $p1 (point)))
+              (progn
+                (re-search-forward $blanks-regex)
+                (setq $p1 (point)))
             (setq $p1 (point)))
           (if (re-search-forward $blanks-regex nil "move")
-              (progn (re-search-backward $blanks-regex)
-                     (setq $p2 (point)))
+              (progn
+                (re-search-backward $blanks-regex)
+                (setq $p2 (point)))
             (setq $p2 (point))))))
     (save-excursion
       (save-restriction
         (narrow-to-region $p1 $p2)
         (goto-char (point-min))
-        (while
-            (re-search-forward " +" nil "move")
+        (while (re-search-forward " +" nil "move")
           (when (> (- (point) (line-beginning-position)) $minlen)
             (replace-match "\n" )))))))
 (defun xah-space-to-newline ()
@@ -162,8 +147,7 @@ Version 2017-08-19"
         (setq $p1 (region-beginning) $p2 (region-end))
       (save-excursion
         (if (re-search-backward "\n[ \t]*\n" nil "move")
-            (progn (re-search-forward "\n[ \t]*\n")
-                   (setq $p1 (point)))
+            (progn (re-search-forward "\n[ \t]*\n") (setq $p1 (point)))
           (setq $p1 (point)))
         (re-search-forward "\n[ \t]*\n" nil "move")
         (skip-chars-backward " \t\n" )
@@ -172,8 +156,7 @@ Version 2017-08-19"
       (save-restriction
         (narrow-to-region $p1 $p2)
         (goto-char (point-min))
-        (while (re-search-forward " +" nil t)
-          (replace-match "\n" ))))))
+        (while (re-search-forward " +" nil t) (replace-match "\n" ))))))
 
 (defun move-line-up ()
   "Move up the current line."
@@ -194,8 +177,7 @@ Version 2017-08-19"
   "DOCSTRING"
   (interactive)
   (call-interactively 'backward-sexp)
-  (call-interactively 'transpose-sexps)
-  )
+  (call-interactively 'transpose-sexps))
 
 (defun weiss-insert-semicolon ()
   "insert semicolon at the end of line"
@@ -203,44 +185,37 @@ Version 2017-08-19"
   (deactivate-mark)
   (end-of-line)
   (insert ";")
-  (weiss-indent-nearby-lines)
-  )
+  (weiss-indent-nearby-lines))
 
 (defun weiss-indent-paragraph()
   (interactive)
   (save-excursion
     (let ((beg)
           (end)
-          (continue t)
-          )
+          (continue t))
       (if (use-region-p)
-          (setq beg (region-beginning)
-                end (region-end))        
+          (setq beg (region-beginning) end (region-end))
         (backward-paragraph)
         (setq beg (point))
         (forward-paragraph)
         (forward-paragraph)
-        (setq end (point))
-        )
+        (setq end (point)))
       (goto-char beg)
-      (indent-region-line-by-line beg end)
-      )
-    )  
-  )
+      (indent-region-line-by-line beg end))))
 
 (defun weiss-convert-sql-output-to-table ()
   "DOCSTRING"
   (interactive)
   (when (use-region-p)
-    (let* ((output (delete-and-extract-region (region-beginning) (region-end)))
+    (let* ((output
+            (delete-and-extract-region (region-beginning) (region-end)))
            (outputList (split-string output "\n"))
            (r ""))
-      (insert (dolist (x outputList r)
-                (when (> (length x) 3) (setq r (format "%s\n|%s|" r x)))))
-      )
-    (when (eq major-mode 'org-mode) (org-table-align))
-    )
-  )
+      (insert
+       (dolist (x outputList r)
+         (when (> (length x) 3)
+           (setq r (format "%s\n|%s|" r x))))))
+    (when (eq major-mode 'org-mode) (org-table-align))))
 
 (defun weiss-move-next-bracket-contents ()
   "Move next () to the left to the )"
@@ -256,7 +231,8 @@ Version 2017-08-19"
     (forward-sexp)
     (setq bracket-end-point (point))
     (goto-char (- insert-point 1))
-    (insert (delete-and-extract-region bracket-beginning-point bracket-end-point))))
+    (insert
+     (delete-and-extract-region bracket-beginning-point bracket-end-point))))
 
 (defun xah-delete-blank-lines ()
   "Delete all newline around cursor.
@@ -293,9 +269,12 @@ Version 2017-08-19"
       (progn ; not using kill-region because we don't want to include previous kill
         (kill-new (buffer-string))
         (delete-region (point-min) (point-max)))
-    (progn (if (use-region-p)
-               (kill-region (region-beginning) (region-end) t)
-             (kill-region (line-beginning-position) (line-beginning-position 2))))))
+    (progn
+      (if (use-region-p)
+          (kill-region (region-beginning) (region-end) t)
+        (kill-region
+         (line-beginning-position)
+         (line-beginning-position 2))))))
 
 (defun xah-delete-backward-char-or-bracket-text ()
   "Delete backward 1 character, but if it's a \"quote\" or bracket ()[]{}【】「」 etc, delete bracket and the inner text, push the deleted text to `kill-ring'.
@@ -325,12 +304,12 @@ Version 2017-08-19"
       (if (nth 3 (syntax-ppss))
           (progn
             (backward-char )
-            (xah-delete-forward-bracket-pairs (not current-prefix-arg)))
+            (xah-delete-forward-bracket-pairs
+             (not current-prefix-arg)))
         (if current-prefix-arg
             (xah-delete-backward-bracket-pairs)
           (xah-delete-backward-bracket-text))))
-     (t
-      (delete-char -1)))))
+     (t (delete-char -1)))))
 
 (defun xah-delete-backward-bracket-text ()
   "Delete the matching brackets/quotes to the left of cursor, including the inner text.
@@ -375,7 +354,9 @@ Version 2017-08-19"
               URL `http://ergoemacs.org/emacs/emacs_delete_backward_char_or_bracket_text.html'
               Version 2017-07-02"
   (interactive)
-  (let (( $p0 (point)) $p1)
+  (let (( $p0
+          (point))
+        $p1)
     (forward-sexp -1)
     (setq $p1 (point))
     (goto-char $p0)
@@ -445,14 +426,12 @@ Version 2017-08-19"
             (forward-char)
             (if current-prefix-arg
                 (xah-delete-backward-bracket-pairs)
-              (xah-delete-backward-bracket-text))
-            )
+              (xah-delete-backward-bracket-text)))
         (if current-prefix-arg
             (xah-delete-forward-bracket-pairs)
           (forward-char)
           (xah-delete-forward-bracket-text))))
-     (t
-      (delete-char 1)))))
+     (t (delete-char 1)))))
 
 (defun xah-fill-or-unfill ()
   "Reformat current paragraph or region to `fill-column', like `fill-paragraph' or “unfill”.
@@ -461,24 +440,27 @@ Version 2017-08-19"
                 Version 2017-01-08"
   (interactive)
   ;; This command symbol has a property “'compact-p”, the possible values are t and nil. This property is used to easily determine whether to compact or uncompact, when this command is called again
-  (let ( ($compact-p
-          (if (eq last-command this-command)
-              (get this-command 'compact-p)
-            (> (- (line-end-position) (line-beginning-position)) fill-column)))
-         (deactivate-mark nil)
-         ($blanks-regex "\n[ \t]*\n")
-         $p1 $p2
-         )
+  (let (($compact-p
+         (if (eq last-command this-command)
+             (get this-command 'compact-p)
+           (>
+            (- (line-end-position) (line-beginning-position))
+            fill-column)))
+        (deactivate-mark nil)
+        ($blanks-regex "\n[ \t]*\n")
+        $p1 $p2)
     (if (use-region-p)
         (setq $p1 (region-beginning) $p2 (region-end))
       (save-excursion
         (if (re-search-backward $blanks-regex nil "move")
-            (progn (re-search-forward $blanks-regex)
-                   (setq $p1 (point)))
+            (progn
+              (re-search-forward $blanks-regex)
+              (setq $p1 (point)))
           (setq $p1 (point)))
         (if (re-search-forward $blanks-regex nil "move")
-            (progn (re-search-backward $blanks-regex)
-                   (setq $p2 (point)))
+            (progn
+              (re-search-backward $blanks-regex)
+              (setq $p2 (point)))
           (setq $p2 (point)))))
     (if $compact-p
         (fill-region $p1 $p2)
@@ -494,8 +476,10 @@ Version 2017-08-19"
   (let ((case-fold-search nil))
     (left-char 1)
     (cond
-     ((looking-at "[[:lower:]]") (upcase-region (point) (1+ (point))))
-     ((looking-at "[[:upper:]]") (downcase-region (point) (1+ (point)))))
+     ((looking-at "[[:lower:]]")
+      (upcase-region (point) (1+ (point))))
+     ((looking-at "[[:upper:]]")
+      (downcase-region (point) (1+ (point)))))
     (right-char)))
 
 (defun weiss-delete-parent-sexp ()
@@ -503,15 +487,18 @@ Version 2017-08-19"
   (interactive)
   (let ((start-pos)
         (end-pos)
-        (insert-string)
-        )
+        (insert-string))
     (if (use-region-p)
-        (setq start-pos (region-beginning)
-              end-pos (region-end))
-      (setq start-pos (car (bounds-of-thing-at-point 'list))
-            end-pos (cdr (bounds-of-thing-at-point 'list))))
-    (setq insert-string (delete-and-extract-region start-pos end-pos))
-    (delete-region (car (bounds-of-thing-at-point 'list)) (cdr (bounds-of-thing-at-point 'list)))
+        (setq start-pos (region-beginning) end-pos (region-end))
+      (setq start-pos
+            (car (bounds-of-thing-at-point 'list))
+            end-pos
+            (cdr (bounds-of-thing-at-point 'list))))
+    (setq insert-string
+          (delete-and-extract-region start-pos end-pos))
+    (delete-region
+     (car (bounds-of-thing-at-point 'list))
+     (cdr (bounds-of-thing-at-point 'list)))
     (insert insert-string)))
 
 (defun weiss-add-parent-sexp ()
@@ -521,34 +508,37 @@ Version 2017-08-19"
         (start-pos)
         (end-pos))
     (if (use-region-p)
-        (setq cursor-position (region-beginning)
-              start-pos (region-beginning)
-              end-pos (region-end))
+        (setq cursor-position
+              (region-beginning)
+              start-pos
+              (region-beginning)
+              end-pos
+              (region-end))
       (let ((bounds (bounds-of-thing-at-point 'list)))
-        (setq cursor-position (car bounds)
-              start-pos (car bounds)
-              end-pos (cdr bounds))))
-    (insert (format "( %s)" (delete-and-extract-region start-pos end-pos)))
+        (setq cursor-position
+              (car bounds)
+              start-pos
+              (car bounds)
+              end-pos
+              (cdr bounds))))
+    (insert
+     (format "( %s)" (delete-and-extract-region start-pos end-pos)))
     (goto-char (1+ cursor-position))
-    (wks-vanilla-mode 1)
-    ))
+    (wks-vanilla-mode 1)))
 
 (defun weiss-delete-or-add-parent-sexp ()
   "DOCSTRING"
   (interactive)
   (if current-prefix-arg
       (weiss-add-parent-sexp)
-    (weiss-delete-parent-sexp)
-    ))
+    (weiss-delete-parent-sexp)))
 
 
 (defun weiss-cut-line-or-delete-region ()
   "Cut line or delete region"
   (interactive)
   (weiss-select-mode-turn-off)
-  (if current-prefix-arg
-      (delete-char -1)
-    (xah-cut-line-or-region)))
+  (if current-prefix-arg (delete-char -1) (xah-cut-line-or-region)))
 
 (defun xah-reformat-lines (&optional @length)
   "Reformat current text block into 1 long line or multiple short lines.
@@ -564,27 +554,32 @@ Version 2017-08-19"
                     Version 2019-06-09"
   (interactive)
   ;; This command symbol has a property “'is-longline-p”, the possible values are t and nil. This property is used to easily determine whether to compact or uncompact, when this command is called again
-  (let* (
-         (@length (if @length
-                      @length
-                    (if current-prefix-arg (prefix-numeric-value current-prefix-arg) fill-column )))
+  (let* ((@length
+          (if @length
+              @length
+            (if current-prefix-arg
+                (prefix-numeric-value current-prefix-arg)
+              fill-column )))
          (is-longline-p
           (if (eq last-command this-command)
               (get this-command 'is-longline-p)
-            (> (- (line-end-position) (line-beginning-position)) @length)))
+            (>
+             (- (line-end-position) (line-beginning-position))
+             @length)))
          ($blanks-regex "\n[ \t]*\n")
-         $p1 $p2
-         )
+         $p1 $p2)
     (if (use-region-p)
         (setq $p1 (region-beginning) $p2 (region-end))
       (save-excursion
         (if (re-search-backward $blanks-regex nil "move")
-            (progn (re-search-forward $blanks-regex)
-                   (setq $p1 (point)))
+            (progn
+              (re-search-forward $blanks-regex)
+              (setq $p1 (point)))
           (setq $p1 (point)))
         (if (re-search-forward $blanks-regex nil "move")
-            (progn (re-search-backward $blanks-regex)
-                   (setq $p2 (point)))
+            (progn
+              (re-search-backward $blanks-regex)
+              (setq $p2 (point)))
           (setq $p2 (point)))))
     (progn
       (if current-prefix-arg
@@ -614,8 +609,7 @@ Version 2017-08-19"
 (defun weiss-remove-empty-lines ()
   "DOCSTRING"
   (interactive)
-  (flush-lines "^\\s-*$")
-  )
+  (flush-lines "^\\s-*$"))
 
 
 (defun xah-clean-whitespace ()
@@ -651,7 +645,12 @@ Version 2017-08-19"
   "When the time now is 0-4 AM, insert yesterday's date"
   (interactive)
   (if (weiss-is-today)
-      (let ((date (format "%s%s" (- (string-to-number (format-time-string "%d")) 1) (format-time-string ".%m.%Y"))))
+      (let ((date
+             (format "%s%s"
+                     (-
+                      (string-to-number (format-time-string "%d"))
+                      1)
+                     (format-time-string ".%m.%Y"))))
         (if (< (length date) 10)
             (insert (concat "0" date))
           (insert date)))
@@ -664,16 +663,14 @@ Version 2017-08-19"
                             t -> comment current line"
   (interactive)
   (if current-prefix-arg
-      (progn
-        (end-of-line)
-        (comment-dwim nil)
-        (wks-vanilla-mode))
+      (progn (end-of-line) (comment-dwim nil) (wks-vanilla-mode))
     (if (weiss-region-p)
         (comment-dwim nil)
       (progn
-        (comment-or-uncomment-region (line-beginning-position) (line-end-position))
-        (forward-line ))  
-      )
+        (comment-or-uncomment-region
+         (line-beginning-position)
+         (line-end-position))
+        (forward-line )))
     ;; (let (($lbp (line-beginning-position))
     ;;       ($lep (line-end-position)))
     ;;   (if (and (region-active-p)
@@ -686,28 +683,31 @@ Version 2017-08-19"
     ;;         (comment-or-uncomment-region $lbp $lep)
     ;;         (forward-line ))))
     ;;   )
-    )
-  )
+    ))
 
 (defun weiss-comment-downward ()
   "DOCSTRING"
   (interactive)
   (let ((beg (point))
-        (commented (comment-only-p (line-beginning-position) (line-end-position)))
+        (commented
+         (comment-only-p
+          (line-beginning-position)
+          (line-end-position)))
         (continue t)
-        end 
-        )    
-    (while (and continue (eq commented (comment-only-p (line-beginning-position) (line-end-position))))
+        end)
+    (while (and continue
+                (eq commented
+                    (comment-only-p
+                     (line-beginning-position)
+                     (line-end-position))))
       (forward-line)
-      (when (or (weiss-line-empty-p)
-                (eq (line-end-position) (point-max)))
-        (setq continue nil))
-      )    
-    (previous-line)    
+      (when (or
+             (weiss-line-empty-p)
+             (eq (line-end-position) (point-max)))
+        (setq continue nil)))
+    (previous-line)
     (setq end (line-end-position))
-    (comment-or-uncomment-region beg end)
-    )
-  )
+    (comment-or-uncomment-region beg end)))
 
 (defun xah-shrink-whitespaces ()
   "Remove whitespaces around cursor to just one, or none.
@@ -720,16 +720,19 @@ Version 2017-08-19"
                               URL `http://ergoemacs.org/emacs/emacs_shrink_whitespace.html'
                               Version 2019-06-13"
   (interactive)
-  (let* (
-         ($eol-count 0)
+  (let* (($eol-count 0)
          ($p0 (point))
          $p1 ; whitespace begin
          $p2 ; whitespace end
          ($charBefore (char-before))
          ($charAfter (char-after ))
-         ($space-neighbor-p (or (eq $charBefore 32) (eq $charBefore 9) (eq $charAfter 32) (eq $charAfter 9)))
-         $just-1-space-p
-         )
+         ($space-neighbor-p
+          (or
+           (eq $charBefore 32)
+           (eq $charBefore 9)
+           (eq $charAfter 32)
+           (eq $charAfter 9)))
+         $just-1-space-p)
     (skip-chars-backward " \n\t　")
     (setq $p1 (point))
     (goto-char $p0)
@@ -744,9 +747,7 @@ Version 2017-08-19"
      ((eq $eol-count 0)
       (if $just-1-space-p
           (xah-fly-delete-spaces)
-        (progn (xah-fly-delete-spaces)
-               (insert " ")))
-      )
+        (progn (xah-fly-delete-spaces) (insert " "))))
      ((eq $eol-count 1)
       (if $space-neighbor-p
           (xah-fly-delete-spaces)
@@ -754,9 +755,7 @@ Version 2017-08-19"
      ((eq $eol-count 2)
       (if $space-neighbor-p
           (xah-fly-delete-spaces)
-        (progn
-          (xah-delete-blank-lines)
-          (insert "\n"))))
+        (progn (xah-delete-blank-lines) (insert "\n"))))
      ((> $eol-count 2)
       (if $space-neighbor-p
           (xah-fly-delete-spaces)
@@ -765,8 +764,9 @@ Version 2017-08-19"
           (search-backward "\n" )
           (delete-region $p1 (point))
           (insert "\n"))))
-     (t (progn
-          (message "nothing done. logic error 40873. shouldn't reach here" ))))))
+     (t
+      (progn
+        (message "nothing done. logic error 40873. shouldn't reach here" ))))))
 
 (defun xah-paste-or-paste-previous ()
   "Paste. When called repeatedly, paste previous.
@@ -784,24 +784,25 @@ Version 2017-08-19"
         (progn
           (dotimes (_ (prefix-numeric-value current-prefix-arg))
             (yank)))
-      (if (eq real-last-command this-command)
-          (yank-pop 1)
-        (yank)))))
+      (if (eq real-last-command this-command) (yank-pop 1) (yank)))))
 
 (defun weiss-delete-parent-sexp ()
   "Keep the current sexp and delete it's parent sexp"
   (interactive)
   (let ((start-pos)
         (end-pos)
-        (insert-string)
-        )
+        (insert-string))
     (if (use-region-p)
-        (setq start-pos (region-beginning)
-              end-pos (region-end))
-      (setq start-pos (car (bounds-of-thing-at-point 'list))
-            end-pos (cdr (bounds-of-thing-at-point 'list))))
-    (setq insert-string (delete-and-extract-region start-pos end-pos))
-    (delete-region (car (bounds-of-thing-at-point 'list)) (cdr (bounds-of-thing-at-point 'list)))
+        (setq start-pos (region-beginning) end-pos (region-end))
+      (setq start-pos
+            (car (bounds-of-thing-at-point 'list))
+            end-pos
+            (cdr (bounds-of-thing-at-point 'list))))
+    (setq insert-string
+          (delete-and-extract-region start-pos end-pos))
+    (delete-region
+     (car (bounds-of-thing-at-point 'list))
+     (cdr (bounds-of-thing-at-point 'list)))
     (insert insert-string)))
 
 (defun weiss-delete-forward-with-region ()
@@ -809,73 +810,67 @@ Version 2017-08-19"
   (interactive)
   (deactivate-mark)
   (cond
-   ((eq major-mode 'org-mode) 
-    (while (and (string= (char-to-string (char-after)) " ")
-                (not (weiss--check-two-char t '(" ") weiss-org-special-markers)))
+   ((eq major-mode 'org-mode)
+    (while (and
+            (string= (char-to-string (char-after)) " ")
+            (not (weiss--check-two-char t '(" ") weiss-org-special-markers)))
       (delete-char 1))
-    (when (weiss--check-two-char t '(" ") weiss-org-special-markers) (forward-char))
+    (when (weiss--check-two-char t '(" ") weiss-org-special-markers)
+      (forward-char))
     (if current-prefix-arg
         (weiss-delete-forward-bracket-and-mark-bracket-text-org-mode)
-      (weiss-delete-forward-bracket-and-text-org-mode))
-    )
+      (weiss-delete-forward-bracket-and-text-org-mode)))
    ((eq major-mode 'latex-mode)
-    (while (and (string= (char-to-string (char-after)) " ")
-                (not (weiss--check-two-char t '(" ") weiss-org-special-markers)))
+    (while (and
+            (string= (char-to-string (char-after)) " ")
+            (not (weiss--check-two-char t '(" ") weiss-org-special-markers)))
       (delete-char 1))
-    (when (weiss--check-two-char t '(" ") weiss-org-special-markers) (forward-char))
+    (when (weiss--check-two-char t '(" ") weiss-org-special-markers)
+      (forward-char))
     (weiss-delete-forward-bracket-and-mark-bracket-text-latex-mode))
    (t
-    (while (string= (char-to-string (char-after)) " ") (delete-char 1))
-    (xah-delete-forward-char-or-bracket-text))
-   )
-  )
+    (while (string= (char-to-string (char-after)) " ")
+      (delete-char 1))
+    (xah-delete-forward-char-or-bracket-text))))
 
 (defun weiss-insert-line()
   (interactive)
   (end-of-line)
   (insert "
                                     ")
-  (indent-according-to-mode)
-  )
+  (indent-according-to-mode))
 
 (defun weiss-before-insert-mode ()
   "if cursor is at the begining of line, then jump to the indent position. Insert space right side if with prefix-arg"
   (interactive)
   (deactivate-mark)
   (if current-prefix-arg
-      (progn
-        (insert " ")
-        (left-char)
-        )
-    (when (and (eq (point) (line-beginning-position))
-               (derived-mode-p 'prog-mode))
-      (indent-according-to-mode))    
-    )
-  )
+      (progn (insert " ") (left-char))
+    (when (and
+           (eq (point) (line-beginning-position))
+           (derived-mode-p 'prog-mode))
+      (indent-according-to-mode))))
 
 
 (defun weiss-delete-backward-with-region ()
   "Like xah delete backward char or bracket text, but ignore region"
   (interactive)
   (deactivate-mark)
-  (while (string= (char-to-string (char-before)) " ") (delete-char -1))
+  (while (string= (char-to-string (char-before)) " ")
+    (delete-char -1))
   (cond
-   ((eq major-mode 'org-mode) 
+   ((eq major-mode 'org-mode)
     (if current-prefix-arg
         (weiss-delete-backward-bracket-and-mark-bracket-text-org-mode)
-      (weiss-delete-backward-bracket-and-text-org-mode)
-      ))
+      (weiss-delete-backward-bracket-and-text-org-mode)))
    ((eq major-mode 'latex-mode)
     (weiss-delete-backward-bracket-and-mark-bracket-text-latex-mode))
-   (t (xah-delete-backward-char-or-bracket-text))
-   )
-  )
+   (t (xah-delete-backward-char-or-bracket-text))))
 
 (defun weiss-downcase-region ()
   "DOCSTRING"
   (interactive)
-  (let (
-        (deactivate-mark nil)
+  (let ((deactivate-mark nil)
         $p1 $p2)
     (if (use-region-p)
         (setq $p1 (region-beginning) $p2 (region-end))
@@ -884,8 +879,7 @@ Version 2017-08-19"
         (setq $p1 (point))
         (skip-chars-forward "0-9A-Za-z")
         (setq $p2 (point))))
-    (downcase-region $p1 $p2))
-  )
+    (downcase-region $p1 $p2)))
 
 (defun xah-toggle-letter-case ()
   "Toggle the letter case of current word or text selection.
@@ -894,8 +888,7 @@ Version 2017-08-19"
                                       URL `http://ergoemacs.org/emacs/modernization_upcase-word.html'
                                       Version 2019-11-24"
   (interactive)
-  (let (
-        (deactivate-mark nil)
+  (let ((deactivate-mark nil)
         $p1 $p2)
     (if (use-region-p)
         (setq $p1 (region-beginning) $p2 (region-end))
@@ -921,14 +914,15 @@ Version 2017-08-19"
 (defun weiss-indent-nearby-lines ()
   "DOCSTRING"
   (interactive)
-  (indent-region (- (point) 20) (+ (point) 20)))
+  (indent-region
+   (- (point) 20)
+   (+ (point) 20)))
 
 (defun weiss-open-line-and-indent ()
   "open line and indent"
   (interactive)
   (beginning-of-line)
-  (open-line 1)
-  )
+  (open-line 1))
 
 (defun weiss-indent()
   (interactive)
@@ -940,25 +934,21 @@ Version 2017-08-19"
     (cond
      ((eq major-mode 'emacs-lisp-mode)
       (deactivate-mark)
-      (elfmt)
-      )
+      (elfmt))
      ((eq major-mode 'clojure-mode)
       (deactivate-mark)
       ;; (cider-format-buffer)
-      (zprint)
-      )
+      (zprint))
      ((eq major-mode 'c++-mode)
       (deactivate-mark)
-      (indent-region-line-by-line (point-min) (point-max))
-      )
+      (indent-region-line-by-line (point-min) (point-max)))
      ;; ((ignore-errors is-nox-activate-p)
      ;; (nox-format))
      ((eq major-mode 'mhtml-mode)
       (deactivate-mark)
-      (web-beautify-html-buffer)
-      )
+      (web-beautify-html-buffer))
      ((eq major-mode 'haskell-mode)
-      (ormolu-format-buffer))
+      (lsp-format-buffer))
      ((eq major-mode 'go-mode)
       (gofmt))
      ((eq major-mode 'python-mode)
@@ -966,10 +956,8 @@ Version 2017-08-19"
       (yapfify-buffer))
      (t
       (deactivate-mark)
-      (indent-region (point-min) (point-max)))
-     )
-    (ignore-errors (flycheck-buffer))
-    ))
+      (indent-region (point-min) (point-max))))
+    (ignore-errors (flycheck-buffer))))
 
 (defun weiss-paste-with-linebreak()
   (interactive)
@@ -981,14 +969,13 @@ Version 2017-08-19"
         (progn
           ;; (open-line 1)
           (dotimes (_ (prefix-numeric-value current-prefix-arg))
-            (progn (yank) (newline)) )
+            (progn (yank) (newline)))
           ;; (yank)
           )
       (if (eq real-last-command this-command)
-          (progn (yank-pop 1)) 
-        (progn (open-line 1)  (yank)))))
-  (if (eq major-mode 'org-mode) nil (weiss-indent))
-  )
+          (progn (yank-pop 1))
+        (progn (open-line 1) (yank)))))
+  (if (eq major-mode 'org-mode) nil (weiss-indent)))
 
 
 (defun xah-cycle-hyphen-underscore-space ( &optional @begin @end )
@@ -1015,18 +1002,17 @@ Version 2017-08-19"
               (setq $p1 (point))
               (skip-chars-forward "^\"")
               (setq $p2 (point)))
-          (let (
-                ($skipChars
+          (let (($skipChars
                  (if (boundp 'xah-brackets)
                      (concat "^\"" xah-brackets)
                    "^\"<>(){}[]“”‘’‹›«»「」『』【】〖〗《》〈〉〔〕（）")))
-            (skip-chars-backward $skipChars (line-beginning-position))
+            (skip-chars-backward $skipChars
+                                 (line-beginning-position))
             (setq $p1 (point))
             (skip-chars-forward $skipChars (line-end-position))
             (setq $p2 (point))
             (set-mark $p1)))))
-    (let* (
-           ($charArray ["_" "-" " "])
+    (let* (($charArray ["_" "-" " "])
            ($length (length $charArray))
            ($regionWasActive-p (region-active-p))
            ($nowState
@@ -1038,20 +1024,20 @@ Version 2017-08-19"
         (save-restriction
           (narrow-to-region $p1 $p2)
           (goto-char (point-min))
-          (while
-              (re-search-forward
-               (elt $charArray (% (+ $nowState 2) $length))
-               ;; (concat
-               ;;  (elt $charArray (% (+ $nowState 1) $length))
-               ;;  "\\|"
-               ;;  (elt $charArray (% (+ $nowState 2) $length)))
-               (point-max)
-               "move")
+          (while (re-search-forward
+                  (elt $charArray (% (+ $nowState 2) $length))
+                  ;; (concat
+                  ;;  (elt $charArray (% (+ $nowState 1) $length))
+                  ;;  "\\|"
+                  ;;  (elt $charArray (% (+ $nowState 2) $length)))
+                  (point-max)
+                  "move")
             (replace-match $changeTo "FIXEDCASE" "LITERAL"))))
       (when (or (string= $changeTo " ") $regionWasActive-p)
         (goto-char $p2)
         (set-mark $p1)
         (setq deactivate-mark nil))
-      (put 'xah-cycle-hyphen-underscore-space 'state (% (+ $nowState 1) $length)))))
+      (put 'xah-cycle-hyphen-underscore-space 'state
+           (% (+ $nowState 1) $length)))))
 
 (provide 'weiss_editing<wks)

@@ -165,7 +165,7 @@
     ("yonp" "yes-or-no-p" weiss--ahf)
     ("wlet" "(when-let ((▮)\n      )\n  \n  )" weiss--ahf)
 
-    ("iflet" "(if-let ((▮)\n      )\n  \n  )" weiss--ahf)
+    ("if-let" "(if-let ((▮)\n      )\n  \n  )" weiss--ahf)
 
     ("advice-add" "(advice-add '▮ : #')" weiss--ahf)
     ("abbreviate-file-name" "(abbreviate-file-name ▮)" weiss--ahf)

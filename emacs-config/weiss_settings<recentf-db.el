@@ -28,18 +28,6 @@
    )
   )
 
-(defun weiss-test ()
-  "DOCSTRING"
-  (interactive)
-  (let (new-priority (read-string " p:" ))
-    (message "new-priority:%s" new-priority)
-    ))
-(defun weiss-test (new-priority)
-  (interactive (list (read-string " p:" )))
-  (message "new-priority:%s" new-priority)
-  )
-
-
 (defun recentf-db-get-priority ()
   "DOCSTRING"
   (interactive)

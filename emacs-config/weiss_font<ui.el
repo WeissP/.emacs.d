@@ -10,7 +10,7 @@
              when (font-installed-p font)
              return (set-face-attribute 'default nil
                                         :font font
-                                        :height 110))
+                                        :height 120))
 
     ;; Specify font for all unicode characters
     (cl-loop for font in '("Symbola" "Apple Symbols" "Symbol" "icons-in-terminal")

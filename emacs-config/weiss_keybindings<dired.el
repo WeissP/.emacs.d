@@ -53,6 +53,7 @@
      ("c" .  dired-do-copy)
      ("C" .  weiss-dired-rsync)
      ("d" .  dired-do-delete)
+     ("D" .  weiss-dired-dragon-files)
      ("f" .  (weiss-dired-toggle-wdired (dired-toggle-read-only)(wks-vanilla-mode-enable)))
      ("j" .  dired-next-line)
      ("h" .  dired-omit-mode)

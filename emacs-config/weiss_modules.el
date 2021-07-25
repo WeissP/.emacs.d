@@ -166,6 +166,7 @@
         (weiss-paredit :local t)
         (citre :github "universal-ctags/citre")
         (elfmt :github "git@github.com:riscy/elfmt.git")
+        tab-line
         yaml-mode))
 
 (setq weiss/emacs-config-modules

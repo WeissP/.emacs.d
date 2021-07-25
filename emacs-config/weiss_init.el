@@ -51,11 +51,13 @@
 (unless (string= emacs-host "ros-docker") (dbus-init-bus :session)   ; for EAF DUMP
         )
 
-(setq weiss-right-top-window (selected-frame))
-(setq weiss-left-top-window (make-frame-command))
-(select-frame-set-input-focus weiss-right-top-window)
+;; (setq weiss-right-top-window (selected-frame))
+;; (setq weiss-left-top-window (make-frame-command))
+;; (select-frame-set-input-focus weiss-right-top-window)
 
 (recentf-mode -1)
+
+(global-tab-line-mode)
 
 (setq gc-cons-threshold
       (* (expt 1024 3) 6)

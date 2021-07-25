@@ -1,6 +1,5 @@
 (setq wks-repeat-command-alist
-      '(
-        (weiss-delete-forward-with-region . kill-line)
+      '((weiss-delete-forward-with-region . kill-line)
         (weiss-delete-backward-with-region . weiss-kill-line-backward)
         (xah-shrink-whitespaces . weiss-insert-space)
         (weiss-select-line-downward . weiss-exchange-point-and-select-block-backward)
@@ -11,6 +10,7 @@
         (xah-toggle-letter-case . weiss-downcase-region)
         (weiss-exchange-point-and-select-block-backward . xah-beginning-of-line-or-block)
         (undo . undo-redo)
+        (weiss-split-or-switch-window . weiss-delete-other-window)
 
         (weiss-down-key . weiss-move-to-next-block)
         (next-line . weiss-move-to-next-block)
@@ -36,8 +36,7 @@
         (weiss-indent-paragraph . weiss-indent)
 
         (weiss-expand-region-by-sexp . weiss-expand-region-to-line-beg-or-end)
-        (weiss-expand-region-by-word . weiss-expand-region-to-line-beg-or-end)
-        ))
+        (weiss-expand-region-by-word . weiss-expand-region-to-line-beg-or-end)))
 
 (setq wks-repeat-command-blacklist
       '(wks-repeat-command popwin:close-popup-window rotate-text snails-quit keyboard-quit))
@@ -52,17 +51,15 @@
            )
       (setq wks-last-command c)
     (if (eq last-command 'wks-repeat-command)
-        (when-let ((c (cdr (assoc wks-last-command wks-repeat-command-alist)))
-                   )
+        (when-let ((c
+                    (cdr (assoc wks-last-command wks-repeat-command-alist))))
           (setq wks-last-command c))
-      (when (and last-command (not (member last-command wks-repeat-command-blacklist))) 
-        (setq wks-last-command last-command)
-        )
-      )    
-    )
+      (when (and last-command
+                 (not (member last-command wks-repeat-command-blacklist)))
+        (setq wks-last-command last-command))
+      ))
   (message "wks-last-command: %s" wks-last-command)
-  (call-interactively wks-last-command)
-  )
+  (call-interactively wks-last-command))
 
 ;; parent: 
 (provide 'weiss_repeat-command<wks)
