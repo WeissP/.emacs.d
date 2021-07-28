@@ -39,5 +39,14 @@
 (add-to-list 'load-path "/usr/local/texlive/2020/bin/x86_64-linux")
 (add-to-list 'load-path "/home/weiss/.emacs.d/org-mode/lisp/")
 
+(setq after-dump-packages
+      (pcase emacs-host
+        ("ros-docker"
+         '(weiss_after-dump-misc all-the-icons display-line-numbers server recentf tramp gcmh))
+        ("arch without roam"
+         '(weiss_after-dump-misc all-the-icons display-line-numbers server rime telega tramp gcmh))
+        (_
+         '(weiss_after-dump-misc all-the-icons display-line-numbers server rime telega tramp gcmh org-roam snails-roam))))
+
 (require 'weiss-Emacs-Config-Manager)
 (require 'weiss_modules)

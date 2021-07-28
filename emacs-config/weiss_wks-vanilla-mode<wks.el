@@ -17,7 +17,7 @@
    ;; ("<up>" . previous-line)
    ))
 
-(defvar wks-vanilla-black-list '(dired-do-rename dired-do-delete))
+(defvar wks-vanilla-black-list '(citre-create-tags-file))
 
 (defun wks-vanilla-mode-enable ()
   "DOCSTRING"
@@ -58,7 +58,11 @@
 (defun wks-vanilla-mode-auto-enable (&rest args)
   "DOCSTRING"
   (interactive)
-  (unless (member last-command wks-vanilla-black-list)
+  ;; (message "last-command: %s" last-command)
+  ;; (message "real-last-command: %s" real-last-command)
+  ;; (message "this-command: %s" this-command)
+  ;; (message "real-this-command: %s" real-this-command)
+  (unless (member real-this-command wks-vanilla-black-list)
     (wks-vanilla-mode 1)
     (when (eq major-mode 'snails-mode)
       ;; (make-local-variable 'wks-vanilla-mode-map)

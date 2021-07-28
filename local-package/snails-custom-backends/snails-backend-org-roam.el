@@ -5,36 +5,13 @@
 (require 'snails-roam)
 
 ;;; Code:
-
-(defvar org-roam-link-query
-  (vconcat snails-roam-file-and-tags-query (snails-roam-filter-by-tags '("link" "bookmark"))))
-
-(defvar org-roam-focusing-query
-  (vconcat snails-roam-file-and-tags-query (snails-roam-filter-by-tags '("focusing"))))
-
-(defvar org-roam-project-query
-  (vconcat snails-roam-file-and-tags-query (snails-roam-filter-by-tags '("project"))))
-
-(defvar org-roam-note-query
-  (vconcat snails-roam-file-and-tags-query (snails-roam-filter-by-tags '("note"))))
-
-(defvar org-roam-tutorial-query
-  (vconcat snails-roam-file-and-tags-query (snails-roam-filter-by-tags '("tutorial"))))
-
-(defvar org-roam-emacs-config-query
-  (vconcat snails-roam-file-and-tags-query (snails-roam-filter-by-tags '("emacs")) (snails-roam-filter-by-tags '("dotfiles"))))
-
-(defvar org-roam-uc-query
-  (vconcat snails-roam-file-and-tags-query (snails-roam-filter-by-tags '("useful-commands"))))
-
-
 (snails-create-sync-backend
  :name
  "ORG-ROAM-TUTORIAL"
 
  :candidate-filter
  (lambda (input)
-   (snails-roam-generate-candidates input org-roam-tutorial-query 2)
+   (snails-roam-generate-candidates input '("link" "bookmark") 2)
    )
 
  :candidate-icon
@@ -43,7 +20,7 @@
 
  :candidate-do
  (lambda (candidate)
-   (find-file candidate)))
+   (snails-roam-find-file candidate)))
 
 (snails-create-sync-backend
  :name
@@ -51,7 +28,7 @@
 
  :candidate-filter
  (lambda (input)
-   (snails-roam-generate-candidates input org-roam-uc-query 2)
+   (snails-roam-generate-candidates input '("useful-commands") 2)
    )
 
  :candidate-icon
@@ -60,7 +37,7 @@
 
  :candidate-do
  (lambda (candidate)
-   (find-file candidate)))
+   (snails-roam-find-file candidate)))
 
 (snails-create-sync-backend
  :name
@@ -68,7 +45,7 @@
 
  :candidate-filter
  (lambda (input)
-   (snails-roam-generate-candidates input org-roam-note-query 2)
+   (snails-roam-generate-candidates input '("note") 2)
    )
 
  :candidate-icon
@@ -77,7 +54,7 @@
 
  :candidate-do
  (lambda (candidate)
-   (find-file candidate)))
+   (snails-roam-find-file candidate)))
 
 
 (snails-create-sync-backend
@@ -86,7 +63,7 @@
 
  :candidate-filter
  (lambda (input)
-   (snails-roam-generate-candidates input org-roam-project-query 2)
+   (snails-roam-generate-candidates input '("project") 2)
    )
 
  :candidate-icon
@@ -95,7 +72,7 @@
 
  :candidate-do
  (lambda (candidate)
-   (find-file candidate)))
+   (snails-roam-find-file candidate)))
 
 (snails-create-sync-backend
  :name
@@ -103,7 +80,7 @@
 
  :candidate-filter
  (lambda (input)
-   (snails-roam-generate-candidates input org-roam-focusing-query 1)
+   (snails-roam-generate-candidates input  '("focusing") 1)
    )
 
  :candidate-icon
@@ -112,7 +89,7 @@
 
  :candidate-do
  (lambda (candidate)
-   (find-file candidate)))
+   (snails-roam-find-file candidate)))
 
 (snails-create-sync-backend-with-alt-do
  :name
@@ -120,7 +97,7 @@
 
  :candidate-filter
  (lambda (input)
-   (snails-roam-generate-candidates input org-roam-link-query 1)
+   (snails-roam-generate-candidates input  '("link" "bookmark") 1)
    )
 
  :candidate-icon
@@ -129,11 +106,11 @@
 
  :candidate-do
  (lambda (candidate)
-   (weiss-roam-find-file candidate))
+   (snails-roam-find-file candidate))
 
  :candidate-alt-do
  (lambda (candidate)
-   (find-file candidate))
+   (snails-roam-find-file candidate t))
  )
 
 (defun weiss-complete-emacs-config-modules (s)
@@ -176,16 +153,18 @@
 
  :candidate-filter
  (lambda (input)
-   (snails-roam-generate-candidates input snails-roam-file-and-tags-query 4)
+   (snails-roam-generate-candidates input nil 4)
    )
 
  :candidate-do
  (lambda (candidate)
-   (weiss-roam-find-file candidate))
+   ;; (message "candidate: %s" candidate)
+   (snails-roam-find-file candidate)
+   )
 
  :candidate-alt-do
  (lambda (candidate)
-   (find-file candidate))
+   (snails-roam-find-file candidate t))
  )
 
 (provide 'snails-backend-org-roam)

@@ -30,14 +30,14 @@ _e_ call infinite     _s_ call                         _q_ Quit
     ("v" recenter-top-bottom "recenter")
     ("q" nil "quit"))
 
-  (defhydra hydra-resize-window (global-map "M-w")
-    "resize window"
-    ("k" shrink-window "height+")
-    ("j" enlarge-window "height-")
-    ("h" shrink-window-horizontally "width-")
-    ("l" enlarge-window-horizontally "width+")
-    ("q" nil "quit")
-    )
+  ;; (defhydra hydra-resize-window (global-map "M-w")
+  ;;   "resize window"
+  ;;   ("k" shrink-window "height+")
+  ;;   ("j" enlarge-window "height-")
+  ;;   ("h" shrink-window-horizontally "width-")
+  ;;   ("l" enlarge-window-horizontally "width+")
+  ;;   ("q" nil "quit")
+  ;;   )
   )
 
 ;; parent: edit

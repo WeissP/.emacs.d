@@ -4,7 +4,7 @@
   (setq
    citre-completion-case-sensitive nil
    citre-project-root-function #'projectile-project-root
-   citre-enable-xref-integration t
+   citre-enable-xref-integration nil
    )
   )
 

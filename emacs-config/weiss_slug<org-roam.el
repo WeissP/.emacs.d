@@ -15,7 +15,7 @@
       )
     (org-roam--title-to-slug title)
     )
-  (setq org-roam-title-to-slug-function 'weiss-org-roam--title-to-slug)
+  ;; (setq org-roam-title-to-slug-function 'weiss-org-roam--title-to-slug)
   )
 
 ;; parent: org

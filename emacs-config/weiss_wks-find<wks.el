@@ -65,10 +65,5 @@
     (_  c))
   )
 
-(defun weiss-test ()
-  "DOCSTRING"
-  (interactive)
-  (wks-find-last-found))
-
 ;; parent: 
 (provide 'weiss_wks-find<wks)

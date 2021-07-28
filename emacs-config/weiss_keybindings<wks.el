@@ -22,8 +22,7 @@
    ("<right>" . scroll-down)
    ;; ("<up>" . scroll-down)
    ("<escape> <up>" . text-scale-increase)
-   ("<escape> <down>" . text-scale-decrease))
- )
+   ("<escape> <down>" . text-scale-decrease)))
 
 (global-unset-key (kbd "<escape>"))
 (with-eval-after-load 'weiss_quick-insert<wks
@@ -32,10 +31,11 @@
    ""
    '(("<escape>" . wks-global-quick-insert-keymap)
      ("<escape> ," . previous-buffer)
-     ("<escape> ." . next-buffer))
-   ))
+     ("<escape> ." . next-buffer))))
 
 (wks-unset-key help-mode-map '("h"))
+(with-eval-after-load 'debugger-mode
+  (wks-unset-key debugger-mode-map '("h" "j")))
 (wks-unset-key messages-buffer-mode-map '("h"))
 
 (with-eval-after-load 'image-mode
@@ -47,8 +47,7 @@
      ("i" . left-char)
      ("l" . right-char)
      ("C-<tab>" .  image-increase-size)
-     ("C-S-<iso-lefttab>" .  image-decrease-size))
-   ))
+     ("C-S-<iso-lefttab>" .  image-decrease-size))))
 
 (with-eval-after-load 'man-mode (wks-unset-key Man-mode-map '("k")))
 
@@ -98,7 +97,7 @@
    ("k" . weiss-up-key)
    ("l" . weiss-right-key)
    ("m" . er/expand-region)
-   ("n" . swiper-isearch)
+   ("n" . isearch-forward)
    ("o" . weiss-expand-region-by-sexp)
    ("O" . weiss-contract-region-by-word)
    ("p" . weiss-indent)
@@ -125,8 +124,7 @@
 
    ("C-M-S-s-j" . weiss-switch-buffer-or-otherside-frame-without-top)
    ("C-M-S-s-k" . weiss-switch-to-same-side-frame)
-   ("C-M-S-s-l" . weiss-switch-to-otherside-top-frame))
- )
+   ("C-M-S-s-l" . weiss-switch-to-otherside-top-frame)))
 
 (wks-trans-keys
  '(("y c" . "C-c C-c")

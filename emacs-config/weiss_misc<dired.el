@@ -6,10 +6,9 @@
       (call-process-shell-command
        (format "dragon %s --and-exit &"
                (mapconcat
-                '(lambda (file) (format "\"%s\"" file))
+                (lambda (file) (format "\"%s\"" file))
                 files " "))
-       nil "*Shell Command Output*" t)
-      ))
+       nil "*Shell Command Output*" t)))
   (defun weiss-test ()
     "DOCSTRING"
     (interactive)

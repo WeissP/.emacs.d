@@ -1,3 +1,24 @@
+;; https://emacs.stackexchange.com/questions/19877/how-to-evaluate-elisp-code-contained-in-a-string
+(defun weiss-read-from-string (string)
+  (eval
+   (car (read-from-string (format "(progn %s)" string)))))
+
+(defun weiss-find-definition (&optional other-window-p)
+  "DOCSTRING"
+  (interactive "P")
+  (let (current-prefix-arg)
+    (if other-window-p
+        (call-interactively 'xref-find-references)
+      (call-interactively 'xref-find-definitions))))
+
+(defun weiss-find-definition ()
+  "DOCSTRING"
+  (interactive)
+  ;; (call-interactively 'xref-find-definitions-other-window)
+  (call-interactively 'xref-find-definitions))
+
+
+
 (defun async-shell-command-no-window (command)
   (interactive)
   (let ((display-buffer-alist
@@ -150,9 +171,9 @@
          (b (generate-new-buffer name))
          ;; (default-directory "/")
          )
-    (apply 'start-process-shell-command proc-name b command)
+    (start-process-shell-command proc-name b command)
     (display-buffer b)))
-
+;; (weiss-start-process "echo" "echo 1")
 (defun weiss-eval-last-sexp-this-line()
   "eval last sexp this line"
   (interactive)

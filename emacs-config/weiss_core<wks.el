@@ -29,13 +29,13 @@
 (defun wks-unset-key (map keys &optional number alphabet)
   "DOCSTRING"
   (interactive)
-  (mapc '(lambda (x) (define-key map (kbd x) nil)) keys)
+  (mapc (lambda (x) (define-key map (kbd x) nil)) keys)
   (when number
-    (mapc '(lambda (x) (define-key map (kbd x) nil))
+    (mapc (lambda (x) (define-key map (kbd x) nil))
           (mapcar 'number-to-string (number-sequence 0 9))))
   (when alphabet
-    (mapc '(lambda (x) (define-key map (kbd x) nil))
-          (mapcar '(lambda (x) (format "%c" x)) (append (number-sequence 65 90)
+    (mapc (lambda (x) (define-key map (kbd x) nil))
+          (mapcar (lambda (x) (format "%c" x)) (append (number-sequence 65 90)
                                                         (number-sequence 97 122)))))
   )
 
@@ -55,7 +55,7 @@
   (let ((key-list
          (append
           '("SPC")
-          (mapcar '(lambda (x) (format "%c" x)) (number-sequence 33 126))))
+          (mapcar (lambda (x) (format "%c" x)) (number-sequence 33 126))))
         (keymap (make-sparse-keymap))
         )
     (dolist (x key-list keymap) 

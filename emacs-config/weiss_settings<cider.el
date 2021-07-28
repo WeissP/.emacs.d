@@ -5,7 +5,9 @@
     "DOCSTRING"
     (interactive)
     (save-buffer)
-    (cider-load-buffer-and-switch-to-repl-buffer))
+    (if (one-window-p)
+        (cider-load-buffer)
+      (cider-load-buffer-and-switch-to-repl-buffer)))
 
   (defun weiss-cider-repl-refresh ()
     "DOCSTRING"

@@ -9,8 +9,7 @@
       (face-remap-add-relative 'region
                                `(:background ,mark-select-mode-color))
     (face-remap-add-relative 'region
-                             `(:background ,mark-non-select-mode-color)))
-  )
+                             `(:background ,mark-non-select-mode-color))))
 
 (defun weiss-select-mode-turn-off (&rest args)
   "turn off weiss select mode"
@@ -27,10 +26,17 @@
   (interactive)
   (unless (use-region-p) (set-mark (point))))
 
-(defun weiss-select-mode-turn-on-interactive (&rest args)
+(defun weiss-select-mode-turn-on-p-interactive (&rest args)
   "turn on weiss select mode"
   (interactive "p")
   (unless weiss-select-mode (weiss-select-mode 1)))
+
+(defun weiss-select-mode-turn-on-xref-interactive (&rest args)
+  "turn on weiss select mode"
+  (interactive
+   (list (xref--read-identifier "Find definitions of: ")))
+  (unless weiss-select-mode (weiss-select-mode 1)))
+
 
 (add-hook 'deactivate-mark-hook 'weiss-select-mode-turn-off)
 (advice-add 'keyboard-quit :before #'weiss-select-mode-turn-off)
@@ -64,16 +70,22 @@
              weiss-move-to-previous-punctuation
              paredit-forward
              paredit-backward
-             xref-find-definitions
+             ;; xref-find-definitions
              ;; er/expand-region
              )))
-      (weiss-select-add-advice-turn-on cmds)
-      (advice-add 'er/expand-region :after #'weiss-select-mode-turn-on-interactive))
+      (weiss-select-add-advice-turn-on cmds))
+    (advice-add 'er/expand-region :after #'weiss-select-mode-turn-on-p-interactive)
+    ;; (advice-add 'xref-find-definitions :after #'weiss-select-mode-turn-on-xref-interactive)
     ))
 
 (defun weiss-deactivate-mark-unless-in-select-mode (&rest args)
   "deactivate mark unless in select mode"
   (interactive)
+  (unless weiss-select-mode (deactivate-mark)))
+
+(defun weiss-deactivate-mark-unless-in-select-mode-interactive (&rest args)
+  "deactivate mark unless in select mode"
+  (interactive (list (xref--read-identifier "Find definitions of: ")))
   (unless weiss-select-mode (deactivate-mark)))
 
 (defun weiss-select-add-advice-deactivate-mark (cmds)
@@ -100,10 +112,10 @@
          weiss-move-to-previous-block
          citre-jump
          citre-peek
-         undo))
-      )
+         ;; xref-find-definitions
+         undo)))
   (weiss-select-add-advice-deactivate-mark cmds))
-;; (advice-add 'swiper-isearch :before #'weiss-deactivate-mark-unless-in-select-mode)
+(advice-add 'xref-find-definitions :before #'weiss-deactivate-mark-unless-in-select-mode-interactive)
 ;; (advice-add 'counsel-describe-function :before #'weiss-deactivate-mark-unless-in-select-mode)
 ;; (advice-add 'counsel-describe-variable :before #'weiss-deactivate-mark-unless-in-select-mode)
 ;; (advice-add 'weiss-add-parent-sexp :before #'weiss-deactivate-mark-unless-in-select-mode)

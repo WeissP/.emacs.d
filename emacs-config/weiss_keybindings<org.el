@@ -2,8 +2,7 @@
 
   (wks-define-key
    org-mode-map ""
-   '(
-     ("M-i" . org-shiftmetaleft)
+   '(("M-i" . org-shiftmetaleft)
      ("M-k" . org-metaup)
      ("M-j" . org-metadown)
      ("M-l" . org-shiftmetaright)
@@ -14,7 +13,7 @@
      ("<shifttab>" . org-shifttab)
      ("-" . +org/dwim-at-point)
      ("&" . org-insert-heading-respect-content)
-     ("$" . org-export-dispatch)
+     ;; ("$" . org-export-dispatch)
      ;; ("C" . org-copy-subtree)
      ("d" . weiss-org-cut-line-or-delete-region)
      ("j" . (weiss-org-next-line (next-line) (deactivate-mark)))
@@ -28,28 +27,29 @@
      ("y o" . org-noter)
      ("y d" . weiss-org-download-img)
      ("y q" . weiss-set-org-tags)
-     ("y s" . org-noter-sync-current-note)
+     ("y s" . org-id-get-create)
      ("y t" . org-todo)
      ("y b" . org-mark-ring-goto)
      ("y <tab>" . org-table-create-with-table\.el)
      ("y j s" . weiss-org-copy-heading-link)
 
-     ("<escape> <escape>" . wks-org-quick-insert-keymap)
-     )
-   )
+     ("<escape> <escape>" . wks-org-quick-insert-keymap)))
+
+  (wks-define-key
+   (current-global-map) "SPC "
+   '(("d a" .  weiss-custom-daily-agenda)
+     ("d c" .  org-roam-capture)
+     ("d t" .  org-todo-list)))
+
   )
 
 (with-eval-after-load 'org-agenda
   (wks-unset-key org-agenda-mode-map '("9" "-" "SPC"))
   (wks-define-key
    org-agenda-mode-map ""
-   '(
-     ("-" . xah-backward-punct)
-     ("=" . xah-forward-punct)                  
-     )
-   )
+   '(("-" . xah-backward-punct)
+     ("=" . xah-forward-punct)))
 
-  (fset 'org-agenda-done "td")
-  )
+  (fset 'org-agenda-done "td"))
 
 (provide 'weiss_keybindings<org)

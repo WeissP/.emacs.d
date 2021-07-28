@@ -5,6 +5,16 @@
    (ignore-errors (executable-find "EmacsConfigManager"))
    "~/go/bin/EmacsConfigManager"))
 
+(defvar emacs-config-disabled-pkg-per-host
+  '(("arch without roam" . (org-roam snails-roam))))
+
+(defun emacs-config-disabled-per-host-p (pkg)
+  "DOCSTRING"
+  (interactive)
+  (let ((black-list
+         (cdr (assoc emacs-host emacs-config-disabled-pkg-per-host))))
+    (member pkg black-list)))
+
 (defun emacs-config-add-file (module class)
   "DOCSTRING"
   (interactive)
@@ -100,6 +110,7 @@
               install-command)
           (when (and
                  (not (plist-get plist :disabled))
+                 (not (emacs-config-disabled-per-host-p name))
                  (or
                   (not condition)
                   (if (listp (eval condition))
@@ -130,21 +141,23 @@
                 (setq install-command
                       `(straight-use-package
                         '(,name :files
-                                ,(plist-get plist :file))))
-                )
+                                ,(plist-get plist :file)))))
                ((plist-member plist :straight)
                 ;; (message "quelpa: %s" (plist-get plist :quelpa))
                 (setq install-command
-                      `(straight-use-package ',(plist-get plist :straight))))
+                      `(straight-use-package
+                        ',(plist-get plist :straight))))
                ((plist-member plist :name)
                 ;; (message "quelpa: %s" (plist-get plist :quelpa))
                 (setq install-command
-                      `(straight-use-package ',(plist-get plist :name))))
+                      `(straight-use-package
+                        ',(plist-get plist :name))))
                ;; ((plist-member plist :name)
                ;;  (message ": %s" (plist-get plist :quelpa))
                ;;  ;; (quelpa (plist-get plist :quelpa))
                ;;  )
-               (t (setq install-command `(straight-use-package ',name))))
+               (t
+                (setq install-command `(straight-use-package ',name))))
               (when install-command
                 (if log-file
                     (weiss-insert-to-log-file log-file
@@ -157,15 +170,18 @@
                   (require name))))
             (weiss-load-module (plist-get plist :then) log-file)))
       ;; (message "load: %s" (symbol-name package))
-      (weiss-require-config-by-class (symbol-name package) log-file)
-      (if log-file
-          (progn
-            (weiss-insert-to-log-file log-file
-                                      (format "(straight-use-package '%s)" package))
-            (weiss-insert-require log-file (symbol-name package)))
-        (straight-use-package package)
-        (require package))))
-  )
+      (unless (emacs-config-disabled-per-host-p package)
+        (weiss-require-config-by-class
+         (symbol-name package)
+         log-file)
+        (if log-file
+            (progn
+              (weiss-insert-to-log-file log-file
+                                        (format
+                                         "(straight-use-package '%s)" package))
+              (weiss-insert-require log-file (symbol-name package)))
+          (straight-use-package package)
+          (require package))))))
 
 ;; weiss/emacs-config-modules-ros
 (defun weiss-insert-require-to-log-file ()

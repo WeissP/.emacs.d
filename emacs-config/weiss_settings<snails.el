@@ -28,8 +28,7 @@
   (require 'snails-backend-current-buffer)
   (require 'snails-backend-search-pdf)
   (require 'snails-backend-emacs-config)
-  (unless (string= emacs-host "arch without roam")
-    (require 'snails-backend-org-roam))
+  (with-eval-after-load 'org-roam (require 'snails-backend-org-roam))
   (require 'snails-backend-file-bookmark)
   (require 'snails-backend-filter-buffer)
   ;; (require 'snails-backend-recentf-weiss)
@@ -51,23 +50,31 @@
   (setq snails-default-backends
         '(snails-backend-preview
           snails-backend-filter-buffer
-          ;; snails-backend-org-roam-new
           snails-backend-recentf-db
           snails-backend-emacs-config
-          ;; snails-backend-file-bookmark
-          ;; snails-backend-org-roam-link
-          ;; snails-backend-org-roam-focusing
-          ;; snails-backend-org-roam-uc
-          ;; snails-backend-org-roam-project
-          ;; snails-backend-org-roam-note
-          ;; snails-backend-org-roam-tutorial
-          ;; snails-backend-org-roam-all
           snails-backend-emacs-config-new))
+
+  (with-eval-after-load 'snails-roam
+    (setq snails-default-backends
+          '(snails-backend-preview
+            snails-backend-filter-buffer
+            snails-backend-org-roam-new
+            snails-backend-recentf-db
+            snails-backend-emacs-config
+            snails-backend-file-bookmark
+            snails-backend-org-roam-link
+            snails-backend-org-roam-focusing
+            snails-backend-org-roam-uc
+            snails-backend-org-roam-project
+            snails-backend-org-roam-note
+            snails-backend-org-roam-tutorial
+            snails-backend-org-roam-all
+            snails-backend-emacs-config-new)))
 
   )
 (defun weiss-test ()
   "DOCSTRING"
   (interactive)
-  (snails '(snails-backend-fd)))
+  (snails '(snails-backend-org-roam-all)))
 ;; parent: 
 (provide 'weiss_settings<snails)

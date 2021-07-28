@@ -520,7 +520,8 @@
     ("make-vector" "(make-vector 5▮ 0)" weiss--ahf)
     ("vconcat" "(vconcat ▮)" weiss--ahf)
     ("fillarray" "(fillarray ▮ 0)" weiss--ahf)
-
+    
+    ("io" ":if-new (file+head+olp )")
     ;;
     )
 

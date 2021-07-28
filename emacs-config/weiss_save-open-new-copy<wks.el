@@ -254,6 +254,16 @@ Version 2015-10-14"
     (when (eq major-mode 'help-mode) (quit-window))
     ))
 
+(defun weiss-new-temp-file ()
+  "DOCSTRING"
+  (interactive)
+  (let ((prefix "temp-")
+        (date (format-time-string "%S-[%H-%M]-{%0d.%m.%Y}"))
+        (dir (concat user-emacs-directory "/.temp/"))
+        (ext ".el"))
+    (find-file (concat dir prefix date ext))
+    ))
+
 (defun xah-new-empty-buffer ()
   "Create a new empty buffer.
     New buffer will be named “untitled” or “untitled<2>”, “untitled<3>”, etc.

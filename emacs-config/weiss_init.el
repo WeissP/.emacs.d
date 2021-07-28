@@ -4,15 +4,6 @@
 (defvar weiss/cursor-color "#4078f2")
 (defvar weiss/cursor-type '(bar . 2))
 
-(setq after-dump-packages
-      (pcase emacs-host
-        ("ros-docker"
-         '(weiss_after-dump-misc all-the-icons display-line-numbers server recentf tramp gcmh))
-        ("arch without roam"
-         '(weiss_after-dump-misc all-the-icons display-line-numbers server rime telega tramp gcmh))
-        (_
-         '(weiss_after-dump-misc all-the-icons display-line-numbers server rime telega emacs-yakuake tramp gcmh))))
-
 (setq vanilla-global-map (current-global-map))
 (defvar weiss-dumped-p nil)
 (if weiss-dumped-p
@@ -26,11 +17,13 @@
       (global-font-lock-mode t)
       (transient-mark-mode t))
   (load (concat weiss/config-path "weiss_startup.el"))
-  (pcase emacs-host
-    ("ros-docker" (load "~/.emacs.d/dumped-packages.el"))
-    ("arch without roam"
-     (weiss-load-module weiss/emacs-config-modules-without-roam nil))
-    (_ (weiss-load-module weiss/emacs-config-modules nil))))
+  (weiss-load-module weiss/emacs-config-modules nil)
+  ;; (pcase emacs-host
+  ;;   ("ros-docker" (load "~/.emacs.d/dumped-packages.el"))
+  ;;   ("arch without roam"
+  ;;    (weiss-load-module weiss/emacs-config-modules-without-roam nil))
+  ;;   (_ (weiss-load-module weiss/emacs-config-modules nil)))
+  )
 (when (string= emacs-host "ros-docker")
   (setq counsel-fzf-cmd "/home/weiss/fzf/bin/fzf -f \"%s\"")
   (setq rg-executable "/home/weiss/ripgrep/rg"))
@@ -48,8 +41,7 @@
 (save-place-mode 1)
 (winner-mode)
 
-(unless (string= emacs-host "ros-docker") (dbus-init-bus :session)   ; for EAF DUMP
-        )
+;; (unless (string= emacs-host "ros-docker") (dbus-init-bus :session))   ; for EAF DUMP 
 
 ;; (setq weiss-right-top-window (selected-frame))
 ;; (setq weiss-left-top-window (make-frame-command))

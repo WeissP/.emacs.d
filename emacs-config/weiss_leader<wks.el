@@ -40,25 +40,16 @@
    ("c ," . weiss-kill-append-with-comma)
    ("c l" . weiss-kill-append-with-pipe)
 
-   ("d a" .  weiss-custom-daily-agenda)
+
    ("d b" .  weiss-save-current-content)
-   ("d c" .  org-roam-capture)
    ;; ("d d" .  weiss-switch-and-bookmarks-search)
-   ("d f" .  org-roam-find-file)
    ("d j" . yasdcv-translate-input)
    ("d l" .  list-buffers)
    ("d m" .  magit-status)
-   ("d t" .  org-todo-list)
-   ("d n" .  xah-new-empty-buffer)
+   ("d n" .  weiss-new-temp-file)
    ("d o" .  xah-open-file-at-cursor)
    ("d s" . yasdcv-translate-at-point)
-   ("d =" .  org-roam-dailies-capture-tomorrow)
-   ("d !" .  org-roam-dailies-capture-today)
-   ("d /" .  org-roam-dailies-capture-date)
-   ("d DEL" .  org-roam-dailies-find-tomorrow)
-   ("d &" .  org-roam-dailies-find-today)
-   ("d -" .  org-roam-dailies-find-yesterday)
-   ("d ?" .  org-roam-dailies-find-date)
+
    ("d w" .  xah-open-in-external-app)
 
    ("e b" .  org-babel-tangle)
