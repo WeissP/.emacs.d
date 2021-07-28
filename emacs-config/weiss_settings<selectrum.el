@@ -14,6 +14,7 @@
     (delete-char -1)))
 
 (with-eval-after-load 'selectrum (selectrum-mode +1))
-
+(string-trim-right "/home/weiss/.emacs.d/emacs-config/" "[^/]+/?")
+(string-trim-right "/home/weiss/.emacs.d/emacs-config" "/.+$")
 ;; parent: 
 (provide 'weiss_settings<selectrum)
