@@ -26,6 +26,7 @@
     ("sl" "slurp"  weiss--ahf)
     ("slurp" "(slurp ▮)" weiss--ahf)
     ("fst" "(first ▮)" weiss--ahf)
+    ("snd" "(second ▮)" weiss--ahf)
     ("wt" "(defn weiss-test\n[▮]\n\n)" weiss--ahf-indent)
     ("cons" "(cons ▮)" weiss--ahf)
     ("ar" "(-> ▮)" weiss--ahf)

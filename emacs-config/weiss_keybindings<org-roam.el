@@ -7,7 +7,8 @@
      ("j a" . org-roam-alias-add)
      ("j n" . org-roam-capture)
      ("j f" . weiss-roam-add-focusing-tag)
-     ("s" . weiss-org-roam-copy-heading-link)))
+     ;; ("s" . weiss-org-roam-copy-heading-link)
+     ))
 
   (wks-define-key
    (current-global-map)

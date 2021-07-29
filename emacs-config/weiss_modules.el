@@ -31,17 +31,18 @@
          :then ((ox-latex :local t)
                 (org-edit-latex :local t)
                 magic-latex-buffer))
-        (snails :local t)
         (dired
          :local t
          ;; :after-dump-all t
          :then (wdired diredfl all-the-icons-dired dired-hacks-utils dired-avfs dired-collapse
                        dired-quick-sort peep-dired dired-filter
                        (weiss-dired-single-handed-mode :local t)))
-        ;; (selectrum :then (selectrum-prescient))
+        (snails :local t)
+        ;; vertico
+        (selectrum :then (selectrum-prescient))
         (isearch :skip-install t)
         ;; (ctrlf :disabled t)
-        (counsel :then (amx prescient ivy-prescient ivy-rich))
+        ;; (counsel :then (amx prescient ivy-prescient ivy-rich))
         (abbrevs :skip-install t)
         (ui
          :skip-install t

@@ -39,20 +39,19 @@
                              (format "rsync -PaAXv %s %s"
                                      (format "\"%s\""
                                              (mapconcat 'identity marked-files "\" \""))
-                                     target-path))
-        )))
+                                     target-path)))))
     )
 
   (defun weiss-dired-git-clone ()
     "DOCSTRING"
     (interactive)
-    (let* ((session (yakuake-add-session))
-           (git-path (current-kill 0 t))
+    (let* ((git-path (current-kill 0 t))
            (command
             (format "cd \"%s\" && git clone %s"
                     (file-truename default-directory)
                     git-path)))
-      (if (string-prefix-p  "git@" git-path)
+      (if (or (string-prefix-p  "https://github.com/" git-path)
+              (string-prefix-p  "git@" git-path))
           (weiss-start-process "git clone" command)
         (message "check your clipboard!" )))))
 

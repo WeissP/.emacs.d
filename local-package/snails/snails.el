@@ -84,7 +84,7 @@
 (require 'snails-extensions)
 (require 'snails-backend-buffer)
 (require 'snails-backend-current-buffer)
-(require 'snails-backend-recentf)
+;; (require 'snails-backend-recentf)
 (require 'snails-backend-awesome-tab-group)
 (require 'snails-backend-fd)
 (require 'snails-backend-mdfind)
