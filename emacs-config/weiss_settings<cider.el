@@ -1,6 +1,6 @@
 (with-eval-after-load 'cider
   (add-hook 'clojure-mode-hook 'cider-mode)
-
+  
   (defun weiss-cider-save-and-load ()
     "DOCSTRING"
     (interactive)
@@ -21,7 +21,9 @@
     "DOCSTRING"
     (interactive)
     (end-of-line)
-    (cider-eval-last-sexp))
+    (if current-prefix-arg
+        (cider-eval-defun-at-point t)
+      (cider-eval-last-sexp)))
 
   (defun weiss-cider-connect-babashka (arg)
     "DOCSTRING"

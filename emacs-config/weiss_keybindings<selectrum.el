@@ -3,7 +3,7 @@
    selectrum-minibuffer-map
    ""
    '(("C-<return>" . selectrum-submit-exact-input)
-     ("<backspace>" . selectrum-up-directory))))
+     ("<backspace>" . selectrum-directory-up))))
 
 ;; parent: 
 (provide 'weiss_keybindings<selectrum)

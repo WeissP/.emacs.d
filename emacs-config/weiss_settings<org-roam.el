@@ -8,6 +8,7 @@
 
 (with-eval-after-load 'org-roam
   (org-roam-setup)
+  (require 'org-roam-protocol)
   )
 
 ;; parent: org

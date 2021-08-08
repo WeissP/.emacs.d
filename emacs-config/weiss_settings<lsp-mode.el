@@ -16,7 +16,7 @@
                                   (require 'lsp-python-ms)
                                   (lsp-deferred)))
 
-  (dolist (x '(java-mode-hook go-mode-hook c++-mode-hook)) 
+  (dolist (x '(java-mode-hook go-mode-hook c++-mode-hook clojure-mode-hook)) 
     (add-hook x #'lsp-deferred)
     )
   )

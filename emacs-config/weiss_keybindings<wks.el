@@ -49,7 +49,7 @@
      ("C-<tab>" .  image-increase-size)
      ("C-S-<iso-lefttab>" .  image-decrease-size))))
 
-(with-eval-after-load 'man-mode (wks-unset-key Man-mode-map '("k")))
+(with-eval-after-load 'man (wks-unset-key Man-mode-map '("k" "n" "s")))
 
 (global-unset-key (kbd "y"))
 (wks-define-key
@@ -106,7 +106,7 @@
    ("r" . weiss-delete-forward-with-region)
    ("s" . snails)
 
-   ("y t" . paredit-forward-slurp-sexp)
+   ("y /" . paredit-forward-slurp-sexp)
    ("y f" . weiss-flycheck-diwm)
    ("y <right>" . transpose-sexps)
    ("y <left>" . move-sexp-left)
@@ -134,6 +134,7 @@
    ("y l" . "C-c C-l")
    ("y o" . "C-c C-o")
    ("y u" . "C-c '")
+   ("y t" . "C-c C-t")
    ("y y" . "C-c C-M-x")))
 
 (provide 'weiss_keybindings<wks)

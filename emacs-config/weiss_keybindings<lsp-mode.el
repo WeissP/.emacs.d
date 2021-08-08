@@ -8,7 +8,7 @@
    '(("y a" . lsp-execute-code-action)
      ("y i" . lsp-organize-imports)
      ("C-c C-d" . lsp-describe-thing-at-point)
-     ("t" . lsp-rename)))
+     ("C-c C-M-x r" . lsp-rename)))
 
   ;; (defmacro wks-lsp-bindkey (mode)
   ;;   `(with-eval-after-load ',(intern mode)

@@ -4,8 +4,8 @@
    ""
    '(("<up>" . isearch-ring-retreat )
      ("<down>" . isearch-ring-advance)
-     ("<left>" . isearch-repeat-backward)
-     ("<right>" . isearch-repeat-forward)))
+     ("<right>" . isearch-repeat-backward)
+     ("<left>" . isearch-repeat-forward)))
 
   (wks-define-key
    minibuffer-local-isearch-map

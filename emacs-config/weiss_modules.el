@@ -117,7 +117,8 @@
         (citre :github "universal-ctags/citre")
         (elfmt :github "git@github.com:riscy/elfmt.git")
         tab-line
-        yaml-mode))
+        yaml-mode
+        pass hledger-mode))
 
 (provide 'weiss_modules)
 

@@ -43,7 +43,7 @@
 
  :candidate-do
  (lambda (candidate)
-   (browse-url candidate)))
+   (browse-url  (s-trim candidate))))
 
 (setq jav-preview-prefix-alist
   '(
@@ -118,7 +118,7 @@
     ("HZGD" . "http://cc3001.dmm.co.jp/litevideo/freepv/h/h_1/h_1100hzgd%s/h_1100hzgd%s_mhb_w.mp4")
     ("IDBD" . "http://cc3001.dmm.co.jp/litevideo/freepv/i/idb/idbd%s/idbd%s_dm_w.mp4")
     ("IENF" . "https://cc3001.dmm.co.jp/litevideo/freepv/1/1ie/1ienf%s/1ienf%s_mhb_w.mp4")
-    ("IPX" . " https://awscc3001.r18.com/litevideo/freepv/i/ipx/ipx%s/ipx%s_dmb_w.mp4")
+    ("IPX" . "https://awscc3001.r18.com/litevideo/freepv/i/ipx/ipx%s/ipx%s_dmb_w.mp4")
     ("IPZ" . "https://cc3001.dmm.co.jp/litevideo/freepv/i/ipz%s/ipz%s_dmb_w.mp4")
     ("JBD" . " http://cc3001.dmm.co.jp/litevideo/freepv/j/jbd%s/jbd%s_dmb_w.mp4")
     ("JUL" . "https://cc3001.dmm.co.jp/litevideo/freepv/j/jul%s/jul%s_dmb_w.mp4")

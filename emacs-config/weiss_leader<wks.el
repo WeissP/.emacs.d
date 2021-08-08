@@ -67,6 +67,7 @@
    ("i p" .  recentf-db-add-bookmark)
    ("i s" .  yasdcv-translate-at-point)
    ("i v" .  counsel-yank-pop)
+   ("i i" .  weiss-pass-gen-info)
 
    ("j K" .  Info-goto-emacs-key-command-node)
    ("j a" .  apropos-command)

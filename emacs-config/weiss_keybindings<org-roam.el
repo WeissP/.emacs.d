@@ -1,7 +1,7 @@
 (with-eval-after-load 'org-roam
   (wks-define-key
    org-mode-map "y "
-   '(("i" . org-roam-insert)
+   '(("i" . org-roam-node-insert)
      ("r" . org-roam)
      ("j t" . org-roam-tag-add)
      ("j a" . org-roam-alias-add)

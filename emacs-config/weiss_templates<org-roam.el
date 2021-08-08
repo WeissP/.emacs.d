@@ -32,17 +32,21 @@
                                   "#+title: Daily-%<%Y-%m-%d>\n#+filetags: Daily\n"
                                   ("Scheduled")))
           ("t" "Todo" entry
-           "* TODO %i%?\nSCHEDULED: [%<%Y-%m-%d %a>]\n:PROPERTIES:\n:ID: scheduled-%(weiss-org-create-id-random-string)\n:END:"
+           "* TODO %i%?\nSCHEDULED: [%<%Y-%m-%d %a>]\n:PROPERTIES:\n:ID: todo-%(weiss-org-create-id-random-string)\n:END:"
 
            :if-new (file+head+olp
                     "Ʀd-%<%Y-%m-%d>.org"
                     "#+title: Daily-%<%Y-%m-%d>\n#+filetags: Daily\n"
                     ("Todo")))
           ("f" "Fleeting notes" entry
-           "* TODO %i%? :fleeting:\n:PROPERTIES:\n:ID: scheduled-%(weiss-org-create-id-random-string)\n:END:"
+           "* TODO %i%? :fleeting:\n:PROPERTIES:\n:ID: Fleeting-notes-%(weiss-org-create-id-random-string)\n:END:"
            :if-new (file+head+olp "Ʀd-%<%Y-%m-%d>.org"
                                   "#+title: Daily-%<%Y-%m-%d>\n#+filetags: Daily\n"
                                   ("Fleeting notes")))
+          ("m" "Music" entry
+           "* Music-Today-%<%Y-%m-%d> %?\n:PROPERTIES:\n:ID: music-%(weiss-org-create-id-random-string)\n:END:"
+           :if-new (file+head+olp "Ʀd-%<%Y-%m-%d>.org" "" ("Music-Today"))
+           :unnarrowed t)
           ("j" "Journey" entry
            "* %<%H:%M>\n %?"
            :if-new (file+head+olp "Ʀd-%<%Y-%m-%d>.org"
@@ -51,11 +55,12 @@
            :unnarrowed t)))
 
   (setq org-roam-capture-ref-templates
-        '(("r" "ref" plain #'org-roam-capture--get-point
+        '(("r" "ref" plain
            "%?"
-           :file-name "Ʀlink:${slug}"
-           :head "#+title: ${title} \n#+filetags: link\n#+roam_key: ${ref}\n"
+           :if-new (file+head "Ʀlink:${slug}.org"
+                              "#+title: ${title} \n#+filetags: link\n#+roam_key: ${ref}\n")
            :unnarrowed t))))
 
 ;; parent: org
 (provide 'weiss_templates<org-roam)
+

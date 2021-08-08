@@ -17,14 +17,20 @@
      (weiss-dired-single-handed-mode)))
    ("v" . hydra-dired-filter-actress/body)
    ("V" . hydra-dired-add-tag/body)
-   ("c" . hydra-dired-filter-tag/body))
- )
+   ("c" . hydra-dired-filter-tag/body)))
 
 (defun weiss-single-hand-play-movie ()
   "DOCSTRING"
   (interactive)
   (let ((file (car (dired-get-marked-files nil nil nil nil t))))
-    (dired-shell-command (format "mplayer -fs \"%s\" &" file))))
+    (dired-shell-command
+     (format "mplayer -ao pulse -title '%s' -fs \"%s\" &"
+             (thread-last file
+               (file-name-nondirectory)
+               (file-name-sans-extension))
+             file))))
+
+
 
 (define-minor-mode weiss-dired-single-handed-mode
   "weiss-dired-single-handed-mode"
@@ -43,7 +49,6 @@
     ;; (setq cursor-type t)
     ;; (hl-line-mode -1)
     (set-face-background 'hl-line "#ffe8e8")
-    (set-face-background 'normal-hl-line "#ffe8e8"))
-  )
+    (set-face-background 'normal-hl-line "#ffe8e8")))
 
 (provide 'weiss-dired-single-handed-mode)

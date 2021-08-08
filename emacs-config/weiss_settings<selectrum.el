@@ -13,14 +13,22 @@
 (defun selectrum-directory-up ()
   "Delete directory before point.  Comes from vertico-directory"
   (interactive)
-  (when (and
-         (eq (char-before) ?/)
-         (selectrum-directory--completing-file-p))
-    (save-excursion
-      (goto-char (1- (point)))
-      (when (search-backward "/" (minibuffer-prompt-end) t)
-        (delete-region (1+ (point)) (point-max))
-        t))))
+  (if (and
+       (eq (char-before) ?/)
+       (selectrum-directory--completing-file-p))
+      (progn
+        (goto-char (1- (point)))
+        (if (eq (char-before) ?~)
+            (progn
+              (delete-region (1- (point)) (point-max))
+              (insert (expand-file-name "~/"))
+              )
+          (when (search-backward "/" (minibuffer-prompt-end) t)
+            (delete-region (1+ (point)) (point-max))
+            t))
+        (goto-char (point-max))
+        )
+    (delete-char -1)))
 
 (with-eval-after-load 'selectrum (selectrum-mode +1))
 

@@ -1,5 +1,6 @@
-(add-hook 'python-mode #'flycheck-mode)
-(add-hook 'java-mode #'flycheck-mode)
+(add-hook 'python-mode-hook #'flycheck-mode)
+;; (add-hook 'java-mode-hook #'flycheck-mode)
+;; (add-hook 'clojure-mode-hook #'flycheck-mode)
 (setq 
  ;; Only check while saving and opening files
  flycheck-check-syntax-automatically '(mode-enabled save)
