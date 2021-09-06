@@ -8,7 +8,6 @@
                                      ;; (weiss-temp-insert-mode :local t)
                                      hydra))
         (org
-         :local t
          :first ((weiss-org-sp-mode :skip-install t))
          :then ((babel
                  :skip-install t
@@ -33,13 +32,13 @@
                 magic-latex-buffer))
         (dired
          :local t
-         ;; :after-dump-all t
          :then (wdired diredfl all-the-icons-dired dired-hacks-utils dired-avfs dired-collapse
                        dired-quick-sort peep-dired dired-filter
                        (weiss-dired-single-handed-mode :local t)))
         (snails :local t)
         ;; vertico
-        (selectrum :then (selectrum-prescient))
+        ;; (selectrum :then (selectrum-prescient))
+        embark
         (isearch :skip-install t)
         ;; (ctrlf :disabled t)
         ;; (counsel :then (amx prescient ivy-prescient ivy-rich))
@@ -118,7 +117,10 @@
         (elfmt :github "git@github.com:riscy/elfmt.git")
         tab-line
         yaml-mode
-        pass hledger-mode))
+        pass hledger-mode flycheck-hledger
+        fsharp-mode
+        (puni :github "git@github.com:AmaiKinono/puni.git")))
 
 (provide 'weiss_modules)
+
 

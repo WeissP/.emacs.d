@@ -28,6 +28,7 @@
           ("on" "off")
           ("ON" "OFF")
           ("when" "unless")
+          ("from" "to")
           ("even" "odd")
           ("columns" "rows")
           ("after" "before")

@@ -1,26 +1,51 @@
+(defun weiss-test ()
+  "DOCSTRING"
+  (interactive)
+  (let* ((sexp-bounds (bounds-of-thing-at-point 'sexp))
+         (sexp-bounds-list `(,(car sexp-bounds) ,(cdr sexp-bounds))))
+    (if
+
+        )
+
+    ))
+
+(defun weiss-backward-up-list ()
+  "DOCSTRING"
+  (interactive)
+  (let* ((sexp-bounds (bounds-of-thing-at-point 'sexp))
+         (sexp-bounds-list `(,(car sexp-bounds) ,(cdr sexp-bounds))))
+    (if (or
+         (eq last-command 'weiss-backward-up-list)
+         (member (point) sexp-bounds-list)
+         (and
+          (use-region-p)
+          (or
+           (member (region-beginning) sexp-bounds-list)
+           (member (region-end) sexp-bounds-list))))
+        (condition-case _
+            (call-interactively 'backward-up-list)
+          (error (call-interactively 'paredit-backward)))
+      (call-interactively 'paredit-backward))))
+
 (defun weiss-move-to-next-block ()
   "DOCSTRING"
   (interactive)
-  (re-search-forward "\n[\t\n ]*\n+" nil "move")
-  )
+  (re-search-forward "\n[\t\n ]*\n+" nil "move"))
 
 (defun weiss-move-to-previous-block ()
   "DOCSTRING"
   (interactive)
-  (re-search-backward "\n[\t\n ]*\n+" nil "move")
-  )
+  (re-search-backward "\n[\t\n ]*\n+" nil "move"))
 
 (defun weiss-move-to-next-punctuation ()
   "DOCSTRING"
   (interactive)
-  (skip-chars-forward "[a-zA-Z\\-_]")  
-  )
+  (skip-chars-forward "[a-zA-Z\\-_]"))
 
 (defun weiss-move-to-previous-punctuation ()
   "DOCSTRING"
   (interactive)
-  (skip-chars-backward "[a-zA-Z\\-_]")  
-  )
+  (skip-chars-backward "[a-zA-Z\\-_]"))
 
 (defun xah-beginning-of-line-or-block ()
   "Move cursor to beginning of line or previous paragraph.
@@ -32,18 +57,17 @@ URL `http://ergoemacs.org/emacs/emacs_keybinding_design_beginning-of-line-or-blo
 Version 2018-06-04"
   (interactive)
   (let (($p (point)))
-    (if (or (equal (point) (line-beginning-position))
-            (eq last-command this-command))
+    (if (or
+         (equal (point) (line-beginning-position))
+         (eq last-command this-command))
         (if (re-search-backward "\n[\t\n ]*\n+" nil "move")
-            (progn
-              (skip-chars-backward "\n\t ")
-              ;; (forward-char )
-              )
+            (progn (skip-chars-backward "\n\t ")
+                   ;; (forward-char )
+                   )
           (goto-char (point-min)))
       (progn
         (back-to-indentation)
-        (when (eq $p (point))
-          (beginning-of-line))))))
+        (when (eq $p (point)) (beginning-of-line))))))
 
 (defun xah-end-of-line-or-block ()
   "Move cursor to end of line or next paragraph.
@@ -54,34 +78,37 @@ Version 2018-06-04"
 URL `http://ergoemacs.org/emacs/emacs_keybinding_design_beginning-of-line-or-block.html'
 Version 2018-06-04"
   (interactive)
-  (if (or (equal (point) (line-end-position))
-          (eq last-command this-command))
-      (progn
-        (re-search-forward "\n[\t\n ]*\n+" nil "move" ))
+  (if (or
+       (equal (point) (line-end-position))
+       (eq last-command this-command))
+      (progn (re-search-forward "\n[\t\n ]*\n+" nil "move" ))
     (end-of-line)))
 
 (defvar xah-brackets nil "string of left/right brackets pairs.")
-(setq xah-brackets "()[]{}<>＜＞（）［］｛｝⦅⦆〚〛⦃⦄“”‘’‹›«»「」〈〉《》【】〔〕⦗⦘『』〖〗〘〙｢｣⟦⟧⟨⟩⟪⟫⟮⟯⟬⟭⌈⌉⌊⌋⦇⦈⦉⦊❛❜❝❞❨❩❪❫❴❵❬❭❮❯❰❱❲❳〈〉⦑⦒⧼⧽﹙﹚﹛﹜﹝﹞⁽⁾₍₎⦋⦌⦍⦎⦏⦐⁅⁆⸢⸣⸤⸥⟅⟆⦓⦔⦕⦖⸦⸧⸨⸩｟｠⧘⧙⧚⧛⸜⸝⸌⸍⸂⸃⸄⸅⸉⸊᚛᚜༺༻༼༽⏜⏝⎴⎵⏞⏟⏠⏡﹁﹂﹃﹄︹︺︻︼︗︘︿﹀︽︾﹇﹈︷︸")
+(setq xah-brackets
+      "()[]{}<>＜＞（）［］｛｝⦅⦆〚〛⦃⦄“”‘’‹›«»「」〈〉《》【】〔〕⦗⦘『』〖〗〘〙｢｣⟦⟧⟨⟩⟪⟫⟮⟯⟬⟭⌈⌉⌊⌋⦇⦈⦉⦊❛❜❝❞❨❩❪❫❴❵❬❭❮❯❰❱❲❳〈〉⦑⦒⧼⧽﹙﹚﹛﹜﹝﹞⁽⁾₍₎⦋⦌⦍⦎⦏⦐⁅⁆⸢⸣⸤⸥⟅⟆⦓⦔⦕⦖⸦⸧⸨⸩｟｠⧘⧙⧚⧛⸜⸝⸌⸍⸂⸃⸄⸅⸉⸊᚛᚜༺༻༼༽⏜⏝⎴⎵⏞⏟⏠⏡﹁﹂﹃﹄︹︺︻︼︗︘︿﹀︽︾﹇﹈︷︸")
 
-(defvar xah-left-brackets '("(" "{" "[" "<" "〔" "【" "〖" "〈" "《" "「" "『" "“" "‘" "‹" "«" )
+(defvar xah-left-brackets
+  '("(" "{" "[" "<" "〔" "【" "〖" "〈" "《" "「" "『" "“" "‘" "‹" "«" )
   "List of left bracket chars.")
 (progn
   ;; make xah-left-brackets based on xah-brackets
   (setq xah-left-brackets '())
   (dotimes ($x (- (length xah-brackets) 1))
     (when (= (% $x 2) 0)
-      (push (char-to-string (elt xah-brackets $x))
-            xah-left-brackets)))
+      (push (char-to-string (elt xah-brackets $x)) xah-left-brackets)))
   (setq xah-left-brackets (reverse xah-left-brackets)))
 
-(defvar xah-right-brackets '(")" "]" "}" ">" "〕" "】" "〗" "〉" "》" "」" "』" "”" "’" "›" "»")
+(defvar xah-right-brackets
+  '(")" "]" "}" ">" "〕" "】" "〗" "〉" "》" "」" "』" "”" "’" "›" "»")
   "list of right bracket chars.")
 (progn
   (setq xah-right-brackets '())
   (dotimes ($x (- (length xah-brackets) 1))
     (when (= (% $x 2) 1)
-      (push (char-to-string (elt xah-brackets $x))
-            xah-right-brackets)))
+      (push
+       (char-to-string (elt xah-brackets $x))
+       xah-right-brackets)))
   (setq xah-right-brackets (reverse xah-right-brackets)))
 
 (defvar xah-punctuation-regex nil "A regex string for the purpose of moving cursor to a punctuation.")
@@ -108,19 +135,17 @@ Version 2018-06-04"
 (defun weiss-exchange-point-or-beginning-of-line ()
   "if there is nothing or only one point selected, move to beginning-of-line , else exchange point"
   (interactive)
-  (if (or (not (use-region-p))
-          (< (- (region-end) (region-beginning)) 1)) 
+  (if (or
+       (not (use-region-p))
+       (< (- (region-end) (region-beginning)) 1))
       (progn
         (deactivate-mark)
         (beginning-of-line)
         (push-mark nil t)
         (back-to-indentation)
         (setq mark-active t)
-        (weiss-select-mode-turn-on)
-        )
-    (exchange-point-and-mark)  
-    )
-  )
+        (weiss-select-mode-turn-on))
+    (exchange-point-and-mark)))
 
 
 (defun weiss-select-current-word ()
@@ -130,15 +155,13 @@ Version 2018-06-04"
   ;; (if (and (not (looking-back "\\w\\|\n")) (looking-at "\n"))
   (if (or (looking-back "\\w\\|\n") (looking-at "\\w"))
       (let ((current-point (point))
-            (lbpo (line-beginning-position))
-            )
+            (lbpo (line-beginning-position)))
         (progn
           (skip-syntax-backward "\\w" (- current-point lbpo))
           (push-mark nil t)
           (skip-syntax-forward "\\w")
           ;; (forward-word)
-          (setq mark-active t))        
-        )
+          (setq mark-active t)))
     (progn
       ;; (message "%s" "back")
       (backward-char 1)
@@ -154,8 +177,7 @@ Version 2018-06-04"
   (unless (use-region-p) (call-interactively 'set-mark-command))
   (backward-char )
   (re-search-backward (regexp-opt xah-left-brackets) nil t)
-  (forward-char )
-  )
+  (forward-char ))
 
 (defun xah-forward-right-bracket ()
   "Weiss: move cursor to the left of right bracket, because i have two delete keys
@@ -166,11 +188,10 @@ Version 2018-06-04"
   (interactive)
   (unless (use-region-p) (call-interactively 'set-mark-command))
   (forward-char)
-  (let ((forward-search-symbols (append (list "\n" ";") xah-right-brackets)))
-    (re-search-forward (regexp-opt forward-search-symbols) nil t) 
-    )
-  (backward-char)
-  )
+  (let ((forward-search-symbols
+         (append (list "\n" ";") xah-right-brackets)))
+    (re-search-forward (regexp-opt forward-search-symbols) nil t))
+  (backward-char))
 
 (defun weiss-mark-brackets ()
   "mark the nearst brackets"
@@ -180,20 +201,19 @@ Version 2018-06-04"
    ((eq last-command this-command)
     (backward-up-list 1 'ESCAPE-STRINGS 'NO-SYNTAX-CROSSING)
     (push-mark nil t)
-    (forward-sexp)    
-    )
+    (forward-sexp))
    ((looking-at (regexp-opt xah-left-brackets))
     (push-mark nil t)
     (forward-sexp))
-   ((looking-back (regexp-opt xah-right-brackets) (max (- (point) 1) 1))
+   ((looking-back
+     (regexp-opt xah-right-brackets)
+     (max (- (point) 1) 1))
     (push-mark nil t)
     (backward-sexp))
    (t
     (backward-up-list 1 'ESCAPE-STRINGS 'NO-SYNTAX-CROSSING)
     (push-mark nil t)
-    (forward-sexp)
-    ))
-  (setq mark-active t)
-  )
+    (forward-sexp)))
+  (setq mark-active t))
 
 (provide 'weiss_cursor-movement<wks)

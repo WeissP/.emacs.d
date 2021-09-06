@@ -19,11 +19,13 @@
      ("y j" . cider-jack-in)
      ("-" . weiss-cider-save-and-load)
      ("y b" . cider-pop-back)
-     ("y k r" . cider-restart)
+     ("C-c C-M-x <f5>" . cider-restart)
      ("C-c C-M-x c" . weiss-cider-connect-babashka)
      ("C-c C-M-x s" . cider-connect-sibling-clj)
+     ("C-c C-M-x x" . cider-run)
      ("SPC , i" . cider-eval-last-sexp-to-repl)
-     ("SPC , p" . cider-eval-list-at-point)))
+     ("SPC , p" . cider-eval-list-at-point)
+     ("SPC , f" . cider-pprint-eval-defun-at-point)))
 
   (wks-unset-key cider-repl-mode-map '(","))
   (wks-define-key

@@ -21,6 +21,7 @@
    snails-default-show-prefix-tips nil
    snails-fuz-library-load-status "unload")
 
+  (require 'snails-backend-command)
   (require 'snails-backend-buffer)
   (require 'snails-backend-projectile)
   (require 'snails-backend-imenu)
@@ -54,6 +55,12 @@
           snails-backend-emacs-config
           snails-backend-emacs-config-new))
 
+  (defun weiss-snails-cmds ()
+    "DOCSTRING"
+    (interactive)
+    (snails '(snails-backend-command))
+    )
+
   (with-eval-after-load 'snails-roam
     (setq snails-default-backends
           '(snails-backend-preview
@@ -72,9 +79,6 @@
             snails-backend-emacs-config-new)))
 
   )
-(defun weiss-test ()
-  "DOCSTRING"
-  (interactive)
-  (snails '(snails-backend-org-roam-all)))
+
 ;; parent: 
 (provide 'weiss_settings<snails)

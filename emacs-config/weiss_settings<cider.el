@@ -1,13 +1,13 @@
 (with-eval-after-load 'cider
   (add-hook 'clojure-mode-hook 'cider-mode)
-  
+
   (defun weiss-cider-save-and-load ()
     "DOCSTRING"
     (interactive)
     (save-buffer)
-    (if (one-window-p)
-        (cider-load-buffer)
-      (cider-load-buffer-and-switch-to-repl-buffer)))
+    (if current-prefix-arg
+        (cider-load-all-project-ns)
+     (cider-load-buffer)))
 
   (defun weiss-cider-repl-refresh ()
     "DOCSTRING"

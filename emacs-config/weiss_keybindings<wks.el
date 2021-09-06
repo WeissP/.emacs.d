@@ -46,8 +46,8 @@
      ("k" . previous-line)
      ("i" . left-char)
      ("l" . right-char)
-     ("C-<tab>" .  image-increase-size)
-     ("C-S-<iso-lefttab>" .  image-decrease-size))))
+     ("C-+" .  image-increase-size)
+     ("C--" .  image-decrease-size))))
 
 (with-eval-after-load 'man (wks-unset-key Man-mode-map '("k" "n" "s")))
 
@@ -96,7 +96,8 @@
    ("j" . weiss-down-key)
    ("k" . weiss-up-key)
    ("l" . weiss-right-key)
-   ("m" . er/expand-region)
+   ;; ("m" . er/expand-region)
+   ("m" . weiss-backward-up-list)
    ("n" . isearch-forward)
    ("o" . weiss-expand-region-by-sexp)
    ("O" . weiss-contract-region-by-word)

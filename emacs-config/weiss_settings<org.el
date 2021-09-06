@@ -6,7 +6,7 @@
   (concat weiss/org-file-path path))
 
 (setq
- org-stored-links t
+ ;; org-stored-links t
  org-directory weiss/org-file-path
  org-extend-today-until 4
  org-cycle-max-level 15

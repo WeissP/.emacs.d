@@ -14,6 +14,7 @@
 (defun weiss-select-mode-turn-off (&rest args)
   "turn off weiss select mode"
   (interactive)
+  (deactivate-mark)
   (when weiss-select-mode (weiss-select-mode -1)))
 
 (defun weiss-select-mode-turn-on (&rest args)
@@ -40,6 +41,7 @@
 
 (add-hook 'deactivate-mark-hook 'weiss-select-mode-turn-off)
 (advice-add 'keyboard-quit :before #'weiss-select-mode-turn-off)
+(advice-add 'weiss-backward-up-list :after #'weiss-select-mode-turn-off)
 
 (defun weiss-select-add-advice-turn-on (cmds)
   "DOCSTRING"

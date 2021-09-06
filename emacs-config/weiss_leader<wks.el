@@ -55,7 +55,7 @@
    ("e b" .  org-babel-tangle)
    ("e c" .  org-capture)
 
-   ("f" . execute-extended-command)
+   ("f" . weiss-snails-cmds)
    ("g" . kill-line)
    ("h" . beginning-of-buffer)
 
@@ -66,7 +66,7 @@
    ("i m" .  all-the-icons-insert)
    ("i p" .  recentf-db-add-bookmark)
    ("i s" .  yasdcv-translate-at-point)
-   ("i v" .  counsel-yank-pop)
+   ("i v" .  yank-pop)
    ("i i" .  weiss-pass-gen-info)
 
    ("j K" .  Info-goto-emacs-key-command-node)

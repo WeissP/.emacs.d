@@ -30,6 +30,7 @@
 ;; (setq quelpa-checkout-melpa-p nil)
 ;; (setq quelpa-update-melpa-p nil)
 ;; (setq quelpa-self-upgrade nil)
+;; (straight-use-package 'org)
 
 (add-to-list 'load-path weiss/config-path)
 (add-to-list 'load-path weiss/local-package-path)
@@ -47,6 +48,8 @@
          '(weiss_after-dump-misc all-the-icons display-line-numbers server rime telega tramp gcmh))
         (_
          '(weiss_after-dump-misc all-the-icons display-line-numbers server rime telega tramp gcmh org-roam snails-roam))))
+
+
 
 (require 'weiss-Emacs-Config-Manager)
 (require 'weiss_modules)

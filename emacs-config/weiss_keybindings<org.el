@@ -19,7 +19,8 @@
      ("j" . (weiss-org-next-line (next-line) (deactivate-mark)))
      ("k" . (weiss-org-previous-line (previous-line) (deactivate-mark)))
      ("t" . weiss-org-preview-latex-and-image)
-     ("n" . weiss-org-search)
+     ;; ("n" . weiss-org-search)
+     ("n" . isearch-forward)
      ("x" . weiss-org-exchange-point-or-switch-to-sp)
      ("X" . org-refile)
 

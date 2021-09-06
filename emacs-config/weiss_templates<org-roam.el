@@ -6,7 +6,7 @@
            )
           ("p" "project" plain
            "* ${title}\n** link:\n*** \n** %?"
-           :if-new (file+head "ƦProject-${slug}_%<%Y%m%d%H>.org" "#+title: Project-${title} \n#+filetags project \n")
+           :if-new (file+head "ƦProject-${slug}_%<%Y%m%d%H>.org" "#+title: Project-${title} \n#+filetags: project \n")
            )
           ("n" "note" plain
            "* ${title}\n %?"

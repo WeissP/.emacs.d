@@ -1,5 +1,5 @@
 (with-eval-after-load 'zprint
-  (add-hook 'clojure-mode-hook 'zprint-mode)
+  ;; (add-hook 'clojure-mode-hook 'zprint-mode)
   (defun zprint-with-arg (arg)
     "DOCSTRING"
     (interactive)
