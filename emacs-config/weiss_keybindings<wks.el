@@ -107,7 +107,7 @@
    ("r" . weiss-delete-forward-with-region)
    ("s" . snails)
 
-   ("y /" . paredit-forward-slurp-sexp)
+   ("y /" . puni-forward-slurp)
    ("y f" . weiss-flycheck-diwm)
    ("y <right>" . transpose-sexps)
    ("y <left>" . move-sexp-left)

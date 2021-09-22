@@ -11,6 +11,8 @@
      ("=" .  split-window-below)
      ("C--" .  pdf-view-shrink)
      ("C-+" .  pdf-view-enlarge)
+     (")" .  weiss-pdf-view-enlarge)
+     ("(" .  weiss-pdf-view-shrink)
      ("1" .  weiss-pdf-view-previous-page-quickly)
      ("<right>" .  weiss-pdf-view-previous-page-quickly)
      ("2" .  weiss-pdf-view-next-page-quickly)

@@ -20,7 +20,7 @@
                                          (lambda (x) (not (listp x)))
                                          weiss-tab-groups)))
                          (when (and
-                                (> (length input) 0)
+                                (> (length input) -1)
                                 (snails-match-input-p input group))
                            (snails-add-candiate 'candidates group group)))
                        (snails-add-candiate 'candidates

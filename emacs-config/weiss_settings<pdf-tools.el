@@ -18,6 +18,16 @@
     (interactive)
     (pdf-view-next-page-command 5))
 
+  (setq weiss-pdf-size-factor 1.10)
+
+  (defun weiss-pdf-view-enlarge ()
+    (interactive)
+    (pdf-view-enlarge weiss-pdf-size-factor))
+
+  (defun weiss-pdf-view-shrink ()
+    (interactive)
+    (pdf-view-shrink weiss-pdf-size-factor))
+
   (defun weiss-pdf-mode-setup()
     (interactive)
     (setq-local cursor-type nil)
