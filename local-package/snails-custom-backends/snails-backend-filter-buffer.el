@@ -42,7 +42,7 @@
        "*scratch*"
        "*Messages*"
        "backup_"
-       ;; "*eaf*"
+       "*gud-test*"
        "*Telega Root*"
        "*SQL: Postgres*"
        "*ein:"

@@ -79,11 +79,11 @@ Version 2019-12-26"
   (weiss-push-expand-region-stack (point))
   (if (weiss-region-p)    
       (if (eq (point) (region-beginning))
-          (call-interactively 'paredit-backward)
-        (call-interactively 'paredit-forward))      
+          (call-interactively 'weiss-backward-sexp)
+        (call-interactively 'weiss-forward-sexp))      
     (if current-prefix-arg
-        (call-interactively 'paredit-backward)
-      (call-interactively 'paredit-forward)
+        (call-interactively 'weiss-backward-sexp)
+      (call-interactively 'weiss-forward-sexp)
       )
     )        
   )
@@ -92,8 +92,8 @@ Version 2019-12-26"
   "DOCSTRING"
   (interactive)
   (if (eq (point) (region-beginning))
-      (call-interactively 'paredit-forward)
-    (call-interactively 'paredit-backward))
+      (call-interactively 'weiss-puni-backward-sexp)
+    (call-interactively 'weiss-puni-backward-sexp))
   )
 
 (defun weiss-expand-region-by-word ()

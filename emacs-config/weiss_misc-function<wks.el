@@ -21,13 +21,11 @@
         (if (eq (char-before) ?~)
             (progn
               (delete-region (1- (point)) (point-max))
-              (insert (expand-file-name "~/"))
-              )
+              (insert (expand-file-name "~/")))
           (when (search-backward "/" (minibuffer-prompt-end) t)
             (delete-region (1+ (point)) (point-max))
             t))
-        (goto-char (point-max))
-        )
+        (goto-char (point-max)))
     (delete-char -1)))
 
 ;; https://emacs.stackexchange.com/questions/19877/how-to-evaluate-elisp-code-contained-in-a-string
@@ -77,10 +75,17 @@
 ;; (+measure-time (format-mode-line mode-line-format))
 
 
+(defun weiss-blank-p (s)
+  "DOCSTRING"
+  (interactive)
+  (ignore-errors (string-match-p "\\`\\s-*$" s)))
+  
 (defun weiss-line-empty-p ()
   "https://emacs.stackexchange.com/questions/16792/easiest-way-to-check-if-current-line-is-empty-ignoring-whitespace"
   (interactive)
-  (ignore-errors (string-match-p "\\`\\s-*$" (thing-at-point 'line))))
+  (weiss-blank-p (thing-at-point 'line))
+  ;; (ignore-errors (string-match-p "\\`\\s-*$"))
+  )
 
 (defun weiss-simulate-c-g ()
   "DOCSTRING"
@@ -281,6 +286,10 @@ Version 2019-12-02"
     ;; (message ": %s" 123)
     (message "%s"
              (shell-command-to-string "go run /home/weiss/KaRat/datenbank/KaRat-Quizzes/main.go -tomlPath=/home/weiss/KaRat/datenbank/KaRat-Quizzes/input.toml")))
+   ((string-prefix-p "/home/weiss/Documents/Vorlesungen/bachelorarbeit/JODA-Web"
+                     (file-name-directory (buffer-file-name)))
+    (message "%s"
+             (shell-command-to-string "go run /home/weiss/Documents/Vorlesungen/bachelorarbeit/JODA-Web/cmd/joda-web/main.go")))
    ((and
      (eq major-mode 'go-mode)
      (not (string= weiss-mode-line-projectile-root-dir "nil")))

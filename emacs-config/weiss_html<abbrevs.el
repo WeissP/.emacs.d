@@ -1,6 +1,5 @@
 (setq weiss-html-mode-abbrev-table
-      '(
-        ("b" "<b> ▮ </b>")
+      '(("b" "<b> ▮ </b>")
         ("i" "<i> ▮ </i>")
         ("p" "<p> ▮ </p>")
         ("a" "<a href=\"▮\"> </a>" weiss--ahf)
@@ -18,7 +17,7 @@
         ("tr" "<tr>\n▮\n</tr>" weiss--ahf-indent)
         ("td" "<td>▮</td>" weiss--ahf)
         ("sp" "<span>▮</span>" weiss--ahf)
-        ("sb" "<span class=\"block\">▮</span>" weiss--ahf)    
+        ("sb" "<span class=\"block\">▮</span>" weiss--ahf)
         ("ag" "Aufgabe" weiss--ahf)
 
         ("el" "&lt;" weiss--ahf)
@@ -27,13 +26,18 @@
         ("ea" "&amp" weiss--ahf)
         ("eq" "&quot;" weiss--ahf)
 
-        ("pre" "<pre>\n▮\n</pre>" weiss--ahf-indent)    
+        ("pre" "<pre>\n▮\n</pre>" weiss--ahf-indent)
         ("php" "<?php\n▮\n?>" weiss--ahf)
         ("div" "<div> ▮ </div>")
 
         ("code" "<pre>\n<code>\n▮\n</code>\n</pre>" weiss--ahf-indent)
         ("style" "<style>\n▮\n</style>" weiss--ahf-indent)
         ("temp" "<!doctype html>\n<html lang=\"de\">\n\n<head>\n<meta charset=\"utf-8\">\n<title>▮</title>\n</head>\n\n<body>\n\n</body>" weiss--ahf-indent)
+
+        ("if" "{{if .▮}}{{end}}" weiss--ahf)
+        ("range" "{{range .▮}}\n\n{{end}}" weiss--ahf-indent)
+        ("with" "{{with .▮}}{{end}}" weiss--ahf-indent)
+        ("dot" "{{.▮}}" weiss--ahf-indent)
 
         ))
 

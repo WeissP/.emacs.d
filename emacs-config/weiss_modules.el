@@ -81,8 +81,11 @@
          :then (go-impl go-fill-struct
                         (flycheck-golangci-lint :disabled t)
                         (go-tag :disabled t)
-                        (go-gen-test :disabled t)
-                        (gotest :disabled t)))
+                        go-gen-test
+                        gotest
+                        go-dlv
+                        go-impl
+                        go-eldoc))
         (sql :then
              ((sql-indent :github "alex-hhh/emacs-sql-indent")))
         (haskell :skip-install t :then
@@ -112,15 +115,17 @@
         (recentf :local t :disabled t)
         (recentf-db :skip-install t)
         gcmh
-        (weiss-paredit :local t)
+        (weiss-paredit :disabled t :local t)
         (citre :github "universal-ctags/citre")
         (elfmt :github "git@github.com:riscy/elfmt.git")
         tab-line
         yaml-mode
         pass hledger-mode flycheck-hledger
-        fsharp-mode
+        ;; fsharp-mode
+        ;; dap-mode
         (puni :github "git@github.com:AmaiKinono/puni.git")))
 
 (provide 'weiss_modules)
+
 
 

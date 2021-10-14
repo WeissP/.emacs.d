@@ -52,8 +52,7 @@
      (advice-add cmd :before #'weiss-select-mode-turn-on-mark))
    cmds))
 
-(with-eval-after-load 'weiss-paredit
-  (with-eval-after-load 'expand-region
+(with-eval-after-load 'expand-region
     (let ((cmds
            '(xah-forward-right-bracket
              xah-backward-left-bracket
@@ -70,15 +69,17 @@
              mark-whole-buffer
              weiss-move-to-next-punctuation
              weiss-move-to-previous-punctuation
-             paredit-forward
-             paredit-backward
+             weiss-puni-forward-sexp
+             weiss-puni-backward-sexp
+             ;; paredit-forward
+             ;; paredit-backward
              ;; xref-find-definitions
              ;; er/expand-region
              )))
       (weiss-select-add-advice-turn-on cmds))
     (advice-add 'er/expand-region :after #'weiss-select-mode-turn-on-p-interactive)
     ;; (advice-add 'xref-find-definitions :after #'weiss-select-mode-turn-on-xref-interactive)
-    ))
+    )
 
 (defun weiss-deactivate-mark-unless-in-select-mode (&rest args)
   "deactivate mark unless in select mode"

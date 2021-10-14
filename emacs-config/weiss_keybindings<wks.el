@@ -49,7 +49,8 @@
      ("C-+" .  image-increase-size)
      ("C--" .  image-decrease-size))))
 
-(with-eval-after-load 'man (wks-unset-key Man-mode-map '("k" "n" "s")))
+(with-eval-after-load 'man
+  (wks-unset-key Man-mode-map '("k" "n" "s")))
 
 (global-unset-key (kbd "y"))
 (wks-define-key
@@ -59,7 +60,7 @@
    ("`" . weiss-open-line-and-indent)
    ("ß" . save-buffer)
    ("&" . weiss-expand-region-by-word)
-   ("|" . paredit-backward)
+   ("|" . weiss-puni-backward-sexp)
    ("$" . weiss-delete-other-window)
    ("?" . weiss-undo-expand-region)
 
@@ -87,7 +88,7 @@
    ("b" . xah-toggle-letter-case)
    ("c" . xah-copy-line-or-region)
    ("C" . weiss-kill-append-with-comma)
-   ("d" . weiss-cut-line-or-delete-region)
+   ("d" . weiss-puni-kill-line)
    ("e" . weiss-delete-backward-with-region)
    ("f" . wks-vanilla-mode-enable)
    ("g" . weiss-universal-argument)
@@ -107,7 +108,7 @@
    ("r" . weiss-delete-forward-with-region)
    ("s" . snails)
 
-   ("y /" . puni-forward-slurp)
+   ("y /" . puni-slurp-forward)
    ("y f" . weiss-flycheck-diwm)
    ("y <right>" . transpose-sexps)
    ("y <left>" . move-sexp-left)
@@ -136,6 +137,10 @@
    ("y o" . "C-c C-o")
    ("y u" . "C-c '")
    ("y t" . "C-c C-t")
-   ("y y" . "C-c C-M-x")))
+   ("y y" . "C-c C-M-x")
+   ("y x b" . "C-x C-a C-b")
+   ("y x p" . "C-x C-a C-p")
+   ("y x r" . "C-x C-a C-r")
+   ))
 
 (provide 'weiss_keybindings<wks)

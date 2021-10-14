@@ -1,13 +1,12 @@
-(defun weiss-test ()
+(defun weiss-forward-sexp ()
   "DOCSTRING"
   (interactive)
-  (let* ((sexp-bounds (bounds-of-thing-at-point 'sexp))
-         (sexp-bounds-list `(,(car sexp-bounds) ,(cdr sexp-bounds))))
-    (if
+  (weiss-puni-forward-sexp))
 
-        )
-
-    ))
+(defun weiss-backward-sexp ()
+  "DOCSTRING"
+  (interactive)
+  (weiss-puni-backward-sexp))
 
 (defun weiss-backward-up-list ()
   "DOCSTRING"
@@ -16,16 +15,18 @@
          (sexp-bounds-list `(,(car sexp-bounds) ,(cdr sexp-bounds))))
     (if (or
          (eq last-command 'weiss-backward-up-list)
-         (member (point) sexp-bounds-list)
-         (and
-          (use-region-p)
-          (or
-           (member (region-beginning) sexp-bounds-list)
-           (member (region-end) sexp-bounds-list))))
+         (eq (point) (car sexp-bounds))
+         ;; (member (point) sexp-bounds-list)
+         ;; (and
+         ;;  (use-region-p)
+         ;;  (or
+         ;;   (member (region-beginning) sexp-bounds-list)
+         ;;   (member (region-end) sexp-bounds-list)))
+         )
         (condition-case _
             (call-interactively 'backward-up-list)
-          (error (call-interactively 'paredit-backward)))
-      (call-interactively 'paredit-backward))))
+          (error (call-interactively 'weiss-puni-backward-sexp)))
+      (call-interactively 'weiss-puni-backward-sexp))))
 
 (defun weiss-move-to-next-block ()
   "DOCSTRING"
