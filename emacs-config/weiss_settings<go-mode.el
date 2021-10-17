@@ -49,6 +49,8 @@
   ;; Try to install go tools if `gopls' is not found
   (unless (executable-find "gopls")
     (go-update-tools))
+
+  (setq gofmt-command "golines")
   )
 
 (provide 'weiss_settings<go-mode)
