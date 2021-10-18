@@ -1,22 +1,21 @@
-(setq
- org-link-frame-setup
- '(
-   (vm . vm-visit-folder)
-   (vm-imap . vm-visit-imap-folder)
-   (gnus . gnus)
-   (file . find-file)
-   (wl . wl-frame))
+(setq org-link-frame-setup
+      '((vm . vm-visit-folder)
+        (vm-imap . vm-visit-imap-folder)
+        (gnus . gnus)
+        (file . find-file)
+        (wl . wl-frame))
 
- org-file-apps
- '((auto-mode . emacs)
-   ("\\.mm\\'" . default)
-   ("\\.x?html?\\'" . default)
-   ("\\.pdf\\'" . emacs)
-   ("\\.mp4\\'" . "vlc \"%s\"")
-   ("\\.txt\\'" . emacs)
-   ("\\.xopp\\'" . "xournalpp \"%s\"")
-   )
- )
+      org-file-apps
+      '(("\\.mm\\'" . default)
+        ("\\.x?html?\\'" . "google-chrome-stable  %s")
+        ("\\.pdf\\'" . emacs)
+        ("\\.mp4\\'" . "vlc \"%s\"")
+        ("\\.txt\\'" . emacs)
+        ("\\.xopp\\'" . "xournalpp \"%s\"")
+        (auto-mode . emacs)))
 
 ;; parent: 
 (provide 'weiss_open<org)
+
+
+

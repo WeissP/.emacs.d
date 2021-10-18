@@ -61,5 +61,11 @@
  eval-expression-print-level nil
  eval-expression-print-length nil)
 
+(setq browse-url-handlers
+      '(("playno1\\.com" . browse-url-chrome)
+        ("jav." . browse-url-chrome)
+	    ;; catch all
+	    ("." . browse-url-default-browser)))
+
 ;; parent: 
 (provide 'weiss_user-settings<global)
