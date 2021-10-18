@@ -1,6 +1,6 @@
 (add-hook 'dired-mode-hook (lambda () (interactive)
                              (dired-hide-details-mode 1)
-                             (dired-collapse-mode)
+                             ;; (dired-collapse-mode)
                              (dired-utils-format-information-line-mode)
                              ;; (all-the-icons-dired-mode)
                              (dired-omit-mode)

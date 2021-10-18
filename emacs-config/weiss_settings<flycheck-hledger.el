@@ -1,7 +1,7 @@
 (with-eval-after-load 'flycheck-hledger
   ;; (require 'flycheck-hledger)
   (setq flycheck-hledger-strict nil)
-  (add-hook 'hledger-mode-hook #'flycheck-mode)
+  (add-hook 'ledger-mode-hook #'flycheck-mode)
 )
 
 ;; parent: 

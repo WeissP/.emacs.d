@@ -104,7 +104,8 @@
                    ((pdf-view :skip-install t)
                     pdf-view-restore))
         (flycheck :then
-                  ((flycheck-posframe :when (display-graphic-p))))
+                  (flycheck-hledger
+                   (flycheck-posframe :when (display-graphic-p))))
         (flyspell :skip-install t :then (wucuo))
         rime
         telega
@@ -120,7 +121,8 @@
         (elfmt :github "git@github.com:riscy/elfmt.git")
         tab-line
         yaml-mode
-        pass hledger-mode flycheck-hledger
+        pass
+        ledger-mode
         ;; fsharp-mode
         ;; dap-mode
         (puni :github "git@github.com:AmaiKinono/puni.git")))

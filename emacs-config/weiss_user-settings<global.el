@@ -64,6 +64,8 @@
 (setq browse-url-handlers
       '(("playno1\\.com" . browse-url-chrome)
         ("jav." . browse-url-chrome)
+        ("torrent" . browse-url-chrome)
+        ("mag\\.net" . browse-url-chrome)
 	    ;; catch all
 	    ("." . browse-url-default-browser)))
 
