@@ -55,7 +55,7 @@
    ("e b" .  org-babel-tangle)
    ("e c" .  org-capture)
 
-   ("f" . weiss-snails-cmds)
+   ("f" . execute-extended-command)
    ("g" . kill-line)
    ("h" . beginning-of-buffer)
 

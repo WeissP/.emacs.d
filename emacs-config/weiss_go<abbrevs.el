@@ -20,7 +20,7 @@
     ("im" "import (\n\"▮\"\n)" weiss--ahf-indent)
     ("la" "<-" weiss--ahf)
     ("pa" "package ▮" weiss--ahf)
-    ("pr" "fmt.Printf(\"%v\", ▮)")
+    ("pr" "fmt.Printf(\":%v\\n\", ▮)")
     ("prn" "fmt.Println(\"▮\")")
     ("rt" "return ▮" weiss--ahf)
     ("rc" "regexp.MustCompile(`▮`)" weiss--ahf)

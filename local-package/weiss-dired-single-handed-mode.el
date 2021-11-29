@@ -23,12 +23,7 @@
   "DOCSTRING"
   (interactive)
   (let ((file (car (dired-get-marked-files nil nil nil nil t))))
-    (dired-shell-command
-     (format "mplayer -ao pulse -title '%s' -fs \"%s\" &"
-             (thread-last file
-               (file-name-nondirectory)
-               (file-name-sans-extension))
-             file))))
+    (weiss-mplayer-video file)))
 
 
 

@@ -13,10 +13,10 @@
 
 (with-eval-after-load 'lsp-mode
   (add-hook 'python-mode-hook #'(lambda ()
-                                  (require 'lsp-python-ms)
+                                  (require 'lsp-pyright)
                                   (lsp-deferred)))
 
-  (dolist (x '(java-mode-hook go-mode-hook c++-mode-hook clojure-mode-hook)) 
+  (dolist (x '(java-mode-hook go-mode-hook c++-mode-hook clojure-mode-hook js-mode-hook)) 
     (add-hook x #'lsp-deferred)
     )
   )

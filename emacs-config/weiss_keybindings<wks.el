@@ -1,10 +1,14 @@
 (wks-define-key
  prog-mode-map ""
- '(("<tab>" . weiss-indent-paragraph)
+ '(("<tab>" . weiss-indent)
    ("<RET>" . weiss-deactivate-mark-and-new-line)
    ;; ("<right>" . right-char)
    ;; ("<left>" . left-char)
    ))
+
+(wks-define-key
+ text-mode-map ""
+ '(("<RET>" . weiss-deactivate-mark-and-new-line)))
 
 (wks-define-key
  (current-global-map)
@@ -70,8 +74,8 @@
    ("=" . xah-shrink-whitespaces)
    ("." . xah-forward-right-bracket)
    ("!" . weiss-exchange-point-or-beginning-of-line)
-   ("@" . rotate-text)
-   ("/" . weiss-mark-brackets)
+   ("/" . rotate-text)
+   ("@" . weiss-mark-brackets)
 
    ;; ("1" .  scroll-down)
    ;; ("2" .  scroll-up)
@@ -97,7 +101,6 @@
    ("j" . weiss-down-key)
    ("k" . weiss-up-key)
    ("l" . weiss-right-key)
-   ;; ("m" . er/expand-region)
    ("m" . weiss-backward-up-list)
    ("n" . isearch-forward)
    ("o" . weiss-expand-region-by-sexp)
@@ -137,10 +140,13 @@
    ("y o" . "C-c C-o")
    ("y u" . "C-c '")
    ("y t" . "C-c C-t")
+   ("y n" . "C-c C-n")
+   ("y r" . "C-c C-r")
+   ("y q" . "C-c C-q")
+   ("y a" . "C-c C-a")
    ("y y" . "C-c C-M-x")
    ("y x b" . "C-x C-a C-b")
    ("y x p" . "C-x C-a C-p")
-   ("y x r" . "C-x C-a C-r")
-   ))
+   ("y x r" . "C-x C-a C-r")))
 
 (provide 'weiss_keybindings<wks)

@@ -5,7 +5,9 @@
   '(
     ("pt" "println" weiss--ahf)
     ("def" "(def ▮)" weiss--ahf)
+    ("key" "(key ▮)" weiss--ahf)
     ("fn" "(fn [▮])" weiss--ahf)
+    ("update" "(update ▮)" weiss--ahf)
     ("defn" "(defn ▮ \n[]\n\n)" weiss--ahf)
     ("l" "let" weiss--ahf)
     ("let" "(let [▮]\n)" weiss--ahf)

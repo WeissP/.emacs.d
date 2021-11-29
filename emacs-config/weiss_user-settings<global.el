@@ -65,9 +65,45 @@
       '(("playno1\\.com" . browse-url-chrome)
         ("jav." . browse-url-chrome)
         ("torrent" . browse-url-chrome)
+        ("cc3001" . browse-url-chrome)
+        ("boardgamegeek" . browse-url-chrome)
+        ("xvxv11\\.com" . browse-url-chrome)
         ("mag\\.net" . browse-url-chrome)
 	    ;; catch all
 	    ("." . browse-url-default-browser)))
+
+(setq completion-styles
+      '(substring initials flex partial-completion))
+(setq completion-category-overrides
+      '((file (styles . (partial-completion initials substring)))))
+
+(setq completion-ignore-case t)
+(setq completions-detailed t)
+
+(setq enable-recursive-minibuffers t)
+(setq minibuffer-eldef-shorten-default t)
+
+(setq read-buffer-completion-ignore-case t)
+(setq read-file-name-completion-ignore-case t)
+
+(setq resize-mini-windows t)
+(setq minibuffer-eldef-shorten-default t)
+
+(file-name-shadow-mode 1)
+(minibuffer-depth-indicate-mode 1)
+(minibuffer-electric-default-mode 1)
+
+;;; Minibuffer history
+(require 'savehist)
+(setq savehist-file (locate-user-emacs-file "savehist"))
+(setq history-length 10000)
+(setq history-delete-duplicates t)
+(setq savehist-save-minibuffer-history t)
+(add-hook 'after-init-hook #'savehist-mode)
+
+(defun yas-expand-snippet (&rest args)
+  "avoid installing yas"
+  (interactive))
 
 ;; parent: 
 (provide 'weiss_user-settings<global)

@@ -11,6 +11,7 @@
         ("li" "<li> ▮ </li>")
         ("ol" "<ol start=1 type=a> \n▮ \n </ol>" weiss--ahf-indent)
         ("ul" "<ul> \n▮ \n </ul>" weiss--ahf-indent)
+        ("table" "<table style=\"width:60%\"> \n<tr>\n <td>▮</td> \n</tr>\n </table>" weiss--ahf-indent)
         ("hd" "<head>\n<meta charset=\"utf-8\">\n<title>▮</title>\n</head>" weiss--ahf-indent)
         ("th" "<th>▮</th>" weiss--ahf)
         ("br" "<br>" weiss--ahf)
@@ -47,3 +48,4 @@
 (define-abbrev-table 'html-mode-abbrev-table weiss-html-mode-abbrev-table)
 
 (provide 'weiss_html<abbrevs)
+

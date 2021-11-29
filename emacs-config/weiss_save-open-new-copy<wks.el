@@ -2,8 +2,7 @@
   "DOCSTRING"
   (interactive)
   (xah-select-current-block)
-  (copy-region-as-kill (region-beginning) (region-end))
-  )
+  (copy-region-as-kill (region-beginning) (region-end)))
 
 (defun xah-make-backup ()
   "Make a backup copy of current file or dired marked files.
@@ -21,16 +20,21 @@ Version 2018-06-06"
         ($date-time-format "%Y-%m-%d_%H%M%S"))
     (if $fname
         (let (($backup-name
-               (concat $fname "~" (format-time-string $date-time-format) "~")))
+               (concat $fname "~"
+                       (format-time-string $date-time-format)
+                       "~")))
           (copy-file $fname $backup-name t)
           (message (concat "Backup saved at: " $backup-name)))
       (if (eq major-mode 'dired-mode)
           (progn
-            (mapc (lambda ($x)
-                    (let (($backup-name
-                           (concat $x "~" (format-time-string $date-time-format) "~")))
-                      (copy-file $x $backup-name t)))
-                  (dired-get-marked-files))
+            (mapc
+             (lambda ($x)
+               (let (($backup-name
+                      (concat $x "~"
+                              (format-time-string $date-time-format)
+                              "~")))
+                 (copy-file $x $backup-name t)))
+             (dired-get-marked-files))
             (revert-buffer))
         (user-error "buffer not file nor dired")))))
 
@@ -39,34 +43,30 @@ Version 2018-06-06"
   (interactive)
   (when (use-region-p)
     (let ((rbeg (region-beginning))
-          (rend (region-end))
-          )
-      (kill-append (format "%s%s" sep (buffer-substring-no-properties rbeg rend))  nil)
-      )))
+          (rend (region-end)))
+      (kill-append
+       (format "%s%s" sep (buffer-substring-no-properties rbeg rend))
+       nil))))
 
 (defun weiss-kill-append-with-space ()
   "DOCSTRING"
   (interactive)
-  (weiss-kill-append " ")
-  )
+  (weiss-kill-append " "))
 
 (defun weiss-kill-append-with-comma ()
   "DOCSTRING"
   (interactive)
-  (weiss-kill-append ",")
-  )
+  (weiss-kill-append ","))
 
 (defun weiss-kill-append-with-pipe ()
   "DOCSTRING"
   (interactive)
-  (weiss-kill-append "|")
-  )
+  (weiss-kill-append "|"))
 
 (defun weiss-kill-append-with-newline ()
   "DOCSTRING"
   (interactive)
-  (weiss-kill-append "\n")
-  )
+  (weiss-kill-append "\n"))
 
 (defun weiss-exchange-region-kill-ring-car ()
   "insert pop current kill-ring and kill region"
@@ -74,13 +74,9 @@ Version 2018-06-06"
   (when (use-region-p)
     (when-let ((rbeg (region-beginning))
                (rend (region-end))
-               (rep (pop kill-ring))
-               )
+               (rep (pop kill-ring)))
       (push (delete-and-extract-region rbeg rend) kill-ring)
-      (insert rep)
-      )
-    )
-  )
+      (insert rep))))
 
 (defun xah-make-backup-and-save ()
   "Backup of current file and save, or backup dired marked files.
@@ -92,10 +88,8 @@ Version 2015-10-14"
   (if (buffer-file-name)
       (progn
         (xah-make-backup)
-        (when (buffer-modified-p)
-          (save-buffer)))
-    (progn
-      (xah-make-backup))))
+        (when (buffer-modified-p) (save-buffer)))
+    (progn (xah-make-backup))))
 
 (defun xah-clear-register-1 ()
   "Clear register 1.
@@ -120,7 +114,8 @@ Version 2015-10-14"
         (setq $p1 (region-beginning) $p2 (region-end))
       (setq $p1 (line-beginning-position) $p2 (line-end-position)))
     (copy-to-register ?1 $p1 $p2)
-    (message "Copied to register 1: 「%s」." (buffer-substring-no-properties $p1 $p2))))
+    (message "Copied to register 1: 「%s」."
+             (buffer-substring-no-properties $p1 $p2))))
 
 (defun xah-append-to-register-1 ()
   "Append current line or text selection to register 1.
@@ -135,9 +130,11 @@ Version 2015-10-14"
         (setq $p1 (region-beginning) $p2 (region-end))
       (setq $p1 (line-beginning-position) $p2 (line-end-position)))
     (append-to-register ?1 $p1 $p2)
-    (with-temp-buffer (insert "\n")
-                      (append-to-register ?1 (point-min) (point-max)))
-    (message "Appended to register 1: 「%s」." (buffer-substring-no-properties $p1 $p2))))
+    (with-temp-buffer
+      (insert "\n")
+      (append-to-register ?1 (point-min) (point-max)))
+    (message "Appended to register 1: 「%s」."
+             (buffer-substring-no-properties $p1 $p2))))
 
 (defun xah-paste-from-register-1 ()
   "Paste text from register 1.
@@ -161,11 +158,17 @@ Version 2015-10-14"
   (let ((inhibit-field-text-motion nil))
     (if current-prefix-arg
         (progn
-          (let (
-                (current-point (point))
-                (line (if weiss-select-mode
-                          (concat (buffer-substring-no-properties (region-beginning) (region-end)) "\n")  
-                        (buffer-substring-no-properties (line-beginning-position)(line-beginning-position 2))))
+          (let ((current-point (point))
+                (line
+                 (if weiss-select-mode
+                     (concat
+                      (buffer-substring-no-properties
+                       (region-beginning)
+                       (region-end))
+                      "\n")
+                   (buffer-substring-no-properties
+                    (line-beginning-position)
+                    (line-beginning-position 2))))
                 (times  current-prefix-arg))
             (when weiss-select-mode
               (goto-char (region-end))
@@ -174,18 +177,14 @@ Version 2015-10-14"
               (open-line 1))
             (if (eq times 1)
                 (setq times 4)
-              (ignore-errors (when (member 4 times) (setq times 1)))
-              )
+              (ignore-errors (when (member 4 times) (setq times 1))))
             ;; (message "%s" times)
             (beginning-of-line)
             ;; (open-line 1)
             (dotimes (i times)
               ;; (next-line)
-              (insert line)
-              )
-            (indent-region current-point (point))
-            )          
-          )
+              (insert line))
+            (indent-region current-point (point))))
       (if (use-region-p)
           (progn
             (copy-region-as-kill (region-beginning) (region-end)))
@@ -195,19 +194,23 @@ Version 2015-10-14"
               (progn
                 (kill-append "\n" nil)
                 (kill-append
-                 (buffer-substring-no-properties (line-beginning-position) (line-end-position))
+                 (buffer-substring-no-properties
+                  (line-beginning-position)
+                  (line-end-position))
                  nil)
-                (progn
-                  (end-of-line)
-                  (forward-char))))
+                (progn (end-of-line) (forward-char))))
           (if (eobp)
               (if (eq (char-before) 10 )
                   (progn )
                 (progn
-                  (copy-region-as-kill (line-beginning-position) (line-end-position))
+                  (copy-region-as-kill
+                   (line-beginning-position)
+                   (line-end-position))
                   (end-of-line)))
             (progn
-              (copy-region-as-kill (line-beginning-position) (line-end-position))
+              (copy-region-as-kill
+               (line-beginning-position)
+               (line-end-position))
               (end-of-line)
               (forward-char))))))))
 
@@ -226,7 +229,10 @@ Version 2015-10-14"
   (let (($fpath
          (if (string-equal major-mode 'dired-mode)
              (progn
-               (let (($result (mapconcat 'identity (dired-get-marked-files) "\n")))
+               (let (($result
+                      (mapconcat 'identity
+                                 (dired-get-marked-files)
+                                 "\n")))
                  (if (equal (length $result) 0)
                      (progn default-directory )
                    (progn $result))))
@@ -236,23 +242,22 @@ Version 2015-10-14"
     (kill-new
      (if @dir-path-only-p
          (progn
-           (message "Directory copied: %s" (file-name-directory $fpath))
+           (message "Directory copied: %s"
+                    (file-name-directory $fpath))
            (file-name-directory $fpath))
-       (progn
-         (message "File path copied: %s" $fpath)
-         $fpath )))))
+       (progn (message "File path copied: %s" $fpath) $fpath )))))
 
 (defun weiss-save-current-content ()
   "save current content in temp buffer"
   (interactive)
   (let ((current-buffer-content (buffer-string))
-        (current-buffer-name (buffer-name))
-        )
-    (setq newBuf (generate-new-buffer (format "backup_%s" current-buffer-name)))
+        (current-buffer-name (buffer-name)))
+    (setq newBuf
+          (generate-new-buffer
+           (format "backup_%s" current-buffer-name)))
     (set-buffer newBuf)
     (insert current-buffer-content)
-    (when (eq major-mode 'help-mode) (quit-window))
-    ))
+    (when (eq major-mode 'help-mode) (quit-window))))
 
 (defun weiss-new-temp-file ()
   "DOCSTRING"
@@ -261,8 +266,7 @@ Version 2015-10-14"
         (date (format-time-string "%S-[%H-%M]-{%0d.%m.%Y}"))
         (dir (concat user-emacs-directory "/.temp/"))
         (ext ".el"))
-    (find-file (concat dir prefix date ext))
-    ))
+    (find-file (concat dir prefix date ext))))
 
 (defun xah-new-empty-buffer ()
   "Create a new empty buffer.
@@ -277,8 +281,17 @@ Version 2015-10-14"
     (switch-to-buffer $buf)
     (funcall initial-major-mode)
     (setq buffer-offer-save t)
-    $buf
-    ))
+    $buf))
+
+(defun weiss-mplayer-video (file)
+  "DOCSTRING"
+  (interactive)
+  (start-process-shell-command "mplayer" nil
+                               (format "mplayer -ao pulse -softvol -softvol-max 2000 -title '%s' -fs \"%s\""
+                                       (thread-last file
+                                         (file-name-nondirectory)
+                                         (file-name-sans-extension))
+                                       file)))
 
 (defun xah-open-in-external-app (&optional @fname)
   "Open the current file or dired marked files in external app.
@@ -289,33 +302,37 @@ Version 2015-10-14"
     URL `http://ergoemacs.org/emacs/emacs_dired_open_file_in_ext_apps.html'
     Version 2019-11-04"
   (interactive)
-  (unless (eq major-mode 'dired-mode)
-    (save-buffer))  
-  (let* (
-         ($file-list
+  (unless (eq major-mode 'dired-mode) (save-buffer))
+  (let* (($file-list
           (if @fname
               (progn (list @fname))
             (if (string-equal major-mode "dired-mode")
                 (dired-get-marked-files)
               (list (buffer-file-name)))))
-         ($do-it-p (if (<= (length $file-list) 5)
-                       t
-                     (y-or-n-p "Open more than 5 files? "))))
+         ($do-it-p
+          (if (<= (length $file-list) 5)
+              t
+            (y-or-n-p "Open more than 5 files? "))))
     (when $do-it-p
       (cond
        ((string-equal system-type "windows-nt")
         (mapc
-         (lambda ($fpath)
-           (w32-shell-execute "open" $fpath)) $file-list))
+         (lambda ($fpath) (w32-shell-execute "open" $fpath))
+         $file-list))
        ((string-equal system-type "darwin")
         (mapc
          (lambda ($fpath)
            (shell-command
-            (concat "open " (shell-quote-argument $fpath))))  $file-list))
+            (concat "open " (shell-quote-argument $fpath))))
+         $file-list))
        ((string-equal system-type "gnu/linux")
         (mapc
-         (lambda ($fpath) (let ((process-connection-type nil))
-                            (start-process "" nil "xdg-open" $fpath))) $file-list))))))
+         (lambda ($fpath)
+           (if (member (file-name-extension $fpath) '("mp4" "mkv"))
+               (weiss-mplayer-video $fpath)
+             (let ((process-connection-type nil))
+               (start-process "" nil "xdg-open" $fpath))))
+         $file-list))))))
 
 (defun xah-open-file-at-cursor ()
   "Open the file path under cursor.
@@ -329,10 +346,11 @@ Version 2015-10-14"
     URL `http://ergoemacs.org/emacs/emacs_open_file_path_fast.html'
     Version 2019-07-16"
   (interactive)
-  (let* (
-         ($inputStr
+  (let* (($inputStr
           (if (use-region-p)
-              (buffer-substring-no-properties (region-beginning) (region-end))
+              (buffer-substring-no-properties
+               (region-beginning)
+               (region-end))
             (let ($p0 $p1 $p2
                       ;; chars that are likely to be delimiters of file path or url, e.g. whitespace, comma. The colon is a problem. cuz it's in url, but not in file name. Don't want to use just space as delimiter because path or url are often in brackets or quotes as in markdown or html
                       ($pathStops "^  \t\n\"`'‘’“”|[]{}「」<>〔〕〈〉《》【】〖〗«»‹›❮❯❬❭〘〙·。\\"))
@@ -347,8 +365,7 @@ Version 2015-10-14"
          ($path
           (replace-regexp-in-string
            "^file:///" "/"
-           (replace-regexp-in-string
-            ":\\'" "" $inputStr))))
+           (replace-regexp-in-string ":\\'" "" $inputStr))))
     (if (string-match-p "\\`https?://" $path)
         (if (fboundp 'xahsite-url-to-filepath)
             (let (($x (xahsite-url-to-filepath $path)))
@@ -358,38 +375,44 @@ Version 2015-10-14"
           (progn (browse-url $path)))
       (progn ; not starting “http://”
         (if (string-match "#" $path )
-            (let (
-                  ( $fpath (substring $path 0 (match-beginning 0)))
-                  ( $fractPart (substring $path (match-beginning 0))))
+            (let (( $fpath
+                    (substring $path 0 (match-beginning 0)))
+                  ( $fractPart
+                    (substring $path (match-beginning 0))))
               (if (file-exists-p $fpath)
                   (progn
                     (find-file $fpath)
                     (goto-char 1)
                     (search-forward $fractPart ))
-                (when (y-or-n-p (format "file no exist: 「%s」. Create?" $fpath))
+                (when (y-or-n-p
+                       (format "file no exist: 「%s」. Create?" $fpath))
                   (find-file $fpath))))
-          (if (string-match "^\\`\\(.+?\\):\\([0-9]+\\)\\(:[0-9]+\\)?\\'" $path)
-              (let (
-                    ($fpath (match-string 1 $path))
-                    ($line-num (string-to-number (match-string 2 $path))))
+          (if (string-match
+               "^\\`\\(.+?\\):\\([0-9]+\\)\\(:[0-9]+\\)?\\'" $path)
+              (let (($fpath (match-string 1 $path))
+                    ($line-num
+                     (string-to-number (match-string 2 $path))))
                 (if (file-exists-p $fpath)
                     (progn
                       (find-file $fpath)
                       (goto-char 1)
                       (forward-line (1- $line-num)))
-                  (when (y-or-n-p (format "file no exist: 「%s」. Create?" $fpath))
+                  (when (y-or-n-p
+                         (format "file no exist: 「%s」. Create?" $fpath))
                     (find-file $fpath))))
             (if (file-exists-p $path)
                 (progn ; open f.ts instead of f.js
                   (let (($ext (file-name-extension $path))
                         ($fnamecore (file-name-sans-extension $path)))
-                    (if (and (string-equal $ext "js")
-                             (file-exists-p (concat $fnamecore ".ts")))
+                    (if (and
+                         (string-equal $ext "js")
+                         (file-exists-p (concat $fnamecore ".ts")))
                         (find-file (concat $fnamecore ".ts"))
                       (find-file $path))))
               (if (file-exists-p (concat $path ".el"))
                   (find-file (concat $path ".el"))
-                (when (y-or-n-p (format "file no exist: 「%s」. Create?" $path))
+                (when (y-or-n-p
+                       (format "file no exist: 「%s」. Create?" $path))
                   (find-file $path ))))))))))
 
 ;; parent: 

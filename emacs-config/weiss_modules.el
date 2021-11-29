@@ -36,9 +36,11 @@
                        dired-quick-sort peep-dired dired-filter
                        (weiss-dired-single-handed-mode :local t)))
         (snails :local t)
+        (mct :gitlab "protesilaos/mct")
+        orderless
         ;; vertico
         ;; (selectrum :then (selectrum-prescient))
-        embark
+        ;; embark
         (isearch :skip-install t)
         ;; (ctrlf :disabled t)
         ;; (counsel :then (amx prescient ivy-prescient ivy-rich))
@@ -72,10 +74,11 @@
                 (zprint :github "git@github.com:DogLooksGood/zprint.el.git")
                 (clj-refactor :disabled t
                               :github "git@github.com:clojure-emacs/clj-refactor.el.git")))
-        (python :local t :then (yapfify ein))
+        (python :local t :then (yapfify ein lsp-pyright))
         (http :then (auto-rename-tag))
         markdown-mode
         (xml-mode :skip-install t)
+        (mhtml-mode :skip-install t)
         web-mode php-mode dockerfile-mode
         (go-mode
          :then (go-impl go-fill-struct
@@ -92,7 +95,7 @@
                  ((hasky-stack :disabled t)
                   ormolu))
         (lsp-mode
-         :then (lsp-ui lsp-java lsp-python-ms ccls lsp-haskell)
+         :then (lsp-ui lsp-java ccls lsp-haskell)
          )
         (csv-mode :elpa csv-mode)
         (magit :then
@@ -120,6 +123,7 @@
         (citre :github "universal-ctags/citre")
         (elfmt :github "git@github.com:riscy/elfmt.git")
         tab-line
+        (sort-tab :github "git@github.com:manateelazycat/sort-tab.git" :disabled t)
         yaml-mode
         pass
         ledger-mode

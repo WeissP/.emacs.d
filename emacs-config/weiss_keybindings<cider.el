@@ -7,6 +7,7 @@
 
   (define-key cider-mode-map [remap weiss-eval-last-sexp-this-line] 'weiss-cider-eval-last-sexp-this-line)
   (define-key cider-mode-map [remap eval-defun] 'cider-eval-defun-at-point)
+  (define-key cider-mode-map [remap weiss-execute-buffer] 'cider-eval-buffer)
   (define-key cider-mode-map [remap eval-region] 'cider-eval-region)
   (define-key cider-mode-map [remap xref-find-definitions] 'cider-find-var)
 
@@ -45,7 +46,15 @@
   (wks-define-key
    cider-docview-mode-map
    ""
-   '(("J" . cider-stacktrace-toggle-java))))
+   '(("J" . cider-stacktrace-toggle-java)))
+
+
+  (wks-unset-key cider-inspector-mode-map '("l"))
+  (wks-define-key
+   cider-inspector-mode-map
+   ""
+   '(("p" . cider-inspector-pop)))
+  )
 
 ;; parent: 
 (provide 'weiss_keybindings<cider)

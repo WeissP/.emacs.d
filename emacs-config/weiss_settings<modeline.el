@@ -1,3 +1,5 @@
+(column-number-mode 1)
+
 (setq-default mode-line-format
               `(
                 " "

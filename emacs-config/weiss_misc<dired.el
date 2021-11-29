@@ -9,10 +9,7 @@
                 (lambda (file) (format "\"%s\"" file))
                 files " "))
        nil "*Shell Command Output*" t)))
-  (defun weiss-test ()
-    "DOCSTRING"
-    (interactive)
-    (weiss-dired-dragon-files))
+
   (defun weiss-dired-ediff-files ()
     (interactive)
     (let ((files (dired-get-marked-files))

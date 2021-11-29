@@ -37,7 +37,6 @@
 
 ;; (setq bookmark-save-flag 1)
 
-(ignore-errors (savehist-mode 1))
 (save-place-mode 1)
 (winner-mode)
 

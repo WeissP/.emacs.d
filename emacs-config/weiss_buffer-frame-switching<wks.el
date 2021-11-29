@@ -19,10 +19,15 @@
     (make-frame default-frame-alist))
   )
 
+(defun weiss-one-window-p ()
+  "DOCSTRING"
+  (interactive)
+  (equal (length (cl-remove-if #'window-dedicated-p (window-list))) 1))
+
 (defun weiss-split-or-delete-window ()
   "DOCSTRING"
   (interactive)
-  (if (one-window-p)
+  (if (weiss-one-window-p)
       (call-interactively 'split-window-below)
     (weiss-delete-other-window))
   )
@@ -30,7 +35,7 @@
 (defun weiss-split-or-switch-window ()
   "DOCSTRING"
   (interactive)
-  (if (one-window-p)
+  (if (weiss-one-window-p)
       (call-interactively 'split-window-below)
     (other-window 1))
   )

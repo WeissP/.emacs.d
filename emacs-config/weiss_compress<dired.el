@@ -60,60 +60,63 @@
            (file-name-nondirectory out-file))
           out-file)))))
 
-  (defun dired-compress-file (file)
-    "weiss: compress file to zip instead of tar.gz
-Compress or uncompress FILE.
-Return the name of the compressed or uncompressed file.
-Return nil if no change in files."
-    (let ((handler (find-file-name-handler file 'dired-compress-file))
-          suffix newname
-          (suffixes dired-compress-file-suffixes)
-          command)
-      ;; See if any suffix rule matches this file name.
-      (while suffixes
-        (let (case-fold-search)
-          (if (string-match (car (car suffixes)) file)
-              (setq suffix (car suffixes) suffixes nil))
-          (setq suffixes (cdr suffixes))))
-      ;; If so, compute desired new name.
-      (if suffix
-          (setq newname
-                (concat
-                 (substring file 0 (match-beginning 0))
-                 (nth 1 suffix))))
-      (cond
-       (handler (funcall handler 'dired-compress-file file))
-       ((file-symlink-p file)
-        nil)
-       ((and suffix (setq command (nth 2 suffix)))
-        (if (string-match "%[io]" command)
-            (prog1
-                (setq newname (file-name-as-directory newname))
-              (dired-shell-command
-               (replace-regexp-in-string
-                "%o"
-                (shell-quote-argument newname)
-                (replace-regexp-in-string
-                 "%i"
-                 (shell-quote-argument file)
-                 command
-                 nil t)
-                nil t)))
-          ;; We found an uncompression rule.
-          (let ((match (string-match " " command))
-                (msg (concat "Uncompressing " file)))
-            (unless (if match
-                        (dired-check-process msg
-                                             (substring command 0 match)
-                                             (substring command
-                                                        (1+ match))
-                                             file)
-                      (dired-check-process msg command file))
-              newname))))
-       (t
-        ;; We don't recognize the file as compressed, so compress it.
-        ;; Try gzip; if we don't have that, use compress.
-        (weiss-dired-do-compress-to-zip file)))))
+  (with-no-warnings
+    (defun weiss-dired-compress-file (file)
+      "weiss: compress file to zip instead of tar.gz
+  Compress or uncompress FILE.
+  Return the name of the compressed or uncompressed file.
+  Return nil if no change in files."
+      (let ((handler
+             (find-file-name-handler file 'dired-compress-file))
+            suffix newname
+            (suffixes dired-compress-file-suffixes)
+            command)
+        ;; See if any suffix rule matches this file name.
+        (while suffixes
+          (let (case-fold-search)
+            (if (string-match (car (car suffixes)) file)
+                (setq suffix (car suffixes) suffixes nil))
+            (setq suffixes (cdr suffixes))))
+        ;; If so, compute desired new name.
+        (if suffix
+            (setq newname
+                  (concat
+                   (substring file 0 (match-beginning 0))
+                   (nth 1 suffix))))
+        (cond
+         (handler (funcall handler 'dired-compress-file file))
+         ((file-symlink-p file)
+          nil)
+         ((and suffix (setq command (nth 2 suffix)))
+          (if (string-match "%[io]" command)
+              (prog1
+                  (setq newname (file-name-as-directory newname))
+                (dired-shell-command
+                 (replace-regexp-in-string
+                  "%o"
+                  (shell-quote-argument newname)
+                  (replace-regexp-in-string
+                   "%i"
+                   (shell-quote-argument file)
+                   command
+                   nil t)
+                  nil t)))
+            ;; We found an uncompression rule.
+            (let ((match (string-match " " command))
+                  (msg (concat "Uncompressing " file)))
+              (unless (if match
+                          (dired-check-process msg
+                                               (substring command 0 match)
+                                               (substring command
+                                                          (1+ match))
+                                               file)
+                        (dired-check-process msg command file))
+                newname))))
+         (t
+          ;; We don't recognize the file as compressed, so compress it.
+          ;; Try gzip; if we don't have that, use compress.
+          (weiss-dired-do-compress-to-zip file)))))
+    (advice-add #'dired-compress-file :override #'weiss-dired-compress-file))
 
   (with-eval-after-load 'dired-aux
     (add-to-list 'dired-compress-file-suffixes

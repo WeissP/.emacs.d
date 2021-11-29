@@ -45,7 +45,7 @@
      (format "%s get files %s" EmacsConfigManager-path class))
     "\n")))
 
-;; (emacs-config-delete-file "ob-clojure" "org")
+;; (emacs-config-delete-file "key" "mhtml-mode")
 
 (defun emacs-config-delete-file (module class)
   "DOCSTRING"
@@ -137,6 +137,14 @@
                           :host github
                           :repo ,(weiss-process-git-link
                                   (plist-get plist :github))))))
+               ((plist-member plist :gitlab)
+                (setq install-command
+                      `(straight-use-package
+                        '(,name
+                          :type git
+                          :host gitlab
+                          :repo ,(weiss-process-git-link
+                                  (plist-get plist :gitlab))))))
                ((plist-member plist :file)
                 (setq install-command
                       `(straight-use-package

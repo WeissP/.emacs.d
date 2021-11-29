@@ -1,6 +1,6 @@
 (define-abbrev-table 'text-mode-abbrev-table
   '(
-    ("i" "&&&[IMG]pictures/▮.png" weiss--ahf)
+    ;; ("i" "&&&[IMG]pictures/▮.png" weiss--ahf)
     )
   )
 

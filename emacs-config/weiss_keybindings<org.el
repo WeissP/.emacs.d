@@ -1,5 +1,9 @@
 (with-eval-after-load 'org
-
+  (defun weiss-org-return ()
+    "DOCSTRING"
+    (interactive)
+    (deactivate-mark)
+    (call-interactively 'org-return))
   (wks-define-key
    org-mode-map ""
    '(("M-i" . org-shiftmetaleft)
@@ -9,6 +13,8 @@
      ("M-o" . org-metaleft)
      ("M-p" . org-metaright)
      ("M-p" . org-metaright)
+     ("RET" . weiss-org-return)
+     ("<return>" . weiss-org-return)
 
      ("<shifttab>" . org-shifttab)
      ("-" . +org/dwim-at-point)
@@ -24,10 +30,10 @@
      ("x" . weiss-org-exchange-point-or-switch-to-sp)
      ("X" . org-refile)
 
-     ("y a" . weiss-org-screenshot)
+     ("C-c C-a" . weiss-org-screenshot)
      ("y o" . org-noter)
      ("y d" . weiss-org-download-img)
-     ("y q" . weiss-set-org-tags)
+     ("C-c C-q" . weiss-set-org-tags)
      ("y s" . org-id-get-create)
      ("y t" . org-todo)
      ("y b" . org-mark-ring-goto)
@@ -37,7 +43,8 @@
      ("<escape> <escape>" . wks-org-quick-insert-keymap)))
 
   (wks-define-key
-   (current-global-map) "SPC "
+   (current-global-map)
+   "SPC "
    '(("d a" .  weiss-custom-daily-agenda)
      ("d c" .  org-roam-capture)
      ("d t" .  org-todo-list)))
