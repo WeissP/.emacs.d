@@ -31,6 +31,7 @@
      ("X" . org-refile)
 
      ("C-c C-a" . weiss-org-screenshot)
+     ("C-c C-M-x i" . weiss-org-insert-pdf-link)
      ("y o" . org-noter)
      ("y d" . weiss-org-download-img)
      ("C-c C-q" . weiss-set-org-tags)

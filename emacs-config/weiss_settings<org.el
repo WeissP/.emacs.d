@@ -7,6 +7,7 @@
 
 (setq
  ;; org-stored-links t
+ org-startup-with-inline-images t
  org-src-preserve-indentation t
  org-directory weiss/org-file-path
  org-extend-today-until 4

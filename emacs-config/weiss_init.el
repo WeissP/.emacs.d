@@ -46,6 +46,12 @@
 ;; (setq weiss-left-top-window (make-frame-command))
 ;; (select-frame-set-input-focus weiss-right-top-window)
 
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
+;; (require 'eaf)
+;; (require 'eaf-pdf-viewer)
+;; (setq eaf-pdf-dark-mode nil)
+;; (add-to-list 'eaf-wm-focus-fix-wms "xmonad")
+
 (recentf-mode -1)
 
 (global-tab-line-mode)

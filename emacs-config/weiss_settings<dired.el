@@ -13,7 +13,7 @@
    dired-recursive-deletes 'always
    dired-recursive-copies (quote always)
    dired-auto-revert-buffer t
-   dired-omit-files "\\`[.]?#\\|\\`[.][.]?\\'|\\|.*aria2$\\|^.*frag-master.*$\\|^\\."
+   dired-omit-files "\\`[.]?#\\|\\`[.][.]?\\'|\\|.*aria2$\\|^.*frag-master.*$\\|^my_tmp$\\|^\\."
    dired-listing-switches "-altGh"
    )
   )

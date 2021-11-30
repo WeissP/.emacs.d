@@ -13,7 +13,9 @@
  '(custom-safe-themes
    '("835868dcd17131ba8b9619d14c67c127aa18b90a82438c8613586331129dda63" default))
  '(safe-local-variable-values
-   '((lsp-haskell-server-path . "haskell-language-server-8.10.4")
+   '((weiss-pdf-candidates "/home/weiss/Documents/Vorlesungen/PA/PA-ALL-1.pdf")
+     (weiss-pdf-candidates "/home/weiss/Documents/Vorlesungen/PA/PA-ALL-1_flatten.pdf")
+     (lsp-haskell-server-path . "haskell-language-server-8.10.4")
      (lsp-haskell-server-path . "/usr/bin/haskell-language-server-8.10.4")
      (lsp-haskell-server-path . "/usr/bin/haskell-language-server-8.10.5")
      (company-backends
