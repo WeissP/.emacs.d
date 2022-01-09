@@ -12,11 +12,12 @@
               (weiss-org-sp-mode -1)                           
               )
             (make-local-variable 'company-minimum-prefix-length)
-            (setq company-minimum-prefix-length 5)
+            (setq company-minimum-prefix-length 4)
             (iimage-mode)
             (emojify-mode)
             (visual-line-mode)
             (eldoc-mode -1)
+            (org-appear-mode)
             ))
 
 (provide 'weiss_hooks<org)

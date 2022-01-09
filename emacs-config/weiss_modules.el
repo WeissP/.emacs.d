@@ -16,12 +16,15 @@
                          ob-go ob-rust
                          (ob-java :skip-install t)
                          ob-sql-mode
-                         (ob-javascript :github "zweifisch/ob-javascript")))
+                         (ob-javascript :github "zweifisch/ob-javascript")
+                         ;; (ob-rust :gitlab "ajyoon/ob-rust")
+                         ))
                 (org-agenda :local t)
                 (org-tempo :local t)
                 (org-roam :then
                           ((snails-roam :github "WeissP/snails-roam")))
                 org-fancy-priorities
+                (org-appear :github "awth13/org-appear")
                 (org-table-to-qmk-keymap :local t)
                 (org-bullets :disabled t)
                 (org-rich-yank :disabled t)))
@@ -29,7 +32,8 @@
          :name auctex
          :then ((ox-latex :local t)
                 (org-edit-latex :local t)
-                magic-latex-buffer))
+                magic-latex-buffer
+                latex-preview-pane))
         (dired
          :local t
          :then (wdired diredfl all-the-icons-dired dired-hacks-utils dired-avfs dired-collapse
@@ -82,7 +86,7 @@
         web-mode php-mode dockerfile-mode
         (go-mode
          :then (go-impl go-fill-struct
-                        (flycheck-golangci-lint :disabled t)
+                        (flycheck-golangci-lint :disabled nil)
                         (go-tag :disabled t)
                         go-gen-test
                         gotest
@@ -94,9 +98,7 @@
         (haskell :skip-install t :then
                  ((hasky-stack :disabled t)
                   ormolu))
-        (lsp-mode
-         :then (lsp-ui lsp-java ccls lsp-haskell)
-         )
+        (lsp-mode :then (lsp-ui lsp-java ccls lsp-haskell))
         (csv-mode :elpa csv-mode)
         (magit :then
                (git-timemachine git-messenger browse-at-remote gitattributes-mode
@@ -129,9 +131,17 @@
         ledger-mode
         ;; fsharp-mode
         ;; dap-mode
-        (puni :github "git@github.com:AmaiKinono/puni.git")))
+        (puni :github "git@github.com:AmaiKinono/puni.git")
+        (tree-sitter :disabled t)
+        (tree-sitter-langs :disabled t)
+        (combobulate :github "git@github.com:mickeynp/combobulate.git" :disabled t)
+        (grammatical-edit :github "git@github.com:manateelazycat/grammatical-edit.git" :disabled t)
+        (tree-edit :github "git@github.com:ethan-leba/tree-edit.git" :disabled t)))
 
 (provide 'weiss_modules)
+
+
+
 
 
 

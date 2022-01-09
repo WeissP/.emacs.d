@@ -931,6 +931,7 @@ Version 2017-08-19"
         (indent-region-line-by-line (region-beginning) (region-end))
         ;; (ignore-errors (nox-format))
         )
+    (ignore-errors (flycheck-clear-errors))
     (cond
      ((eq major-mode 'emacs-lisp-mode)
       (deactivate-mark)
@@ -953,7 +954,9 @@ Version 2017-08-19"
      ((eq major-mode 'haskell-mode)
       (lsp-format-buffer))
      ((eq major-mode 'go-mode)
-      (gofmt))
+      (gofmt)
+      (lsp-organize-imports)
+      (call-interactively 'save-buffer))
      ((eq major-mode 'python-mode)
       (indent-region (point-min) (point-max))
       (yapfify-buffer))
@@ -1042,5 +1045,11 @@ Version 2017-08-19"
         (setq deactivate-mark nil))
       (put 'xah-cycle-hyphen-underscore-space 'state
            (% (+ $nowState 1) $length)))))
+
+(defun weiss-insert-underscore ()
+  "DOCSTRING"
+  (interactive)
+  (when (use-region-p) (call-interactively 'delete-region ))
+  (insert "_"))
 
 (provide 'weiss_editing<wks)

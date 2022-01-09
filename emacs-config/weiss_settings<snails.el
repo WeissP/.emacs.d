@@ -46,7 +46,7 @@
            '(snails-backend-imenu snails-backend-directory-files snails-backend-current-buffer))
           ("=" '(snails-backend-buffer))
           ("?" '(snails-backend-tab-group))
-          ("!" '(snails-backend-search-pdf))))
+          (":" '(snails-backend-search-pdf))))
 
   (setq snails-default-backends
         '(snails-backend-preview

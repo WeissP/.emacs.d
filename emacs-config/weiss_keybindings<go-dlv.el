@@ -3,7 +3,8 @@
    go-mode-map ""
    '(("t f" . dlv-current-func)
      ("t p" . gud-print)
-     ("t b" . gud-break))))
+     ("t b" . gud-break)
+     ("t d" . gud-remove))))
 
 ;; parent: 
 (provide 'weiss_keybindings<go-dlv)

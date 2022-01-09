@@ -25,8 +25,8 @@
                         :background nil)
     (set-face-attribute 'underline nil
                         :weight 'normal
-                        :underline 'nil
-                        :foreground "medium sea green"
+                        :underline 't
+                        :foreground "blue violet"
                         :background nil)
     (set-face-attribute 'org-link nil
                         :height 1.0

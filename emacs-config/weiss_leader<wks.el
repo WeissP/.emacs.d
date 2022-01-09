@@ -19,6 +19,7 @@
    (". d" .  narrow-to-defun)                 
 
    ("-" . xah-cycle-hyphen-underscore-space)
+   ("_" . weiss-insert-underscore)
    (";" . save-buffer)
    ("`" . delete-window)
    ("S-<dead-grave>" . delete-window)
@@ -35,6 +36,7 @@
    ("c f" . (weiss-copy-file-name (kill-new (buffer-file-name))))
    ("c k" . save-buffers-kill-terminal)
    ("c p" . xah-copy-file-path)
+   ("c h" . xah-show-kill-ring)
    ("c SPC" . weiss-kill-append-with-space)
    ("c RET" . weiss-kill-append-with-newline)
    ("c ," . weiss-kill-append-with-comma)
@@ -151,14 +153,21 @@
    ("o s" . weiss-start-kmacro)
    ("o l" . weiss-kmacro-insert-letter)
    ("o k" . weiss-deactivate-mark)
+   ("o p" . (weiss-open-studien-plan (find-file "/home/weiss/Documents/Org-roam/ƦProject-studienplan_2021032320.org")))
    ("o e" . weiss-end-kmacro)
    ("o c" . kmacro-call-macro)
 
    ("p" . (weiss-insert-line-and-goto-insert-mode (weiss-insert-line) (wks-vanilla-mode-enable)))
    ("q" . xah-fill-or-unfill)
    ("r" . anzu-query-replace)
-   ("s" . exchange-point-and-mark)
-   ("t" . xah-show-kill-ring)
+
+   ("s c" . flyspell-auto-correct-word)
+   ("s s" . weiss-flyspell-save-word)
+   ;; ("s r" . weiss-wucuo-spell-check-visible-region)
+   ("s g" . wucuo-start)
+
+
+
    ("u" . isearch-forward)
 
    ("w f" .  xref-find-definitions)

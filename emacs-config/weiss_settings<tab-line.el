@@ -1,5 +1,7 @@
 ;; (name . group)
 (defvar weiss-tab-groups nil)
+(defconst weiss-tab-groups-file "/home/weiss/.emacs.d/tab-groups.el")
+(defvar weiss-file-groups nil)
 
 ;; (frame . name)
 (defvar weiss-tab-group-name-per-frame nil)
@@ -27,6 +29,43 @@
   (interactive)
   ;; (message "unbind: %s" (selected-frame))
   (assq-delete-all (selected-frame) weiss-tab-group-name-per-frame))
+
+(defun weiss-load-tab-groups ()
+  "DOCSTRING"
+  (interactive)
+  (load weiss-tab-groups-file)
+  (setq weiss-tab-groups
+        (weiss-file-to-tab-groups weiss-file-groups)))
+
+(defun weiss-file-to-tab-groups (file-groups)
+  "DOCSTRING"
+  (interactive)
+  (-map-indexed
+   (lambda (idx elem)
+     (if (eq (% idx 2) 0)
+         elem
+       (when elem (mapcar 'find-file-noselect elem))))
+   file-groups))
+
+(defun weiss-dump-tab-groups ()
+  "DOCSTRING"
+  (interactive)
+  (write-region
+   (format
+    "\n(setq weiss-file-groups '%s)"
+    (-map-indexed
+     (lambda (idx elem)
+       (if (eq (% idx 2) 0)
+           (format "%s" elem)
+         (if elem
+             (format
+              "(%s)"
+              (mapconcat
+               (lambda (x) (format "\"%s\"" (buffer-file-name x)))
+               elem " "))
+           "nil")))
+     weiss-tab-groups))
+   nil weiss-tab-groups-file))
 
 (defun weiss-add-buffer-to-tab-group ()
   "DOCSTRING"

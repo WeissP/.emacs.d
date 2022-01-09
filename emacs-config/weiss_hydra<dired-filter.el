@@ -67,7 +67,7 @@ _g_: ?q? 高桥圣子      _D_: ?q? 美竹すず      _t_: ?q? 天使もえ    _
 _G_: ?q? 岬ななみ      _q_: ?q? 橋本ありな      ^           ^  _r_: ?q? 桜空もも
 _v_: ?v? at point    ^                 ^    ^           ^ _z_: ?q? 朱音ゆい 
 "
-    ("!" dired-filter-negate "negate"  :column "general")
+    (":" dired-filter-negate "negate"  :column "general")
     ("@" dired-filter-or "or")
     ("S-<dead-grave>" dired-filter-pop-all "pop-all")
     ("=" dired-filter-pop "pop")
@@ -98,7 +98,7 @@ _v_: ?v? at point    ^                 ^    ^           ^ _z_: ?q? 朱音ゆい
 
   (defhydra hydra-dired-filter-tag (:hint nil :color pink)
 
-    ("!" dired-filter-negate "negate"  :column "general")
+    (":" dired-filter-negate "negate"  :column "general")
     ("@" dired-filter-or "or")
     ("S-<dead-grave>" dired-filter-pop-all "pop-all")
     ("=" dired-filter-pop "pop")

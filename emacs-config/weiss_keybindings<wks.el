@@ -56,24 +56,30 @@
 (with-eval-after-load 'man
   (wks-unset-key Man-mode-map '("k" "n" "s")))
 
+(with-eval-after-load 'view
+  (wks-unset-key view-mode-map '("SPC" "w" "n")))
+
+
+
+
+
 (global-unset-key (kbd "y"))
 (wks-define-key
  (current-global-map)
  ""
  `(("S-<dead-grave>" . weiss-open-line-and-indent)
-   ("`" . weiss-open-line-and-indent)
+   ("_" . weiss-open-line-and-indent)
    ("ß" . save-buffer)
-   ("&" . weiss-expand-region-by-word)
+   (";" . weiss-expand-region-by-word)
    ("|" . weiss-puni-backward-sexp)
    ("$" . weiss-delete-other-window)
-   ("?" . weiss-undo-expand-region)
+   ("?" . grammatical-edit-match-paren)
 
    ("," . xah-backward-left-bracket)
-   (";" . weiss-insert-semicolon)
    ("-" . mark-defun)
    ("=" . xah-shrink-whitespaces)
    ("." . xah-forward-right-bracket)
-   ("!" . weiss-exchange-point-or-beginning-of-line)
+   (":" . weiss-exchange-point-or-beginning-of-line)
    ("/" . rotate-text)
    ("@" . weiss-mark-brackets)
 

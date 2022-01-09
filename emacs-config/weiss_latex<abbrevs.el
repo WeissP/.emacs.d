@@ -12,6 +12,10 @@
     ("ggb" "\\Beta" weiss--ahf)
     ("gB" "\\Beta" weiss--ahf)
 
+    ("gc" "\\theta" weiss--ahf)
+    ("ggc" "\\Theta" weiss--ahf)
+    ("gC" "\\Theta" weiss--ahf)
+
     ("gd" "\\delta" weiss--ahf)
     ("ggd" "\\Delta" weiss--ahf)
     ("gD" "\\Delta" weiss--ahf)
@@ -56,10 +60,6 @@
     ("gp" "\\pi" weiss--ahf)
     ("ggp" "\\Pi" weiss--ahf)
     ("gP" "\\Pi" weiss--ahf)
-
-    ("gq" "\\theta" weiss--ahf)
-    ("ggq" "\\Theta" weiss--ahf)
-    ("gQ" "\\Theta" weiss--ahf)
 
     ("gr" "\\rho" weiss--ahf)
     ("ggr" "\\Rho" weiss--ahf)

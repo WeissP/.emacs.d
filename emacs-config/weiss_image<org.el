@@ -46,22 +46,45 @@
     "DOCSTRING"
     (interactive
      (list
-      (completing-read-default "pdf path: " weiss-pdf-candidates )
-      (read-string "page number: ")
-      ))
-    (insert (format "#+ATTR_org: :width 800\n[[file:%s::%s]]" pdf-path page))
-    )
+      (if (eq (length weiss-pdf-candidates) 1)
+          (car weiss-pdf-candidates)
+        (completing-read-default
+         (concat "pdf path"
+                 (or
+                  (ignore-errors
+                    (thread-last weiss-pdf-candidates car file-name-nondirectory file-name-sans-extension
+                                 (format "[%s]")))
+                  "")
+                 ": ")
+         weiss-pdf-candidates))
+      (read-string "page number: ")))
+    (setq pdf-path
+          (if (string= pdf-path "")
+              (car weiss-pdf-candidates)
+            pdf-path))
+    (insert
+     (format "#+ATTR_org: :width 800\n[[file:%s::%s]]"
+             pdf-path
+             page
+             page
+             (thread-last weiss-pdf-candidates car file-name-nondirectory
+                          (format "%s")))))
 
   (defun weiss-get-pdf-image-by-page-number (pdf-path n-str)
     "DOCSTRING"
     (interactive)
     (let* ((n (string-to-number n-str))
-           (image-path-prefix
-            (concat "/home/weiss/Downloads/my_tmp/pdf_images/"
-                    (file-name-nondirectory
-                     (file-name-sans-extension pdf-path))))
+           (parent
+            (thread-first pdf-path (split-string "/") (last 2) car))
+           (pdf-name
+            (file-name-nondirectory
+             (file-name-sans-extension pdf-path)))
+           (image-path-dir
+            (concat "/home/weiss/Downloads/my_tmp/pdf_images/" parent "/"))
            (image-path
-            (format "%s-%s%s.png" image-path-prefix
+            (format "%s%s-%s%s.png"
+                    image-path-dir
+                    pdf-name
                     (make-string
                      (-
                       (len-of-number
@@ -69,9 +92,11 @@
                       (len-of-number n))
                      ?0)
                     n)))
+      ;; (ignore-errors )
+      (mkdir image-path-dir t)
       (unless (file-exists-p image-path)
         (shell-command-to-string
-         (format "pdftoppm -png -f %s -l %s %s %s" n n pdf-path image-path-prefix)))
+         (format "pdftoppm -png -f %s -l %s %s %s%s" n n pdf-path image-path-dir pdf-name)))
       image-path))
 
   (defun weiss-get-pdf-page-numbers (pdf-path)
@@ -79,13 +104,15 @@
     (interactive)
     (string-to-number
      (shell-command-to-string
-      (format "qpdf --show-npages %s"  pdf-path))))
+      (format "qpdf --show-npages --no-warn %s"  pdf-path))))
 
   (defun len-of-number (n)
     "DOCSTRING"
     (interactive)
-    (+ 1
-       (floor (/ (log n) (log 10)))))
+    (if (eq n 0)
+        1
+      (+ 1
+         (floor (/ (log n) (log 10))))))
 
   (defun weiss-org-display-inline-images (&optional include-linked refresh beg end)
     ""

@@ -286,12 +286,13 @@ Version 2015-10-14"
 (defun weiss-mplayer-video (file)
   "DOCSTRING"
   (interactive)
-  (start-process-shell-command "mplayer" nil
-                               (format "mplayer -ao pulse -softvol -softvol-max 2000 -title '%s' -fs \"%s\""
-                                       (thread-last file
-                                         (file-name-nondirectory)
-                                         (file-name-sans-extension))
-                                       file)))
+  (start-process-shell-command
+   "mplayer" nil
+   (format "mplayer -ao pulse -softvol -softvol-max 2000 -title '%s' -fs \"%s\""
+           (thread-last file
+             (file-name-nondirectory)
+             (file-name-sans-extension))
+           file)))
 
 (defun xah-open-in-external-app (&optional @fname)
   "Open the current file or dired marked files in external app.

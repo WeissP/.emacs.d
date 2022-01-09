@@ -18,7 +18,7 @@
 
      ("<shifttab>" . org-shifttab)
      ("-" . +org/dwim-at-point)
-     ("&" . org-insert-heading-respect-content)
+     (";" . org-insert-heading-respect-content)
      ;; ("$" . org-export-dispatch)
      ;; ("C" . org-copy-subtree)
      ("d" . weiss-org-cut-line-or-delete-region)
@@ -40,6 +40,7 @@
      ("y b" . org-mark-ring-goto)
      ("y <tab>" . org-table-create-with-table\.el)
      ("y j s" . weiss-org-copy-heading-link)
+     ;; ("<f5>" . org-beamer-export-to-pdf)
 
      ("<escape> <escape>" . wks-org-quick-insert-keymap)))
 

@@ -2,20 +2,23 @@
   (setq-mode-local go-mode completion-ignore-case t)
   ;; Env vars
   (with-eval-after-load 'exec-path-from-shell
-    (exec-path-from-shell-copy-envs '("GOPATH" "GO111MODULE" "GOPROXY")))
+    (exec-path-from-shell-copy-envs
+     '("GOPATH" "GO111MODULE" "GOPROXY")))
 
   ;; Install or update tools
-  (defvar go--tools '("golang.org/x/tools/cmd/goimports"
-                      "github.com/go-delve/delve/cmd/dlv"
-                      "github.com/josharian/impl"
-                      "github.com/cweill/gotests/..."
-                      "github.com/fatih/gomodifytags"
-                      "github.com/davidrjenni/reftools/cmd/fillstruct")
+  (defvar go--tools
+    '("golang.org/x/tools/cmd/goimports"
+      "github.com/go-delve/delve/cmd/dlv"
+      "github.com/josharian/impl"
+      "github.com/cweill/gotests/..."
+      "github.com/fatih/gomodifytags"
+      "github.com/davidrjenni/reftools/cmd/fillstruct")
     "All necessary go tools.")
 
   ;; Do not use the -u flag for gopls, as it will update the dependencies to incompatible versions
   ;; https://github.com/golang/tools/blob/master/gopls/doc/user.md#installation
-  (defvar go--tools-no-update '("golang.org/x/tools/gopls@latest")
+  (defvar go--tools-no-update
+    '("golang.org/x/tools/gopls@latest")
     "All necessary go tools without update the dependencies.")
 
   (defun go-update-tools ()
@@ -47,10 +50,10 @@
                (message "Failed to install %s: %d" pkg status))))))))
 
   ;; Try to install go tools if `gopls' is not found
-  (unless (executable-find "gopls")
-    (go-update-tools))
+  (unless (executable-find "gopls") (go-update-tools))
 
-  (setq gofmt-command "golines")
-  )
+  (setq gofmt-command "gofumpt")
+  (setq gofmt-args nil)
+  (setq go-command "go1.18beta1"))
 
 (provide 'weiss_settings<go-mode)

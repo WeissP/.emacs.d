@@ -27,6 +27,7 @@
   (wks-define-key
    dired-mode-map "g"
    '(
+     ("a" . (weiss-dired-find-audio-todos (find-file "/home/weiss/Downloads/my_tmp/todos/")))
      ("d" . (weiss-dired-find-downloads (find-file "/home/weiss/Downloads")))
      ("v" . (weiss-dired-find-Vorlesungen (find-file "/home/weiss/Documents/Vorlesungen")))
      ("m" . (weiss-dired-find-media (find-file "/run/media/weiss")))
@@ -70,7 +71,6 @@
      ("u" .  dired-unmark)
      ("U" .  (weiss-dired-unmark-all-and-revert (dired-unmark-all-marks) (revert-buffer)))
      ("v" .  weiss-dired-git-clone)
-     ("!" .  weiss-dired-copy-file-name)
      ("x" .  dired-do-flagged-delete)
      ("z" .  dired-do-compress)
      ("Z" .  dired-do-compress-to)

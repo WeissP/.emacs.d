@@ -13,6 +13,7 @@
 ;;;;; latex
     ("ltxeq" "\\begin{equation*}\n▮\n\\end{equation*}" weiss--ahf-indent)    
     ("ltxal" "\\begin{aligned}\n▮\n\\end{aligned}" weiss--ahf-indent)    
+    ("ltxeqal" "\\begin{equation}\n\\begin{aligned}\n▮\n\\end{aligned}\n\\end{equation}" weiss--ahf-indent)    
     ("ltxtb" "#+ATTR_LaTeX: :align |r|r|r|r|r|" weiss--ahf-indent)    
     ("ltxmg" "#+ATTR_Latex: :options [leftmargin=▮8ex]" weiss--ahf-indent)    
     ("ltximg" "#+ATTR_LATEX:  :width 0.9\\textwidth :center nil" weiss--ahf-indent)    
