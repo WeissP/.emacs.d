@@ -52,7 +52,7 @@
       (list
        ;; "\*....\-....\-....\-....\-....\-....\-...."
        "\*.*"
-       "Ʀ.*"))
+       "Ʀ.*\.org"))
 
 (defun snails-backend-filter-buffer-whitelist-buffer (buf)
   (let ((r nil))

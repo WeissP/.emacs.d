@@ -13,12 +13,10 @@
                  :skip-install t
                  :first (ob-fsharp
                          (ob-C :skip-install t)
-                         ob-go ob-rust
+                         ob-go
                          (ob-java :skip-install t)
                          ob-sql-mode
-                         (ob-javascript :github "zweifisch/ob-javascript")
-                         ;; (ob-rust :gitlab "ajyoon/ob-rust")
-                         ))
+                         (ob-javascript :github "zweifisch/ob-javascript")))
                 (org-agenda :local t)
                 (org-tempo :local t)
                 (org-roam :then
@@ -32,6 +30,7 @@
          :name auctex
          :then ((ox-latex :local t)
                 (org-edit-latex :local t)
+                org-ref
                 magic-latex-buffer
                 latex-preview-pane))
         (dired
@@ -84,6 +83,7 @@
         (xml-mode :skip-install t)
         (mhtml-mode :skip-install t)
         web-mode php-mode dockerfile-mode
+        (gud :skip-install t)
         (go-mode
          :then (go-impl go-fill-struct
                         (flycheck-golangci-lint :disabled nil)
@@ -93,6 +93,7 @@
                         go-dlv
                         go-impl
                         go-eldoc))
+        rustic 
         (sql :then
              ((sql-indent :github "alex-hhh/emacs-sql-indent")))
         (haskell :skip-install t :then

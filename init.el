@@ -13,7 +13,15 @@
  '(custom-safe-themes
    '("835868dcd17131ba8b9619d14c67c127aa18b90a82438c8613586331129dda63" default))
  '(safe-local-variable-values
-   '((go-test-args . "-timeout 300ms")
+   '((weiss-org-image-folder . "/home/weiss/Documents/Org-roam/orgzly/fig")
+     (weiss-org-image-folder . "/home/weiss/Documents/Vorlesungen/bachelorarbeit/org/fig/")
+     (org-latex-default-class . "dbis-thesis")
+     (org-latex-default-class . "weiss-Paper")
+     (org-latex-default-class . "weiss-paper")
+     (weiss-org-image-folder . "/home/weiss/Documents/Vorlesungen/bachelorarbeit/org/fig")
+     (org-latex-default-class . "article")
+     (weiss-org-image-folder . "/home/weiss/Documents/Vorlesungen/Seminar/bachelor/report/fig/")
+     (go-test-args . "-timeout 300ms")
      (go-test-args . "-timeout 0ms")
      (weiss-pdf-candidates "/home/weiss/Documents/Vorlesungen/PA/PA-ALL-1.pdf")
      (weiss-pdf-candidates "/home/weiss/Documents/Vorlesungen/PA/PA-ALL-1_flatten.pdf")

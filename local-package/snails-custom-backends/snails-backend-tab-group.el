@@ -38,6 +38,30 @@
                    ("[unbind group]" (weiss-tab-unbind-group))
                    (_ (weiss-tab-bind-group candidate)))))
 
+(snails-create-sync-backend
+ :name "File-Group"
+
+ :candidate-filter (lambda
+                     (input)
+                     (let ((current-group (weiss-tab-get-current-group-name))
+                           candidates)
+                       (dolist (group
+                                (mapcar 'symbol-name
+                                        (seq-filter
+                                         (lambda (x) (not (listp x)))
+                                         weiss-file-groups)))
+                         (when (and
+                                (> (length input) -1)
+                                (snails-match-input-p input group))
+                           (snails-add-candiate 'candidates group group)))
+                       candidates))
+
+
+ :candidate-do (lambda
+                 (candidate)
+                 (weiss-load-file-group-to-tab candidate)
+                 (weiss-tab-bind-group candidate)))
+
 (defun weiss-test ()
   "DOCSTRING"
   (interactive)

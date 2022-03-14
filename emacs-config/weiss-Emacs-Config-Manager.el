@@ -1,9 +1,8 @@
-(add-to-list 'exec-path "~/go/bin")
-(defvar snails-emacs-config-path "~/.emacs.d/emacs-config/")
+(defvar snails-emacs-config-path "~/.emacs.d/emacs-config/config/")
 (defvar EmacsConfigManager-path
   (or
-   (ignore-errors (executable-find "EmacsConfigManager"))
-   "~/go/bin/EmacsConfigManager"))
+   (ignore-errors (executable-find "emacs_config_finder"))
+   "~/.cargo/bin/emacs_config_finder"))
 
 (defvar emacs-config-disabled-pkg-per-host
   '(("arch without roam" . (org-roam snails-roam))))
@@ -15,20 +14,6 @@
          (cdr (assoc emacs-host emacs-config-disabled-pkg-per-host))))
     (member pkg black-list)))
 
-(defun emacs-config-add-file (module class)
-  "DOCSTRING"
-  (interactive)
-  (shell-command-to-string
-   (format "%s add file %s %s" EmacsConfigManager-path module class)))
-
-(defun emacs-config-add-relation(child parent)
-  "DOCSTRING"
-  (interactive)
-  (shell-command
-   (format "%s add parent %s %s"
-           EmacsConfigManager-path
-           child parent)))
-
 (defun emacs-config-get-all-parents (child)
   "DOCSTRING"
   (interactive)
@@ -39,27 +24,8 @@
   "DOCSTRING"
   (interactive)
   (seq-filter
-   (lambda (x) (> (length x) 1))
-   (split-string
-    (shell-command-to-string
-     (format "%s get files %s" EmacsConfigManager-path class))
-    "\n")))
-
-;; (emacs-config-delete-file "key" "mhtml-mode")
-
-(defun emacs-config-delete-file (module class)
-  "DOCSTRING"
-  (interactive)
-  (shell-command
-   (format "%s delete file %s %s"
-           EmacsConfigManager-path
-           module class)))
-
-(defun emacs-config-delete-relation (child)
-  "DOCSTRING"
-  (interactive)
-  (shell-command
-   (format "%s delete relation %s" EmacsConfigManager-path child)))
+   (lambda (x) (string-prefix-p (concat "weiss_" class "_") x))
+   (directory-files snails-emacs-config-path)))
 
 (defun weiss-process-provide (filename)
   "DOCSTRING"
@@ -91,8 +57,6 @@
   "DOCSTRING"
   (interactive)
   (let ((files (emacs-config-get-files-by-class class)))
-    ;; (message "class:%s" class)
-    ;; (message "files:%s" files)
     (dolist (file files)
       (if log-file
           (weiss-insert-require log-file
