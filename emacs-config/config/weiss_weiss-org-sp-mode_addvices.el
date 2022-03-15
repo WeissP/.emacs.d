@@ -1,0 +1,12 @@
+(advice-add 'xah-open-file-at-cursor
+            :before
+            '(lambda () (interactive)
+               (ignore-errors
+                 (when (or (weiss-org-sp--at-property-p)
+                           (looking-at weiss-org-sp-sharp-begin))
+                   (re-search-forward ":tangle " (line-end-position) t)
+                   ))
+               ))
+
+;; parent: 
+(provide 'weiss_weiss-org-sp-mode_addvices)

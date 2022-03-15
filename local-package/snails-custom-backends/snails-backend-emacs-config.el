@@ -79,7 +79,7 @@
           ("w" . "wks")
           ("q" . "quick-insert")))
        ]
-    (list (or (cdr (assoc pkg alist)) s) module)))
+    (list pkg (or (cdr (assoc module alist)) s))))
 
 (provide 'snails-backend-emacs-config)
 ;;; snails-backend-emacs-config.el ends here

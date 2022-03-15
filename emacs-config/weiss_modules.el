@@ -65,7 +65,9 @@
                 command-log-mode emojify
                 (hideshow :disabled t)
                 (display-line-numbers :local t )
-                (font-lock-face :skip-install t)))
+                (font-lock-face :skip-install t)
+                (pulsar :github "protesilaos/pulsar")
+                ))
         (company :then (company-box))
         (rotate-text :github "nschum/rotate-text.el")
         (casease :github "DogLooksGood/casease" :disabled t)
