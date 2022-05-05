@@ -10,7 +10,7 @@
 
 (setq package-enable-at-startup nil)
 
-(when (file-exists-p (expand-file-name "~/.emacs.d/emacs.pdmp"))
-  (setq package-enable-at-startup nil
-        file-name-handler-alist nil
-        auto-window-vscroll nil))
+;; (when (file-exists-p (expand-file-name "~/.emacs.d/emacs.pdmp"))
+;;   (setq package-enable-at-startup nil
+;;         file-name-handler-alist nil
+;;         auto-window-vscroll nil))

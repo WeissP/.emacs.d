@@ -42,7 +42,7 @@
     ("tf" "type ▮ func()" weiss--ahf-indent)
     ("s" "switch" weiss--ahf)
     ("switch" "switch ▮ {\ncase :\n\ndefault:\n}" weiss--ahf-indent)
-    ("bchmk" "func Benchmark▮(b *testing.B){\n\n}")
+    ("bchmk" "func Benchmark▮(b *testing.B){\nfor i := 0; i < b.N; i++ {\n\n}\n}" weiss--ahf-indent)
     ))
 
 (provide 'weiss_abbrevs_go)

@@ -68,6 +68,7 @@
         ("cc3001" . browse-url-chrome)
         ("boardgamegeek" . browse-url-chrome)
         ("xvxv11\\.com" . browse-url-chrome)
+        ("xvideos\\.com" . browse-url-chrome)
         ("pornhub\\.com" . browse-url-chrome)
         ("mag\\.net" . browse-url-chrome)
         ("brettspielpreise" . browse-url-chrome)

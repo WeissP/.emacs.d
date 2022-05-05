@@ -66,11 +66,10 @@
    ("i e" .  find-file)
    ("i f" .  counsel-fzf)
    ("i j" .  yasdcv-translate-input)
-   ("i m" .  all-the-icons-insert)
-   ("i p" .  recentf-db-add-bookmark)
-   ("i s" .  yasdcv-translate-at-point)
    ("i v" .  yank-pop)
-   ("i i" .  weiss-pass-gen-info)
+   ("i m s" .  all-the-icons-insert)
+   ("i i" .  imenu)
+
 
    ("j K" .  Info-goto-emacs-key-command-node)
    ("j a" .  apropos-command)

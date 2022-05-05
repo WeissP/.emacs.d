@@ -1,14 +1,14 @@
-(defun selectrum-directory--completing-file-p ()
-  "Return non-nil when completing file names. Comes from vertico-directory"
-  (eq 'file
-      (completion-metadata-get
-       (completion-metadata
-        (buffer-substring
-         (minibuffer-prompt-end)
-         (max (minibuffer-prompt-end) (point)))
-        minibuffer-completion-table
-        minibuffer-completion-predicate)
-       'category)))
+;; (defun selectrum-directory--completing-file-p ()
+;;   "Return non-nil when completing file names. Comes from vertico-directory"
+;;   (eq 'file
+;;       (completion-metadata-get
+;;        (completion-metadata
+;;         (buffer-substring
+;;          (minibuffer-prompt-end)
+;;          (max (minibuffer-prompt-end) (point)))
+;;         minibuffer-completion-table
+;;         minibuffer-completion-predicate)
+;;        'category)))
 
 (defun selectrum-directory-up ()
   "Delete directory before point.  Comes from vertico-directory"

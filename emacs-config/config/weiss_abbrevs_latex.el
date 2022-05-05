@@ -96,6 +96,7 @@
     ("gz" "\\zeta" weiss--ahf)
     ("ggz" "\\Zeta" weiss--ahf)
     ("gZ" "\\Zeta" weiss--ahf)
+
 ;;;;; Logic
     ("la" "\\wedge " weiss--ahf)
     ("lb" "\\bot " weiss--ahf)

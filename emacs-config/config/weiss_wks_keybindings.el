@@ -37,7 +37,7 @@
      ("<escape> ," . previous-buffer)
      ("<escape> ." . next-buffer))))
 
-(wks-unset-key help-mode-map '("h"))
+(wks-unset-key help-mode-map '("h" "c" "s"))
 (with-eval-after-load 'debugger-mode
   (wks-unset-key debugger-mode-map '("h" "j")))
 (wks-unset-key messages-buffer-mode-map '("h"))

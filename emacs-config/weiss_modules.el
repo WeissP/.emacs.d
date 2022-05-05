@@ -22,7 +22,7 @@
                 (org-roam :then
                           ((snails-roam :github "WeissP/snails-roam")))
                 org-fancy-priorities
-                (org-appear :github "awth13/org-appear")
+                (org-appear :github "awth13/org-appear" :disabled t)
                 (org-table-to-qmk-keymap :local t)
                 (org-bullets :disabled t)
                 (org-rich-yank :disabled t)))
@@ -39,14 +39,12 @@
                        dired-quick-sort peep-dired dired-filter
                        (weiss-dired-single-handed-mode :local t)))
         (snails :local t)
-        (mct :gitlab "protesilaos/mct")
+        (mct :gitlab "protesilaos/mct" :disabled t)
+        vertico 
         orderless
-        ;; vertico
-        ;; (selectrum :then (selectrum-prescient))
-        ;; embark
+        marginalia
+        consult
         (isearch :skip-install t)
-        ;; (ctrlf :disabled t)
-        ;; (counsel :then (amx prescient ivy-prescient ivy-rich))
         (abbrevs :skip-install t)
         (ui
          :skip-install t
@@ -66,7 +64,7 @@
                 (hideshow :disabled t)
                 (display-line-numbers :local t )
                 (font-lock-face :skip-install t)
-                (pulsar :github "protesilaos/pulsar")
+                (pulsar :github "protesilaos/pulsar" :disabled t)
                 ))
         (company :then (company-box))
         (rotate-text :github "nschum/rotate-text.el")
@@ -139,7 +137,8 @@
         (tree-sitter-langs :disabled t)
         (combobulate :github "git@github.com:mickeynp/combobulate.git" :disabled t)
         (grammatical-edit :github "git@github.com:manateelazycat/grammatical-edit.git" :disabled t)
-        (tree-edit :github "git@github.com:ethan-leba/tree-edit.git" :disabled t)))
+        (tree-edit :github "git@github.com:ethan-leba/tree-edit.git" :disabled t)
+        ))
 
 (provide 'weiss_modules)
 

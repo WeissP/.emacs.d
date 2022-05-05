@@ -17,11 +17,13 @@
         (setq prefix " Equation "))
        ((string-prefix-p "lst" label)
         (setq prefix " Listing "))
+       ((string-prefix-p "tbl" label)
+        (setq prefix " Table "))
        )
       (insert (format "%s[[ref:%s]]" prefix label))
       )
     )
-  (setq bibtex-completion-bibliography '(("seminar-report.org" . "refs.bib")))
+  ;; (setq bibtex-completion-bibliography '(("seminar-report.org" . "refs.bib")))
 
   )
 

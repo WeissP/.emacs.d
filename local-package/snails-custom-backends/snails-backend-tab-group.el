@@ -62,10 +62,5 @@
                  (weiss-load-file-group-to-tab candidate)
                  (weiss-tab-bind-group candidate)))
 
-(defun weiss-test ()
-  "DOCSTRING"
-  (interactive)
-  (snails '(snails-backend-tab-group)))
-
 (provide 'snails-backend-tab-group)
 ;; file-bookmark:1 ends here

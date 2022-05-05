@@ -15,6 +15,7 @@
       (setq tramp-mode 1)
       (global-font-lock-mode t)
       (transient-mark-mode t))
+  ;; (ignore)
   (load (concat weiss/config-path "weiss_startup.el"))
   (weiss-load-module weiss/emacs-config-modules nil)
   )
@@ -22,7 +23,7 @@
   (setq counsel-fzf-cmd "/home/weiss/fzf/bin/fzf -f \"%s\"")
   (setq rg-executable "/home/weiss/ripgrep/rg"))
 
-(dolist (x after-dump-packages) (require x))
+(dolist (x after-dump-packages) (ignore-errors (require x)))
 
 (save-place-mode 1)
 (winner-mode)
