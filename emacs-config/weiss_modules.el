@@ -40,7 +40,7 @@
                        (weiss-dired-single-handed-mode :local t)))
         (snails :local t)
         (mct :gitlab "protesilaos/mct" :disabled t)
-        vertico 
+        (vertico :then ((vertico-directory :local t))) 
         orderless
         marginalia
         consult
