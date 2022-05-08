@@ -22,7 +22,7 @@
                 (org-roam :then
                           ((snails-roam :github "WeissP/snails-roam")))
                 org-fancy-priorities
-                (org-appear :github "awth13/org-appear" :disabled t)
+                (org-appear :github "awth13/org-appear" :disabled nil)
                 (org-table-to-qmk-keymap :local t)
                 (org-bullets :disabled t)
                 (org-rich-yank :disabled t)))
@@ -123,7 +123,7 @@
         (recentf-db :skip-install t)
         gcmh
         (weiss-paredit :disabled t :local t)
-        (citre :github "universal-ctags/citre")
+        (citre :github "universal-ctags/citre" :disabled t)
         (elfmt :github "git@github.com:riscy/elfmt.git")
         tab-line
         (sort-tab :github "git@github.com:manateelazycat/sort-tab.git" :disabled t)
