@@ -51,11 +51,11 @@
   "DOCSTRING"
   (interactive)
   (thread-last key
-    (intern)
-    (plist-get weiss-file-groups )
-    (mapcar 'find-file-noselect)
-    (plist-put weiss-tab-groups (intern key))
-    (setq weiss-tab-groups)))
+               (intern)
+               (plist-get weiss-file-groups )
+               (mapcar 'find-file-noselect)
+               (plist-put weiss-tab-groups (intern key))
+               (setq weiss-tab-groups)))
 
 (defun weiss-file-groups-to-file (file-groups)
   "DOCSTRING"
@@ -174,7 +174,10 @@
     '("no group")))
 
 (with-eval-after-load 'tab-line
-  (setq tab-line-tabs-function 'weiss-tab-get-current-group))
+  (setq tab-line-tabs-function 'weiss-tab-get-current-group)
+  (global-tab-line-mode)
+  (weiss-load-file-groups)
+  )
 
 ;; parent: 
 (provide 'weiss_tab-line_settings)
