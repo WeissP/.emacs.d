@@ -1,8 +1,16 @@
-(setq emacs-host-list '("arch" "arch without roam" "ros"))
-
+(setq emacs-host-list '("arch" "arch without roam" "ros" "mac"))
 (setq emacs-host (nth 0 emacs-host-list))
-;; (setq emacs-host "arch")
-(load "/home/weiss/.emacs.d/emacs-config/weiss_init.el")
+(setq weiss/init-path
+      (pcase emacs-host
+        ("mac" "/Users/bozhoubai/.emacs.d")
+        (_ "/home/weiss/.emacs.d")))
+(defun with-init-path (p)
+  "DOCSTRING"
+  (interactive)
+  (concat weiss/init-path p)
+  )
+
+(load (with-init-path "/emacs-config/weiss_init.el"))
 (put 'dired-find-alternate-file 'disabled nil)
 
 (custom-set-variables

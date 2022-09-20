@@ -1,5 +1,5 @@
-(defvar weiss/config-path "/home/weiss/.emacs.d/emacs-config/")
-(defvar weiss/local-package-path "/home/weiss/.emacs.d/local-package/")
+(defvar weiss/config-path (with-init-path "/emacs-config/"))
+(defvar weiss/local-package-path (with-init-path "/local-package/"))
 (defvar weiss/launch-time (current-time))
 (defvar weiss/cursor-color "#4078f2")
 (defvar weiss/cursor-type '(bar . 2))
