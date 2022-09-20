@@ -240,15 +240,15 @@
  '(org-indent
    ((t (:inherit (org-hide fixed-pitch)))))
  '(org-verbatim
-   ((t (:height 0.9 :family "JetBrainsMono" :underline nil :background "#e2e8ea"))))
+   ((t (:height 0.9 :family "JetBrains Mono" :underline nil :background "#e2e8ea"))))
  '(org-link ((t (:height 1.0 :inherit nil :underline t :foreground "#4da8d0"))))
  '(org-block-begin-line
    ((t
      (:weight normal :slant normal :extend t :underline nil :foreground "#999999" :background "#FAFAFA"))))
- '(org-checkbox ((t (:font "JetBrainsMono" :extend nil))))
- '(org-table ((t (:font "JetBrainsMono" :extend nil))))
+ '(org-checkbox ((t (:font "JetBrains Mono" :extend nil))))
+ '(org-table ((t (:font "JetBrains Mono" :extend nil))))
  '(org-block
-   ((t (:font "JetBrainsMono" :extend nil :background "#FAFAFA"))))
+   ((t (:font "JetBrains Mono" :extend nil :background "#FAFAFA"))))
  '(org-drawer
    ((t
      (:foreground "#999999" :slant normal :weight light :background nil))))
