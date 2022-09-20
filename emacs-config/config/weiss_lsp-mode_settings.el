@@ -12,6 +12,7 @@
  )
 
 (with-eval-after-load 'lsp-mode
+
   (add-hook 'python-mode-hook #'(lambda ()
                                   (require 'lsp-pyright)
                                   (lsp-deferred)))

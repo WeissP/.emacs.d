@@ -25,8 +25,6 @@
      ("j" . (weiss-org-next-line (next-line) (deactivate-mark)))
      ("k" . (weiss-org-previous-line (previous-line) (deactivate-mark)))
      ("t" . weiss-org-preview-latex-and-image)
-     ;; ("n" . weiss-org-search)
-     ("n" . isearch-forward)
      ("x" . weiss-org-exchange-point-or-switch-to-sp)
      ("X" . org-refile)
 
@@ -34,6 +32,7 @@
      ("C-c C-M-x i" . weiss-org-insert-pdf-link)
      ("C-c C-M-x e" . weiss-org-export-to-pdf)
      ("C-c C-M-x f" . weiss-org-insert-image)
+     ("C-c C-M-x u" . weiss-check-umlaut)
      ("y o" . org-noter)
      ("y d" . weiss-org-download-img)
      ("y g" . org-goto)

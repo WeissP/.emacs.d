@@ -13,11 +13,11 @@
 
 (load (concat weiss/config-path "weiss_startup.el"))
 
-(add-to-list 'load-path "/home/weiss/.emacs.d/straight/repos/emacs-doom-themes/")
-(require 'doom-themes)
-(load "/home/weiss/.emacs.d/straight/repos/emacs-doom-themes/doom-themes.el")
-(load-theme 'doom-one-light t t)
-
+;; (add-to-list 'load-path "/home/weiss/.emacs.d/straight/repos/emacs-doom-themes/")
+;; (require 'doom-themes)
+;; (load "/home/weiss/.emacs.d/straight/repos/emacs-doom-themes/doom-themes.el")
+;; (load-theme 'doom-one-light t t)
+(load-theme 'weiss-light t)
 (weiss-load-module weiss/emacs-config-modules nil)
 ;; We have to unload tramp in pdump, otherwise tramp will not work.
 (tramp-unload-tramp)

@@ -56,22 +56,25 @@
 (defun weiss-require-config-by-class (class &optional log-file)
   "DOCSTRING"
   (interactive)
+  ;; (message "class: %s" class)
+  ;; (when (cl-search "display" class) (message "class: %s" file))
   (let ((files (emacs-config-get-files-by-class class)))
     (dolist (file files)
+      ;; (when (cl-search "display" file) (message "file: %s" file))
       (if log-file
           (weiss-insert-require log-file
                                 (weiss-process-provide file))
         (require (intern (weiss-process-provide file)))))))
 
 (defun weiss-load-module (package-list &optional log-file)
-  "`after-dump' means only skip installing package, after-dump-all means skip package and also all configs"
   (interactive)
   (dolist (package package-list)
     (if (listp package)
         (let ((name (car package))
               (plist (cdr package))
               (condition (plist-get (cdr package) :when))
-              install-command)
+              install-command after-dump-p)
+          (setq after-dump-p (member name after-dump-packages))
           (when (and
                  (not (plist-get plist :disabled))
                  (not (emacs-config-disabled-per-host-p name))
@@ -124,10 +127,6 @@
                 (setq install-command
                       `(straight-use-package
                         ',(plist-get plist :name))))
-               ;; ((plist-member plist :name)
-               ;;  (message ": %s" (plist-get plist :quelpa))
-               ;;  ;; (quelpa (plist-get plist :quelpa))
-               ;;  )
                (t
                 (setq install-command `(straight-use-package ',name))))
               (when install-command
@@ -135,25 +134,31 @@
                     (weiss-insert-to-log-file log-file
                                               (format "%s" install-command))
                   (eval install-command)))
-              (unless (member name after-dump-packages)
+              (unless after-dump-p
                 (if log-file
                     (weiss-insert-require log-file
                                           (symbol-name name))
-                  (require name))))
-            (weiss-load-module (plist-get plist :then) log-file)))
-      ;; (message "load: %s" (symbol-name package))
-      (unless (emacs-config-disabled-per-host-p package)
+                  (require name))                
+                )
+              )
+            (weiss-load-module (plist-get plist :then) log-file)
+            ))
+      (unless (emacs-config-disabled-per-host-p package)                
         (weiss-require-config-by-class
          (symbol-name package)
          log-file)
         (if log-file
-            (progn
-              (weiss-insert-to-log-file log-file
-                                        (format
-                                         "(straight-use-package '%s)" package))
-              (weiss-insert-require log-file (symbol-name package)))
-          (straight-use-package package)
-          (require package))))))
+            (weiss-insert-to-log-file log-file
+                                      (format
+                                       "(straight-use-package '%s)" package))
+          (straight-use-package package)          
+          )
+        (unless (member package after-dump-packages)
+          (if log-file
+              (weiss-insert-require log-file (symbol-name package))
+            (require package)))
+        )
+      )))
 
 ;; weiss/emacs-config-modules-ros
 (defun weiss-insert-require-to-log-file ()

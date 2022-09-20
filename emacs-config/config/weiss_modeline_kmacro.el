@@ -5,7 +5,7 @@
                '(:eval
                  (if defining-kbd-macro
                      (propertize " kmacro " 'face
-                                 '(:foreground "blue" :weight 'bold))
+                                 '(:foreground "blue" :weight bold))
                    (weiss-modeline-remove-kmacro)
                    ))
                )

@@ -75,6 +75,8 @@
            ;; paredit-backward
            ;; xref-find-definitions
            ;; er/expand-region
+           weiss-tsc-expand-region
+           weiss-split-region
            )))
     (weiss-select-add-advice-turn-on cmds))
   (advice-add 'er/expand-region :after #'weiss-select-mode-turn-on-p-interactive)

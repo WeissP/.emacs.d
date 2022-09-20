@@ -25,14 +25,15 @@
       "bdsm"
     (:description "bdsm")
     (let ((case-fold-search t))
-      (or
-       (string-match-p "bdsm" file-name)
-       (string-match-p "sm" file-name)
-       (string-match-p "拘束" file-name)
-       (string-match-p "凌辱" file-name)
-       (string-match-p "调教" file-name)
-       (string-match-p "捆绑" file-name)
-       (string-match-p "紧缚" file-name))))
+      (and (not (string-match-p "asmr" file-name))
+           (or
+            (string-match-p "bdsm" file-name)
+            (string-match-p "sm" file-name)
+            (string-match-p "拘束" file-name)
+            (string-match-p "凌辱" file-name)
+            (string-match-p "调教" file-name)
+            (string-match-p "捆绑" file-name)
+            (string-match-p "紧缚" file-name)))))
   (dired-filter-define uncensored
       "uncensored"
     (:description "uncensored")

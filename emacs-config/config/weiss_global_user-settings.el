@@ -61,19 +61,19 @@
  eval-expression-print-level nil
  eval-expression-print-length nil)
 
-(setq browse-url-handlers
-      '(("playno1\\.com" . browse-url-chrome)
-        ("jav." . browse-url-chrome)
-        ("torrent" . browse-url-chrome)
-        ("cc3001" . browse-url-chrome)
-        ("boardgamegeek" . browse-url-chrome)
-        ("xvxv11\\.com" . browse-url-chrome)
-        ("xvideos\\.com" . browse-url-chrome)
-        ("pornhub\\.com" . browse-url-chrome)
-        ("mag\\.net" . browse-url-chrome)
-        ("brettspielpreise" . browse-url-chrome)
-	    ;; catch all
-	    ("." . browse-url-default-browser)))
+;; (setq browse-url-handlers
+;;       '(("playno1\\.com" . browse-url-chrome)
+;;         ("jav." . browse-url-chrome)
+;;         ("torrent" . browse-url-chrome)
+;;         ("cc3001" . browse-url-chrome)
+;;         ("boardgamegeek" . browse-url-chrome)
+;;         ("xvxv11\\.com" . browse-url-chrome)
+;;         ("xvideos\\.com" . browse-url-chrome)
+;;         ("pornhub\\.com" . browse-url-chrome)
+;;         ("mag\\.net" . browse-url-chrome)
+;;         ("brettspielpreise" . browse-url-chrome)
+;; 	    ;; catch all
+;; 	    ("." . browse-url-default-browser)))
 
 (setq completion-styles
       '(substring initials flex partial-completion))
@@ -103,10 +103,10 @@
 (setq history-delete-duplicates t)
 (setq savehist-save-minibuffer-history t)
 (add-hook 'after-init-hook #'savehist-mode)
-
-(defun yas-expand-snippet (&rest args)
-  "avoid installing yas"
-  (interactive))
+(defvar weiss-lint-hook nil "hook for check lint")
+;; (defun yas-expand-snippet (&rest args)
+;;   "avoid installing yas"
+;;   (interactive))
 
 ;; parent: 
 (provide 'weiss_global_user-settings)

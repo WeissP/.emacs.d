@@ -7,13 +7,7 @@
                                                     (when (telega-chat-bot-p telega-chatbuf--chat)
                                                       '(telega-company-botcmd))))
                                        (company-mode 1)
-                                       (emojify-mode)
                                        ))
-
-  (add-hook 'telega-root-mode-hook #'(lambda () 
-                                       (emojify-mode)
-                                       ))
-
 
   (defun weiss-get-telega-marked-text ()
     "Delete marked messages in chatbuf.

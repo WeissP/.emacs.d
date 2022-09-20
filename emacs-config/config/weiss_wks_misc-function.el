@@ -1,15 +1,65 @@
+(defun weiss-alphabet-t (char)
+  "DOCSTRING"
+  (interactive)
+  (and
+   (eq (char-syntax char) ?w)
+   (or (> char ?9) (< char ?1))))
+
+(defvar weiss-num-char-alist
+  (cl-mapcar
+   (lambda (a b) `(,(string-to-char b) . ,a))
+   (number-sequence 1 9)
+   '("m" "," "." "j" "k" "l" "u" "i" "o")))
+
+(defface weiss-num-overlay-face
+  '((t (:foreground "#e45649" :background "#f0f0f0" :weight bold)))
+  "Default face for number overlay")
+
+(defvar weiss-num-overlay nil)
+
+(defun weiss-reset-num-overlays (&rest args)
+  "DOCSTRING"
+  (interactive)
+  (when weiss-num-overlay
+    (-each weiss-num-overlay #'delete-overlay)
+    (setq weiss-num-overlay nil)))
+
+(add-hook 'deactivate-mark-hook 'weiss-reset-num-overlays)
+(advice-add 'keyboard-quit :before #'weiss-reset-num-overlays)
+
+(defun weiss-read-num (&optional ps)
+  "DOCSTRING"
+  (interactive)
+  (weiss-reset-num-overlays)
+  (let (c)
+    (when ps
+      (setq weiss-num-overlay
+            (-map
+             (lambda (p) (make-overlay p (1+ p) nil t))
+             ps))
+      (-each-indexed weiss-num-overlay
+        (lambda (i ov)
+          (overlay-put ov 'display (number-to-string (1+ i)))
+          (overlay-put ov 'face 'weiss-num-overlay-face)))
+      )
+    (setq c (read-char "num: "))
+    (weiss-reset-num-overlays)
+    (if-let ((found (assoc c weiss-num-char-alist))
+             )
+        (cdr found)
+      0)))
+
 (defun weiss-get-parent-path (path)
   "DOCSTRING"
   (interactive)
-  (let ((path          (file-name-directory path))
+  (let ((path (file-name-directory path))
         )
     (-as-> path v
            (directory-file-name v)
            (file-name-directory v)
            (length v)
            (substring path v (length path))
-           (s-chop-suffix "/" v)
-           )))
+           (s-chop-suffix "/" v))))
 
 ;; https://github.com/megakorre/maps/blob/master/maps.el
 (defun weiss-plist-merge (plist-a plist-b)

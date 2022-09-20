@@ -7,6 +7,7 @@
            (or
             (car (dired-dwim-target-next))
             "/home/weiss/Downloads/")))
+      (message "target-path: %s" target-path)
       (cond
        ((string-prefix-p "/ssh:" (car marked-files))
         (dolist (x marked-files)
@@ -16,6 +17,20 @@
                                          (nth 1 file-paths)
                                          (nth 2 file-paths)
                                          target-path)))))
+       ((string-prefix-p "/ssh:" target-path)
+        (dolist (x marked-files)
+          (let ((target-paths (split-string target-path ":")))
+            (message "%s" (format "rsync -PaAXv -e ssh %s \"%s:%s\""
+                                  x
+                                  (nth 1 target-paths)
+                                  (nth 2 target-paths)
+                                  ))
+            (weiss-start-process "rsync-ssh"
+                                 (format "rsync -PaAXv -e ssh %s \"%s:%s\""
+                                         x
+                                         (nth 1 target-paths)
+                                         (nth 2 target-paths)
+                                         )))))
        ((string-prefix-p "/docker:" (car marked-files))
         (dolist (x marked-files)
           (let ((file-paths (split-string x ":")))

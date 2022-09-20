@@ -1,15 +1,16 @@
 (defconst weiss--eldoc-commands
   '(
-    weiss-right-key
-    weiss-up-key
-    weiss-down-key
+    ;; weiss-right-key
+    ;; weiss-up-key
+    ;; weiss-down-key
+    weiss-tsc-left
     weiss-left-key
-    xah-backward-left-bracket
-    xah-forward-right-bracket
+    ;; xah-backward-left-bracket
+    ;; xah-forward-right-bracket
     )
   "A list commands trigger eldoc.")
 
-(setq eldoc-display-functions '(eldoc-display-in-echo-area weiss-show-eldoc))
+;; (setq eldoc-display-functions '(eldoc-display-in-echo-area weiss-show-eldoc))
 
 (apply #'eldoc-add-command weiss--eldoc-commands)
 

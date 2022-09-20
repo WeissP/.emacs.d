@@ -6,7 +6,7 @@
                 (:eval (if wks-vanilla-mode
                            (concat "<"
                                    (propertize "I" 'face
-                                               '(:foreground "red" :weight 'bold))
+                                               '(:foreground "red" :weight bold))
                                    ">"
                                    )
                          "<C>"
@@ -24,7 +24,7 @@
                 "%e" mode-line-buffer-identification "   " 
                 ;; weiss-mode-line-git
                 (vc-mode vc-mode)
-                "  " mode-line-misc-info mode-line-end-spaces
+                "  " mode-line-modes mode-line-misc-info mode-line-end-spaces
                 ))
 
 ;; parent: ui

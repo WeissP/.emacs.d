@@ -1,3 +1,19 @@
+(defun weiss-check-umlaut ()
+  "DOCSTRING"
+  (interactive)
+  (let ((dict '(
+                ("ä" . "ä")
+                ("Ä" . "Ä")
+                ("Ü" . "Ü")
+                ("ü" . "ü")
+                ))
+        )
+    (dolist (x dict) 
+      (replace-string (car x) (cdr x) nil (point-min) (point-max))      
+      )
+    )
+  )
+
 (defun weiss-delete-current-block ()
   "DOCSTRING"
   (interactive)
@@ -931,7 +947,6 @@ Version 2017-08-19"
         (indent-region-line-by-line (region-beginning) (region-end))
         ;; (ignore-errors (nox-format))
         )
-    (ignore-errors (flycheck-clear-errors))
     (cond
      ;; ((eq major-mode 'emacs-lisp-mode)
      ;;  (deactivate-mark)
@@ -946,8 +961,6 @@ Version 2017-08-19"
      ((eq major-mode 'c++-mode)
       (deactivate-mark)
       (indent-region-line-by-line (point-min) (point-max)))
-     ;; ((ignore-errors is-nox-activate-p)
-     ;; (nox-format))
      ((eq major-mode 'mhtml-mode)
       (deactivate-mark)
       (web-beautify-html-buffer))
@@ -958,15 +971,19 @@ Version 2017-08-19"
       (lsp-organize-imports)
       (call-interactively 'save-buffer))
      ((eq major-mode 'rustic-mode)
-      (lsp-format-buffer)
+      (call-interactively 'rustic-format-buffer)
       (call-interactively 'save-buffer))
      ((eq major-mode 'python-mode)
       (indent-region (point-min) (point-max))
       (yapfify-buffer))
+     ;; ((eglot-managed-p)
+     ;;  (eglot-format)
+     ;;  )
      (t
       (deactivate-mark)
       (indent-region (point-min) (point-max))))
-    (ignore-errors (flycheck-buffer))))
+    (run-hooks 'weiss-lint-hook)
+    ))
 
 (defun weiss-paste-with-linebreak()
   (interactive)

@@ -34,6 +34,10 @@
       gc-cons-percentage 0.5
       garbage-collection-messages nil)
 
+(with-eval-after-load 'lsp-mode
+  (message "lsp loaded")
+  )
+
 (message "Emacs is ready, startup cost: %.3f seconds."
          (time-to-seconds (time-since weiss/launch-time)))
 (setq weiss/launch-time nil)

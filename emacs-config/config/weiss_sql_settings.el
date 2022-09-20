@@ -1,3 +1,5 @@
+;; (setq sql-port 7776)
+(setq sql-port 5432)
 (with-eval-after-load 'sql
   (setq sql-postgres-login-params
         '((user :default "weiss")

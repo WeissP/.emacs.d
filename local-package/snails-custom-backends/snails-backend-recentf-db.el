@@ -17,12 +17,14 @@
 
  :build-command (lambda
                   (input)
-                  (when (and (executable-find "bb") (> (length input) 1))
+                  (when (> (length input) 1)
                     (append
-                     `(,(executable-find "bb")
-                       "/home/weiss/clojure/recentf-db/search.clj")
-                     `(,(snails-backend-recentf-root))
-                     (split-string input  " "))))
+                     '("/home/weiss/weiss/recentf/recentf"
+                       "prefixed-search"
+                       )
+                     (split-string input  " ")
+                     )
+                    ))
 
  :candidate-filter (lambda
                      (candidate-list)
@@ -31,7 +33,8 @@
                          (let* ((l (split-string candidate "』𝔰𝔢𝔭『"))
                                 (show (weiss-reduce-file-path (car l)))
                                 (value (nth 1 l)))
-                           (snails-add-candiate 'candidates show value)))
+                           (when value
+                             (snails-add-candiate 'candidates show value))))
                        candidates))
 
  :candidate-do (lambda (candidate) (find-file candidate)))

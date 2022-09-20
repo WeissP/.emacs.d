@@ -48,14 +48,14 @@
         (abbrevs :skip-install t)
         (ui
          :skip-install t
-         :then (doom-themes
-                (modeline :skip-install t)
+         :then ((modeline :skip-install t)
                 popwin
                 (nyan-mode :disabled t)
                 highlight-indent-guides
+                highlight-defined
                 (rainbow-mode :github "emacsmirror/rainbow-mode")
                 highlight-parentheses hl-todo
-                (color-outline :local t)
+                (color-outline :disabled t :local t)
                 highlight-symbol anzu hl-line web-beautify origami
                 (whitespace :disabled t)
                 (ligature :github "mickeynp/ligature.el")
@@ -63,67 +63,74 @@
                 command-log-mode emojify
                 (hideshow :disabled t)
                 (display-line-numbers :local t )
-                (font-lock-face :skip-install t)
                 (pulsar :github "protesilaos/pulsar" :disabled t)
                 ))
         (company :then (company-box))
         (rotate-text :github "nschum/rotate-text.el")
         (casease :github "DogLooksGood/casease" :disabled t)
         expand-region
-        (js :skip-install t :then (js-format))
+        (rjsx-mode :then ((prettier-js :disabled t)))
         json-mode
-        (cider :then
-               (flycheck-clj-kondo
-                (zprint :github "git@github.com:DogLooksGood/zprint.el.git")
-                (clj-refactor :disabled t
-                              :github "git@github.com:clojure-emacs/clj-refactor.el.git")))
-        (python :local t :then (yapfify ein lsp-pyright))
+        (swagger-mode :github "Nooby/swagger-mode" :disabled t)
+        (cider :disabled t)
+        (python :local t :then (yapfify ein))
         (http :then (auto-rename-tag))
         markdown-mode
         (xml-mode :skip-install t)
-        (mhtml-mode :skip-install t)
+        (mhtml-mode :skip-install t :disabled nil)
         web-mode php-mode dockerfile-mode
         (gud :skip-install t)
         (go-mode
          :then (go-impl go-fill-struct
-                        (flycheck-golangci-lint :disabled nil)
                         (go-tag :disabled t)
                         go-gen-test
                         gotest
                         go-dlv
                         go-impl
                         go-eldoc))
-        rustic 
+        (rustic :disabled nil) 
         (sql :then
              ((sql-indent :github "alex-hhh/emacs-sql-indent")))
         (haskell :skip-install t :then
-                 ((hasky-stack :disabled t)
+                 (haskell-mode
+                  (hasky-stack :disabled t)
                   ormolu))
-        (lsp-mode :then (lsp-ui lsp-java ccls lsp-haskell))
+        (lsp-mode :disabled t :first (yasnippet) :then (lsp-ui lsp-java ccls lsp-haskell lsp-pyright))
+        (lsp-bridge :disabled t :local t :github  "manateelazycat/lsp-bridge" :first ( yasnippet (posframe :local nil)))
+        (lspce :disabled t :local t :first (yasnippet f)) 
+        (eglot :disabled nil :then ((eglot-java :disabled t)))
         (csv-mode :elpa csv-mode)
         (magit :then
-               (git-timemachine git-messenger browse-at-remote gitattributes-mode
-                                gitignore-mode gitconfig-mode))
+               (git-timemachine git-messenger browse-at-remote (gitattributes-mode :disabled t)
+                                (gitignore-mode  :disabled t) (gitconfig-mode :disabled t)))
         (aweshell :github "manateelazycat/aweshell")
         (vterm :disabled t)
         (pdf-tools :then
                    ((pdf-view :skip-install t)
                     pdf-view-restore))
-        (flycheck :then
-                  (flycheck-hledger
-                   (flycheck-posframe :when (display-graphic-p))))
+        (flymake :skip-install t)
+        (flycheck :disabled t
+                  :then
+                  ((zprint :github "git@github.com:DogLooksGood/zprint.el.git")
+                   flycheck-clj-kondo
+                   (clj-refactor :disabled t
+                                 :github "git@github.com:clojure-emacs/clj-refactor.el.git")
+                   (flycheck-golangci-lint :disabled t)
+                   (flycheck-posframe :when (display-graphic-p))
+                   flycheck-hledger
+                   )
+                  )
         (flyspell :skip-install t :then (wucuo))
         rime
         telega
         (yasdcv :local t)
         projectile maxima magit
-        (tramp :after-dump-all t :local t :then
-               (sudo-edit counsel-tramp docker-tramp))
+        (tramp :local t :then (sudo-edit docker-tramp))
         (recentf :local t :disabled t)
         (recentf-db :skip-install t)
         gcmh
         (weiss-paredit :disabled t :local t)
-        (citre :github "universal-ctags/citre" :disabled t)
+        (citre :github "universal-ctags/citre" :disabled nil)
         (elfmt :github "git@github.com:riscy/elfmt.git")
         tab-line
         (sort-tab :github "git@github.com:manateelazycat/sort-tab.git" :disabled t)
@@ -133,12 +140,16 @@
         ;; fsharp-mode
         ;; dap-mode
         (puni :github "git@github.com:AmaiKinono/puni.git")
-        (tree-sitter :disabled t)
-        (tree-sitter-langs :disabled t)
+        (tree-sitter :disabled nil :then (tree-sitter-langs (weiss-tsc-mode :local t)))
+        
         (combobulate :github "git@github.com:mickeynp/combobulate.git" :disabled t)
         (grammatical-edit :github "git@github.com:manateelazycat/grammatical-edit.git" :disabled t)
         (tree-edit :github "git@github.com:ethan-leba/tree-edit.git" :disabled t)
+        diminish
+        (show-paren-mode :skip-install t)
         ))
+
+
 
 (provide 'weiss_modules)
 

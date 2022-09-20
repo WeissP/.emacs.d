@@ -1,10 +1,16 @@
 (wks-define-key
  prog-mode-map ""
- '(("<tab>" . weiss-indent)
+ '(("<tab>" . save-buffer)
    ("<RET>" . weiss-deactivate-mark-and-new-line)
    ;; ("<right>" . right-char)
    ;; ("<left>" . left-char)
    ))
+
+(with-eval-after-load 'conf-mode
+  (wks-define-key
+   conf-mode-map ""
+   '(("<RET>" . weiss-deactivate-mark-and-new-line)))
+  )
 
 (wks-define-key
  text-mode-map ""
@@ -18,6 +24,7 @@
    ("<S-delete>" . (weiss-insert-single-slash (insert "\\")))
    ("M-DEL" . (weiss-insert-single-vertical-bar (insert "|")))
    ("<f5>" . revert-buffer)
+   ("<f12>" . dabbrev-expand)
    ("M-e" . eldoc)
    ("C-n" . recenter-top-bottom)
    ("<dead-circumflex>" . (weiss-insert-grave (insert "^")))
@@ -37,9 +44,10 @@
      ("<escape> ," . previous-buffer)
      ("<escape> ." . next-buffer))))
 
-(wks-unset-key help-mode-map '("h" "c" "s"))
-(with-eval-after-load 'debugger-mode
-  (wks-unset-key debugger-mode-map '("h" "j")))
+(wks-unset-key help-mode-map '("h" "c" "s" "i"))
+
+(with-eval-after-load 'debug
+  (wks-unset-key debugger-mode-map '("h" "j" "i" "l" "k")))
 (wks-unset-key messages-buffer-mode-map '("h"))
 
 (with-eval-after-load 'image-mode
@@ -68,12 +76,12 @@
  (current-global-map)
  ""
  `(("S-<dead-grave>" . weiss-open-line-and-indent)
-   ("_" . weiss-open-line-and-indent)
+   ("_" . weiss-indent)
    ("ß" . save-buffer)
    (";" . weiss-expand-region-by-word)
    ("|" . weiss-puni-backward-sexp)
    ("$" . weiss-delete-other-window)
-   ("?" . grammatical-edit-match-paren)
+   ;; ("?" . grammatical-edit-match-paren)
 
    ("," . xah-backward-left-bracket)
    ("-" . mark-defun)
@@ -111,14 +119,13 @@
    ("n" . isearch-forward)
    ("o" . weiss-expand-region-by-sexp)
    ("O" . weiss-contract-region-by-word)
-   ("p" . weiss-indent)
+   ("p" . weiss-open-line-and-indent)
    ("P" . weiss-contract-region-by-sexp)
    ("q" . weiss-temp-insert-mode)
    ("r" . weiss-delete-forward-with-region)
    ("s" . snails)
 
    ("y /" . puni-slurp-forward)
-   ("y f" . weiss-flycheck-diwm)
    ("y <right>" . transpose-sexps)
    ("y <left>" . move-sexp-left)
 

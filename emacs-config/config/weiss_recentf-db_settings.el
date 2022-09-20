@@ -1,18 +1,16 @@
 (defun weiss-insert-file-to-recentf ()
   "DOCSTRING"
   (interactive)
-  ;; (message "%s"    (buffer-file-name))
   (call-process
-   "/usr/bin/bb"
+   "/home/weiss/weiss/recentf/recentf"
    nil
    0
-   ;; '(:file "/home/weiss/Downloads/log.txt")
-   "-f"
-   "/home/weiss/clojure/recentf-db/insert.clj"
+   t
+   "add"
    (buffer-file-name)
    )
   )
-
+;; (weiss-call-process "/home/weiss/weiss/recentf/recentf" "prefixed-search" "txt")
 (defun recentf-db-add-bookmark (new-priority)
   "DOCSTRING"
   (interactive (list (read-string (format "set new priority(current value is %s): " (recentf-db-get-priority)) )))

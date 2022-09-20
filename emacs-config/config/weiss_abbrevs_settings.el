@@ -26,19 +26,28 @@ abbrev.")
         )
       (setq abrStr (buffer-substring-no-properties p1 p2))
       ;; (message "matched string: %s" abrStr)
-      (when (and
-             (eq major-mode 'org-mode)
-             (or
-              (eq 'latex-fragment (org-element-type (org-element-context (org-element-at-point))))
-              (eq 'latex-environment (org-element-type (org-element-context (org-element-at-point))))
-              )
-             )          
+      (cond
+       ((and
+         (eq major-mode 'org-mode)
+         (or
+          (eq 'latex-fragment (org-element-type (org-element-context (org-element-at-point))))
+          (eq 'latex-environment (org-element-type (org-element-context (org-element-at-point))))
+          )
+         )
         (setq local-abbrev-table latex-mode-abbrev-table)
         (when (string-prefix-p "$" abrStr)
           (setq abrStr (string-remove-prefix "$" abrStr)
                 p1 (+ p1 1))          
-          )
+          ))
+       ((and (eq major-mode 'rustic-mode)
+             (bound-and-true-p weiss-tsc-mode)
+             (weiss-tsc-in-raw-text)
+             )
+        (message "yes")
+        (setq local-abbrev-table sql-mode-abbrev-table)
         )
+       )
+      
       (setq abrSymbol (abbrev-symbol abrStr))
       (when (and (not check) abrSymbol)            
         (abbrev-insert abrSymbol abrStr p1 p2)
@@ -55,7 +64,7 @@ abbrev.")
 This is for abbrev table property `:enable-function'.
 Version 2016-10-24"
   (let (($syntax-state (syntax-ppss)))
-    (and (not (or (nth 3 $syntax-state) (nth 4 $syntax-state)))
+    (and (or t (not (or (nth 3 $syntax-state) (nth 4 $syntax-state))))
          (not (weiss-command-mode-p)))))
 
 (defun xah-abbrev-position-cursor (&optional @pos)
@@ -63,7 +72,7 @@ Version 2016-10-24"
 Return true if found, else false.
 Version 2016-10-24"
   (interactive)
-  (let (($found-p (search-backward "▮" (if @pos @pos (max (point-min) (- (point) 100))) t )))
+  (let (($found-p (search-backward "▮" (if @pos @pos (max (point-min) (- (point) 200))) t )))
     (when $found-p (delete-char 1))
     $found-p
     ))
@@ -75,7 +84,7 @@ Version 2016-10-24"
 
 (defun weiss--ahf-indent ()
   "indent after abbrev expand"
-  (indent-region (- (point) 50) (+ (point) 50))
+  ;; (indent-region (- (point) 50) (+ (point) 50))
   t)
 
 (defun weiss--ahf ()

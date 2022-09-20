@@ -65,7 +65,6 @@
     (setq snails-default-backends
           '(snails-backend-preview
             snails-backend-filter-buffer
-            snails-backend-org-roam-new
             snails-backend-recentf-db
             snails-backend-emacs-config
             snails-backend-file-bookmark
@@ -76,6 +75,7 @@
             snails-backend-org-roam-note
             snails-backend-org-roam-tutorial
             snails-backend-org-roam-all
+            snails-backend-org-roam-new
             snails-backend-emacs-config-new)))
 
   )

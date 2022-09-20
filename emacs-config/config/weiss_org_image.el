@@ -56,7 +56,7 @@
       (when delete-old (delete-file old-path))
       (end-of-line)
       (insert "\n")
-      (when img-attr (insert "#+ATTR_org: :width 600\n"))
+      (when img-attr (insert "#+ATTR_org: :width 600\n#+ATTR_LATEX: :width 12cm\n"))
       (insert (format "[[file:%s/%s]]" prefix pic-name))
       (org-display-inline-images)))
 

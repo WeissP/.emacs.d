@@ -36,7 +36,14 @@
         (weiss-indent-paragraph . weiss-indent)
 
         (weiss-expand-region-by-sexp . wks-find-symbol-forward)
-        (weiss-expand-region-by-word . wks-find-symbol-forward)))
+        (weiss-expand-region-by-word . wks-find-symbol-forward)
+        (save-buffer . weiss-indent)
+
+        (weiss-tsc-right . weiss-split-region-first)
+        (weiss-tsc-left . weiss-split-region-first)
+        (weiss-tsc-up . weiss-move-to-previous-block)
+        (weiss-tsc-down . weiss-move-to-next-block)
+        ))
 
 (setq wks-repeat-command-blacklist
       '(wks-repeat-command popwin:close-popup-window rotate-text snails-quit keyboard-quit))

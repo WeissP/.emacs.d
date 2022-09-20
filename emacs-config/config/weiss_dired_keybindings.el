@@ -5,7 +5,7 @@
    )
   (wks-unset-key
    dired-mode-map
-   '("SPC" "g" "n" "=" "!" "a" "$")
+   '("SPC" "g" "n" "=" "!" "a" "$" "y")
    )
 
   (wks-define-key
@@ -72,6 +72,7 @@
      ("U" .  (weiss-dired-unmark-all-and-revert (dired-unmark-all-marks) (revert-buffer)))
      ("v" .  weiss-dired-git-clone)
      ("x" .  dired-do-flagged-delete)
+     ("y v" .  weiss-dired-merge-videos)
      ("z" .  dired-do-compress)
      ("Z" .  dired-do-compress-to)
      ) )

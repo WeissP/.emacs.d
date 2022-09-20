@@ -36,7 +36,7 @@
    '(not dired-mode dired-sidebar-mode)
    company-tooltip-margin 1)
 
-  (setq company-backends '((company-capf company-citre :separate)))
+  ;; (setq company-backends '((company-capf company-citre :separate)))
 
   (setq-mode-local
    org-mode

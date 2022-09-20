@@ -30,7 +30,7 @@
          '(weiss_after-dump-misc all-the-icons display-line-numbers server rime telega tramp gcmh))
         (_
          '(weiss_after-dump-misc
-           all-the-icons display-line-numbers server rime telega tramp gcmh org-roam snails-roam
+           all-the-icons display-line-numbers server rime telega tramp sudo-edit docker-tramp gcmh org-roam snails-roam tree-sitter tree-sitter-langs weiss-tsc-mode diminish 
            ))))
 
 

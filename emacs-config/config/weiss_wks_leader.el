@@ -42,6 +42,8 @@
    ("c RET" . weiss-kill-append-with-newline)
    ("c ," . weiss-kill-append-with-comma)
    ("c l" . weiss-kill-append-with-pipe)
+   ("c r" . xah-copy-to-register-1)
+   ("c v" . xah-paste-from-register-1)
 
 
    ("d b" .  weiss-save-current-content)
@@ -95,10 +97,10 @@
    ("j x" .  describe-coding-system)
    ("j z" .  Info-goto-emacs-command-node)
 
-   ("TAB" . align-regexp)
+   ("TAB" . indent-rigidly)
 
    ("k SPC" .  xah-clean-whitespace)
-   ("k TAB" . move-to-column)
+   ("k TAB" . align-regexp)
    ("k -" .  xah-cycle-hyphen-underscore-space)
    ("k 1" .  xah-append-to-register-1)
    ("k 2" .  xah-clear-register-1)
@@ -110,7 +112,7 @@
    ("k 7" .  xah-append-to-register-1)
    ("k 0" .  sort-numeric-fields)
    ("k S" .  reverse-region)
-   ("k c" .  weiss-convert-sql-output-to-table)
+   ("k c" .  move-to-column)
    ("k d" .  delete-non-matching-lines)
    ("k e" .  list-matching-lines)
    ("k f" .  goto-line)

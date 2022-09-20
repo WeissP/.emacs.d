@@ -1,4 +1,3 @@
-
 (add-hook 'prog-mode-hook #'highlight-parentheses-mode)
 
 (with-eval-after-load 'highlight-parentheses
@@ -6,8 +5,6 @@
    hl-paren-highlight-adjacent t
    hl-paren-colors '("#E53E3E" "#383a42" "#383a42" "#383a42")
    )
-  (set-face-attribute 'hl-paren-face nil :weight 'bold)
-  ;; (setq hl-paren-background-colors '("#E53E3E" "#c9bce9" "#FAFAFA""#FAFAFA"))
   )
 
 ;; parent: ui

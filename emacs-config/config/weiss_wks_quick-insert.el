@@ -1,7 +1,9 @@
 (define-prefix-command 'wks-global-quick-insert-keymap)
 
 (defun weiss-global-insert-pair-alist(new-line)
-  `(("j" .
+  `(("<tab>" .
+     dabbrev-expand)
+    ("j" .
      (,(if new-line 'weiss-insert-paren-new-line 'weiss-insert-paren)
       (weiss-insert-pair "(" ")" ,new-line)))
     ("k" .

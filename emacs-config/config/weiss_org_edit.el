@@ -1,4 +1,28 @@
 (with-eval-after-load 'org
+  (defun weiss-org--csv-single-line-to-table (s)
+    "DOCSTRING"
+    (interactive)
+    (->> s
+         (s-replace ";" "|" )
+         (s-replace "\"" "" )
+         (format "|%s|" ) 
+         ))
+
+  (defun weiss-org-csv-to-table ()
+    "DOCSTRING"
+    (interactive)
+    (let* ((beg (region-beginning))
+           (end (region-end))
+           (lines (split-string (buffer-substring-no-properties beg end) "\n")))
+      (delete-region beg end)
+      (dolist (line lines) 
+        (when (> (length line) 2)
+          (insert (weiss-org--csv-single-line-to-table line))
+          (insert "\n")
+          )
+        )    
+      ))
+
   (defun weiss-org-cut-line-or-delete-region ()
     "DOCSTRING"
     (interactive)
