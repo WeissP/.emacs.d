@@ -1,5 +1,6 @@
 (setq weiss/emacs-config-modules
       '((global :skip-install t)
+        exec-path-from-shell
         (table :skip-install t)
         rg
         (server  :local t)
