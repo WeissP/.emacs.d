@@ -19,7 +19,7 @@
                   (input)
                   (when (> (length input) 1)
                     (append
-                     '("/home/weiss/weiss/recentf/recentf"
+                     '("~/rust/recentf/recentf"
                        "prefixed-search"
                        )
                      (split-string input  " ")

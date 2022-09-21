@@ -2,7 +2,7 @@
   "DOCSTRING"
   (interactive)
   (call-process
-   "~/weiss/recentf/recentf"
+   "~/rust/recentf/recentf"
    nil
    0
    t
