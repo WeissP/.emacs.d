@@ -36,7 +36,7 @@
                 latex-preview-pane))
         (dired
          :local t
-         :then (wdired diredfl all-the-icons-dired dired-hacks-utils dired-avfs dired-collapse
+         :then (wdired diredfl (all-the-icons-dired :github "jtbm37/all-the-icons-dired") dired-hacks-utils dired-avfs dired-collapse
                        dired-quick-sort peep-dired dired-filter
                        (weiss-dired-single-handed-mode :local t)))
         (snails :local t)
@@ -103,7 +103,7 @@
         (csv-mode :elpa csv-mode)
         (magit :then
                (git-messenger browse-at-remote (gitattributes-mode :disabled t)
-                                (gitignore-mode  :disabled t) (gitconfig-mode :disabled t)))
+                              (gitignore-mode  :disabled t) (gitconfig-mode :disabled t)))
         (aweshell :github "manateelazycat/aweshell")
         (vterm :disabled t)
         (pdf-tools :then
