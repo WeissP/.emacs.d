@@ -1,4 +1,4 @@
-(add-to-list 'load-path "/home/weiss/.emacs.d/site-lisp/lspce/")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/lspce/")
 
 (with-eval-after-load 'lspce
   (setq lspce-server-programs `(("rustic-mode"  "rust-analyzer" "" "")

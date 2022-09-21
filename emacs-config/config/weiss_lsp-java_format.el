@@ -8,7 +8,7 @@
           )
       (async-shell-command-no-window
        (concat
-        "/home/weiss/idea/idea-IU-201.6668.121/bin/idea.sh format -s /home/weiss/weiss/Bai-JavaCodeStyle.xml "
+        "~/idea/idea-IU-201.6668.121/bin/idea.sh format -s ~/weiss/Bai-JavaCodeStyle.xml "
         (if dir 
             (concat "-r " default-directory)
           (buffer-file-name)))))

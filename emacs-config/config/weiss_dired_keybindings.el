@@ -27,14 +27,14 @@
   (wks-define-key
    dired-mode-map "g"
    '(
-     ("a" . (weiss-dired-find-audio-todos (find-file "/home/weiss/Downloads/my_tmp/todos/")))
-     ("d" . (weiss-dired-find-downloads (find-file "/home/weiss/Downloads")))
-     ("v" . (weiss-dired-find-Vorlesungen (find-file "/home/weiss/Documents/Vorlesungen")))
+     ("a" . (weiss-dired-find-audio-todos (find-file "~/Downloads/my_tmp/todos/")))
+     ("d" . (weiss-dired-find-downloads (find-file "~/Downloads")))
+     ("v" . (weiss-dired-find-Vorlesungen (find-file "~/Documents/Vorlesungen")))
      ("m" . (weiss-dired-find-media (find-file "/run/media/weiss")))
      ("p" . (weiss-dired-find-backup (find-file "/run/media/weiss/Seagate_Backup/videos/porn/")))
-     ("h" . (weiss-dired-find-home (find-file "/home/weiss/")))
-     ("t" . (weiss-dired-find-telega (find-file "/home/weiss/.telega/cache/")))
-     ("e" . (weiss-dired-find-emacs-config (find-file "/home/weiss/.emacs.d")))
+     ("h" . (weiss-dired-find-home (find-file "~/")))
+     ("t" . (weiss-dired-find-telega (find-file "~/.telega/cache/")))
+     ("e" . (weiss-dired-find-emacs-config (find-file "~/.emacs.d")))
      )
    )
 

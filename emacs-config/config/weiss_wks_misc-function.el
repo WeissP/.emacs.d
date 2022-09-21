@@ -349,20 +349,20 @@ Version 2019-12-02"
     (eval-buffer))
    ((string=
      (file-name-directory (buffer-file-name))
-     "/home/weiss/KaRat/datenbank/")
+     "~/KaRat/datenbank/")
     (message "compile: %s"
              (shell-command-to-string "javac -Werror -cp '.:commons-io-2.8.0.jar' QuizzesSearch.java"))
     (message "output: %s"
              (shell-command-to-string "java -cp postgresql-42.2.18.jar:commons-io-2.8.0.jar:. QuizzesSearch")))
-   ((string-prefix-p "/home/weiss/KaRat/datenbank/KaRat-Quizzes/"
+   ((string-prefix-p "~/KaRat/datenbank/KaRat-Quizzes/"
                      (file-name-directory (buffer-file-name)))
     ;; (message ": %s" 123)
     (message "%s"
-             (shell-command-to-string "go run /home/weiss/KaRat/datenbank/KaRat-Quizzes/main.go -tomlPath=/home/weiss/KaRat/datenbank/KaRat-Quizzes/input.toml")))
-   ((string-prefix-p "/home/weiss/Documents/Vorlesungen/bachelorarbeit/JODA-Web"
+             (shell-command-to-string "go run ~/KaRat/datenbank/KaRat-Quizzes/main.go -tomlPath=~/KaRat/datenbank/KaRat-Quizzes/input.toml")))
+   ((string-prefix-p "~/Documents/Vorlesungen/bachelorarbeit/JODA-Web"
                      (file-name-directory (buffer-file-name)))
     (message "%s"
-             (shell-command-to-string "go run /home/weiss/Documents/Vorlesungen/bachelorarbeit/JODA-Web/cmd/joda-web/main.go")))
+             (shell-command-to-string "go run ~/Documents/Vorlesungen/bachelorarbeit/JODA-Web/cmd/joda-web/main.go")))
    ((and
      (eq major-mode 'go-mode)
      (not (string= weiss-mode-line-projectile-root-dir "nil")))

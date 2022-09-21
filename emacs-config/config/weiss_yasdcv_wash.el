@@ -44,7 +44,7 @@
       (setq pb (line-beginning-position))    
       (write-region pb pe "~/.emacs.d/temp/yasdcv-PONS-eng-de.html")
       (delete-region pb pe)
-      (insert (shell-command-to-string (format "python3 -W ignore %s %s  --ignore-links --ignore-images -b 0" "/home/weiss/Python/html2text/html2text.py" "/home/weiss/.emacs.d/temp/yasdcv-PONS-eng-de.html")))    
+      (insert (shell-command-to-string (format "python3 -W ignore %s %s  --ignore-links --ignore-images -b 0" "~/Python/html2text/html2text.py" "~/.emacs.d/temp/yasdcv-PONS-eng-de.html")))    
       (yasdcv-help--wash-PONS)
       ))
 
@@ -89,7 +89,7 @@
       (setq pb (line-beginning-position))    
       (write-region pb pe "~/.emacs.d/temp/yasdcv-PONS-de-eng.html")
       (delete-region pb pe)
-      (insert (shell-command-to-string (format "python3 -W ignore %s %s  --ignore-links --ignore-images -b 0" "/home/weiss/Python/html2text/html2text.py" "/home/weiss/.emacs.d/temp/yasdcv-PONS-de-eng.html")))    
+      (insert (shell-command-to-string (format "python3 -W ignore %s %s  --ignore-links --ignore-images -b 0" "~/Python/html2text/html2text.py" "~/.emacs.d/temp/yasdcv-PONS-de-eng.html")))    
       (yasdcv-help--wash-PONS)
       ))
 

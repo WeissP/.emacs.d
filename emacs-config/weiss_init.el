@@ -20,8 +20,8 @@
   )
 
 (when (string= emacs-host "ros-docker")
-  (setq counsel-fzf-cmd "/home/weiss/fzf/bin/fzf -f \"%s\"")
-  (setq rg-executable "/home/weiss/ripgrep/rg"))
+  (setq counsel-fzf-cmd "~/fzf/bin/fzf -f \"%s\"")
+  (setq rg-executable "~/ripgrep/rg"))
 
 (dolist (x after-dump-packages) (ignore-errors (require x)))
 

@@ -1,6 +1,6 @@
 (with-eval-after-load 'haskell-mode
   ;; (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-  ;; (setq haskell-process-path-ghci "/home/weiss/.ghcup/bin/ghci-9.0.1")
+  ;; (setq haskell-process-path-ghci "~/.ghcup/bin/ghci-9.0.1")
   (add-hook 'haskell-mode-hook
             (lambda ()
               (interactive-haskell-mode t)

@@ -157,7 +157,7 @@
    ("o k" . weiss-deactivate-mark)
    ("o p" .
     (weiss-open-studien-plan
-     (find-file "/home/weiss/Documents/Org-roam/ƦProject-studienplan_2021032320.org")))
+     (find-file "~/Documents/Org-roam/ƦProject-studienplan_2021032320.org")))
    ("o e" . weiss-end-kmacro)
    ("o c" . kmacro-call-macro)
 

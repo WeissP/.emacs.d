@@ -19,7 +19,7 @@
 (let ((default-directory weiss/local-package-path))
   (normal-top-level-add-subdirs-to-load-path))
 (add-to-list 'load-path "/usr/local/texlive/2020/bin/x86_64-linux")
-(add-to-list 'load-path "/home/weiss/.emacs.d/org-mode/lisp/")
+(add-to-list 'load-path "~/.emacs.d/org-mode/lisp/")
 
 
 (setq after-dump-packages

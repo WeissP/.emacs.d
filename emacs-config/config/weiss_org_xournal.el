@@ -1,10 +1,10 @@
 (with-eval-after-load 'org
   (setq
-   weiss-org-xournal-note-dir "/home/weiss/Documents/OrgFiles/Bilder/xournal/xopp/"  ;; xopp 笔记存储目录
-   weiss-org-xournal-template-dir "/home/weiss/Documents/OrgFiles/Bilder/xournal/" ;; xournal 目标文件存储目录
+   weiss-org-xournal-note-dir "~/Documents/OrgFiles/Bilder/xournal/xopp/"  ;; xopp 笔记存储目录
+   weiss-org-xournal-template-dir "~/Documents/OrgFiles/Bilder/xournal/" ;; xournal 目标文件存储目录
    weiss-org-xournal-default-template-name "Template.xopp" ;; 默认笔记模版名称，应该位于 org-xournal-template-dir
    weiss-org-xournal-bin "/usr/bin/xournalpp" ;; xournal 执行文件
-   weiss-org-xournal-png-path "/home/weiss/Documents/OrgFiles/Bilder/xournal/png/"
+   weiss-org-xournal-png-path "~/Documents/OrgFiles/Bilder/xournal/png/"
    weiss-org-xournal-process-picture-functon #'weiss-org-xournal-process-picture-functon
    )
 

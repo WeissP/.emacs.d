@@ -3,7 +3,7 @@
 (defvar weiss-write-info--overlay-content)
 (defvar weiss-write-info--sep "°€°")
 
-(setq weiss-write-mode-switch-scirpt-path "/home/weiss/Python/emacs-edit/emacs-edit.py")
+(setq weiss-write-mode-switch-scirpt-path "~/Python/emacs-edit/emacs-edit.py")
 
 (defface weiss-write-info-face
   '((t (:foreground "#FF9D72" :weight bold :font "lato")))

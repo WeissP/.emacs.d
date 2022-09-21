@@ -164,7 +164,7 @@
 (defun weiss-insert-require-to-log-file ()
   "DOCSTRING"
   (interactive)
-  (let ((file "/home/weiss/.emacs.d/dumped-packages.el")
+  (let ((file "~/.emacs.d/dumped-packages.el")
         )
     (find-file file)
     (erase-buffer)
@@ -176,7 +176,7 @@
   (snails '(snails-backend-emacs-config-test)))
 
 ;; (setq weiss/emacs-config-modules '((global  :skip-install t)))
-;; (weiss-require-config-by-class "global" "/home/weiss/.emacs.d/dumped-packages.el")
+;; (weiss-require-config-by-class "global" "~/.emacs.d/dumped-packages.el")
 ;; (emacs-config-get-files-by-class "global")
 (provide 'weiss-Emacs-Config-Manager)
 ;; (emacs-config-get-files-by-class "")

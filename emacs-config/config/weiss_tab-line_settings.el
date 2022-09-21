@@ -1,5 +1,5 @@
 ;; (name . group)
-(defconst weiss-tab-groups-file "/home/weiss/.emacs.d/tab-groups.el")
+(defconst weiss-tab-groups-file "~/.emacs.d/tab-groups.el")
 (defvar weiss-tab-groups nil)
 (defvar weiss-file-groups nil)
 

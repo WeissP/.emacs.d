@@ -1,5 +1,5 @@
-(defvar weiss/org-file-path "/home/weiss/Documents/OrgFiles/")
-(defvar weiss/org-img-path "/home/weiss/Documents/Org-roam/Bilder/")
+(defvar weiss/org-file-path "~/Documents/OrgFiles/")
+(defvar weiss/org-img-path "~/Documents/Org-roam/Bilder/")
 (defun weiss--get-org-file-path (path)
   "get org-file path according to weiss/org-file-path"
   (interactive)

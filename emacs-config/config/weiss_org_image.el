@@ -99,7 +99,7 @@
             (file-name-nondirectory
              (file-name-sans-extension pdf-path)))
            (image-path-dir
-            (concat "/home/weiss/Downloads/my_tmp/pdf_images/" parent "/"))
+            (concat "~/Downloads/my_tmp/pdf_images/" parent "/"))
            (image-path
             (format "%s%s-%s%s.png"
                     image-path-dir

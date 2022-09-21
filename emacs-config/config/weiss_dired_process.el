@@ -6,7 +6,7 @@
           (target-path
            (or
             (car (dired-dwim-target-next))
-            "/home/weiss/Downloads/")))
+            "~/Downloads/")))
       (message "target-path: %s" target-path)
       (cond
        ((string-prefix-p "/ssh:" (car marked-files))

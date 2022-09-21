@@ -9,7 +9,7 @@
   ;;   (yakuake-add-session)
   ;;   (setq yakuake-spring-session-id (yakuake-active-session-id))
   ;;   (yakuake-set-tab-title yakuake-spring-session-id "spring")
-  ;;   (yakuake-run-command-in-session yakuake-spring-session-id "cd /home/weiss/Documents/Vorlesungen/db-project-grpbb/")
+  ;;   (yakuake-run-command-in-session yakuake-spring-session-id "cd ~/Documents/Vorlesungen/db-project-grpbb/")
   ;;   (yakuake-run-command-in-session yakuake-spring-session-id "mvn spring-boot:run"))
 
   (defun weiss-dired-rsync ()
@@ -19,7 +19,7 @@
           (target-path
            (or
             (car (dired-dwim-target-next))
-            "/home/weiss/Downloads/")))
+            "~/Downloads/")))
       (cond
        ((string-prefix-p "/ssh:" (car marked-files))
         (dolist (x marked-files)

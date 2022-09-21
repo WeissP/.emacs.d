@@ -7,7 +7,7 @@
             ("🅥" . "Nutstore Files/Vorlesungen")
             ("🅹" . "src/main/java")
             ("🅙🅣" . "src/test/java")
-            ("~" . "/home/weiss")
+            ("~" . "~")
             ))
 
   (defun weiss-reduce-file-path (filename &optional r)

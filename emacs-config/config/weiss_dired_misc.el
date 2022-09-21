@@ -54,7 +54,7 @@
     "delete files without ask"
     (interactive)
     (dired-delete-file weiss-dired-marked-files)
-    ;; (dired-delete-file "/home/weiss/Downloads/mp1.pdf")
+    ;; (dired-delete-file "~/Downloads/mp1.pdf")
     ;; (message "%s" "123")
     )
 
