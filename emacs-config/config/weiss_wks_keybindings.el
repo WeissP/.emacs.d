@@ -1,6 +1,7 @@
 (wks-define-key
  prog-mode-map ""
  '(("<tab>" . save-buffer)
+   ("2" . save-buffer)
    ("<RET>" . weiss-deactivate-mark-and-new-line)
    ;; ("<right>" . right-char)
    ;; ("<left>" . left-char)
@@ -81,26 +82,18 @@
    (";" . weiss-expand-region-by-word)
    ("|" . weiss-puni-backward-sexp)
    ("$" . weiss-delete-other-window)
+   ("4" . weiss-delete-other-window)
    ;; ("?" . grammatical-edit-match-paren)
 
    ("," . xah-backward-left-bracket)
    ("-" . mark-defun)
    ("=" . xah-shrink-whitespaces)
    ("." . xah-forward-right-bracket)
+   ("1" . weiss-exchange-point-or-beginning-of-line)
    (":" . weiss-exchange-point-or-beginning-of-line)
    ("/" . rotate-text)
+   ("3" . rotate-text)
    ("@" . weiss-mark-brackets)
-
-   ;; ("1" .  scroll-down)
-   ;; ("2" .  scroll-up)
-   ;; ("3" .  weiss-delete-other-window)
-   ;; ("4" .  split-window-below)
-   ;; ("5" .  weiss-test)
-   ;; ("6" .  mark-defun)
-   ;; ("7" .  xah-select-text-in-quote)
-   ;; ("8" .  (wks-C-c-C-e (execute-kbd-macro ,(kbd "C-c C-e"))))
-   ;; ("9" .  weiss-switch-to-otherside-top-frame)
-   ;; ("0" .  weiss-switch-buffer-or-otherside-frame-without-top)
 
    ("a" . weiss-split-or-switch-window)
    ("b" . xah-toggle-letter-case)
