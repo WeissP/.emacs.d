@@ -102,7 +102,7 @@
         (eglot :disabled nil :then ((eglot-java :disabled t)))
         (csv-mode :elpa csv-mode)
         (magit :then
-               (git-timemachine git-messenger browse-at-remote (gitattributes-mode :disabled t)
+               (git-messenger browse-at-remote (gitattributes-mode :disabled t)
                                 (gitignore-mode  :disabled t) (gitconfig-mode :disabled t)))
         (aweshell :github "manateelazycat/aweshell")
         (vterm :disabled t)

@@ -9,7 +9,7 @@
 (defun weiss-load-file-groups ()
   "DOCSTRING"
   (interactive)
-  (load weiss-tab-groups-file))
+  (ignore-errors (load weiss-tab-groups-file)))
 
 
 (defun weiss-tab-bind-group (group-name)
