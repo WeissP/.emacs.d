@@ -115,10 +115,10 @@
    ("k c" .  move-to-column)
    ("k d" .  delete-non-matching-lines)
    ("k e" .  list-matching-lines)
-   ("k f" .  goto-line)
+   ("k f" .  delete-frame)
    ("k i" .  weiss-indent)
    ("k j" .  kill-current-buffer)
-   ("k l" .  xah-escape-quotes)
+   ("k l" .  goto-line)
    ("k m" .  xah-make-backup-and-save)
    ("k n" .  repeat-complex-command)
    ("k N" .  sort-numeric-fields)
@@ -128,6 +128,7 @@
    ("k S" .  sort-fields)
    ("k t" .  repeat)
    ("k u" .  delete-matching-lines)
+   ("k w" .  delete-window)
    ("k y" .  delete-duplicate-lines)
 
    ("l SPC" .  whitespace-mode)
@@ -184,7 +185,6 @@
    ("w l" .  xref-pop-marker-stack)
    ("w y" .  winner-undo)                  ;windows setting
    ("w r" .  winner-redo)
-   ("w k" .  delete-frame)
    ("w o" .  org-babel-tangle-jump-to-org)
 
    ("x s" . weiss-save-all-buffers))
