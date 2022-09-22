@@ -135,6 +135,7 @@
             (define-key keymap (kbd "m") 'weiss-tsc-parent)
             (define-key keymap (kbd "o") 'weiss-tsc-expand-region)
             (define-key keymap (kbd "_") 'weiss-split-region)
+            (define-key keymap (kbd "0") 'weiss-split-region)
             keymap)
   :group 'weiss-tsc-mode
   (if weiss-tsc-mode
