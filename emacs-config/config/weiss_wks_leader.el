@@ -26,7 +26,7 @@
    ("5" . weiss-refresh)
    ;; ("9" . (weiss-copy-whole-buffer (kill-new (buffer-substring))))
 
-   ("a" . mark-whole-buffer)
+   ("a" . weiss-split-window-dwim)
    ("b" . xah-toggle-previous-letter-case)
 
    ("c a" . weiss-kill-append)
