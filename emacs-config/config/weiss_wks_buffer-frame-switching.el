@@ -1,14 +1,5 @@
 (defvar weiss-min-window-width 80)
 
-(advice-add 'weiss-new-frame :after
-            (lambda (&rest args)
-              (interactive)
-              (weiss-update-top-windows t)))
-;; (advice-add 'delete-frame :after (lambda () (interactive) (weiss-update-top-windows t)))
-(add-hook 'window-state-change-functions
-          #'(lambda (&rest args)
-              (interactive)
-              (weiss-update-top-windows t)))
 (defun weiss-new-frame ()
   "make new frame on the same side of current frame or on the other side with prefix-arg"
   (interactive)
