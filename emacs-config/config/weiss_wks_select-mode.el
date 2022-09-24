@@ -122,25 +122,6 @@
          undo)))
   (weiss-select-add-advice-deactivate-mark cmds))
 (advice-add 'xref-find-definitions :before #'weiss-deactivate-mark-unless-in-select-mode-interactive)
-;; (advice-add 'counsel-describe-function :before #'weiss-deactivate-mark-unless-in-select-mode)
-;; (advice-add 'counsel-describe-variable :before #'weiss-deactivate-mark-unless-in-select-mode)
-;; (advice-add 'weiss-add-parent-sexp :before #'weiss-deactivate-mark-unless-in-select-mode)
-;; (advice-add 'undo :before #'weiss-deactivate-mark-unless-in-select-mode)
-;; (advice-add 'weiss-indent :before #'weiss-deactivate-mark-unless-in-select-mode)
-;; (advice-add 'weiss-indent-paragraph :before #'weiss-deactivate-mark-unless-in-select-mode)
-;; (advice-add 'xah-select-block :before #'weiss-deactivate-mark-unless-in-select-mode)
-;; (advice-add 'weiss-comment-dwim :before #'weiss-deactivate-mark-unless-in-select-mode)
-;; (advice-add 'xah-paste-or-paste-previous :before #'weiss-deactivate-mark-unless-in-select-mode)
-;; (advice-add 'xah-open-file-at-cursor :before #'weiss-deactivate-mark-unless-in-select-mode)
-;; (advice-add 'weiss-delete-or-add-parent-sexp :before #'weiss-deactivate-mark-unless-in-select-mode)
-;; (advice-add 'org-roam-dailies--capture :before #'weiss-deactivate-mark-unless-in-select-mode)
-;; (advice-add 'weiss-move-to-next-block :before #'weiss-deactivate-mark-unless-in-select-mode)
-;; (advice-add 'weiss-move-to-previous-block :before #'weiss-deactivate-mark-unless-in-select-mode)
-;; (advice-add 'citre-jump :before #'weiss-deactivate-mark-unless-in-select-mode)
-;; (advice-add 'citre-peek :before #'weiss-deactivate-mark-unless-in-select-mode)
-;; (advice-add 'newline :before #'weiss-deactivate-mark-unless-in-select-mode)
-
-
 
 (defun anzu-query-replace (arg)
   "anzu version of `query-replace'."
