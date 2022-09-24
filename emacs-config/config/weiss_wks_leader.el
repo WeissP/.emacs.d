@@ -27,7 +27,10 @@
    ;; ("9" . (weiss-copy-whole-buffer (kill-new (buffer-substring))))
 
    ("a" . weiss-split-window-dwim)
-   ("b" . xah-toggle-previous-letter-case)
+
+   ("b a" . mark-whole-buffer)
+   ("b k" . (weiss-kill-whole-buffer (kill-region (point-min) (point-max))))
+   ("b d" . (weiss-delete-whole-buffer (delete-region (point-min) (point-max))))
 
    ("c a" . weiss-kill-append)
    ("c b" .
