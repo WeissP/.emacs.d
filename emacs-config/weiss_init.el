@@ -38,6 +38,8 @@
   (message "lsp loaded")
   )
 
+(setq kill-ring-max 9999)
+
 (message "Emacs is ready, startup cost: %.3f seconds."
          (time-to-seconds (time-since weiss/launch-time)))
 (setq weiss/launch-time nil)

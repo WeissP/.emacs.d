@@ -29,13 +29,19 @@
    ("a" . weiss-split-window-dwim)
 
    ("b a" . mark-whole-buffer)
+   ("b c" . weiss-copy-whole-buffer)
    ("b k" . (weiss-kill-whole-buffer (kill-region (point-min) (point-max))))
+   ("b x" . (weiss-comment-whole-buffer (comment-or-uncomment-region
+                                         (point-min)  (point-max))))
    ("b d" . (weiss-delete-whole-buffer (delete-region (point-min) (point-max))))
+   ("b e" . (weiss-paste-whole-buffer
+             (progn
+               (weiss-delete-whole-buffer)
+               (yank)
+               ) ))
 
    ("c a" . weiss-kill-append)
-   ("c b" .
-    (weiss-copy-whole-buffer
-     (kill-new (buffer-substring (point-min) (point-max)))))
+   ("c b" . weiss-copy-whole-buffer)
    ("c e" . weiss-exchange-region-kill-ring-car)
    ("c f" . (weiss-copy-file-name (kill-new (buffer-file-name))))
    ("c k" . save-buffers-kill-terminal)
@@ -69,7 +75,6 @@
 
    ("i d" .  weiss-insert-date)
    ("i e" .  find-file)
-   ("i f" .  counsel-fzf)
    ("i j" .  yasdcv-translate-input)
    ("i v" .  yank-pop)
    ("i m s" .  all-the-icons-insert)

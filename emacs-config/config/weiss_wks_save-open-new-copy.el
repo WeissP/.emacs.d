@@ -1,3 +1,8 @@
+(defun weiss-copy-whole-buffer ()
+  "DOCSTRING"
+  (interactive)
+  (kill-new (buffer-substring (point-min) (point-max))))
+
 (defun weiss-save-all-buffers ()
   "DOCSTRING"
   (interactive)
@@ -295,8 +300,8 @@ Version 2015-10-14"
    "mplayer" nil
    (format "mplayer -ao pulse -softvol -softvol-max 2000 -title '%s' -fs \"%s\""
            (thread-last file
-             (file-name-nondirectory)
-             (file-name-sans-extension))
+                        (file-name-nondirectory)
+                        (file-name-sans-extension))
            file)))
 
 (defun xah-open-in-external-app (&optional @fname)

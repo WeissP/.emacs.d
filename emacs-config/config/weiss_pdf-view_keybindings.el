@@ -33,6 +33,7 @@
      ("n" .  isearch-forward)
      ("p" .  pdf-view-fit-page-to-window)
      ("w" .  pdf-view-fit-width-to-window)    
+     ("SPC k f" .  pdf-view-goto-page)    
      )
    )
   )

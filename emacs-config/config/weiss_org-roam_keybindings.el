@@ -7,6 +7,7 @@
      ("j a" . org-roam-alias-add)
      ("j n" . org-roam-capture)
      ("j f" . weiss-roam-add-focusing-tag)
+     ("j TAB" . org-roam-buffer-toggle)
      ;; ("s" . weiss-org-roam-copy-heading-link)
      ))
 

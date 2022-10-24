@@ -16,7 +16,9 @@
                            (css . t)
                            (sass . t)
                            (C . t)
-                           (plantuml . t)))
+                           (plantuml . t)
+                           (yaml . t)
+                           (conf-toml . t)))
 
 ;; parent: 
 (provide 'weiss_babel_settings)
