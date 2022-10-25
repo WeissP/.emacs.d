@@ -34,10 +34,6 @@
       gc-cons-percentage 0.5
       garbage-collection-messages nil)
 
-(with-eval-after-load 'lsp-mode
-  (message "lsp loaded")
-  )
-
 (setq kill-ring-max 9999)
 
 (message "Emacs is ready, startup cost: %.3f seconds."

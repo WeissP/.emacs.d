@@ -148,6 +148,7 @@
         (tree-edit :github "git@github.com:ethan-leba/tree-edit.git" :disabled t)
         diminish
         (show-paren-mode :skip-install t)
+        (mac :skip-install t :when (string= emacs-host (nth 3 emacs-host-list)))
         ))
 
 
