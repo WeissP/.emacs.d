@@ -149,6 +149,7 @@
         diminish
         (show-paren-mode :skip-install t)
         (mac :skip-install t :when (string= emacs-host (nth 3 emacs-host-list)))
+        (agda2-mode :skip-install t)
         ))
 
 
