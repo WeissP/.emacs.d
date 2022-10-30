@@ -8,6 +8,7 @@
      ("t ," . agda2-goal-and-context)
      ("t r" . agda2-refine)
      ("t a" . agda2-auto-maybe-all)
+     ("t f" . agda2-goto-definition-keyboard)
      ))
   )
 
