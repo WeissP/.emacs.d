@@ -60,6 +60,8 @@
       (insert (format "[[file:%s/%s]]" prefix pic-name))
       (org-display-inline-images)))
 
+  
+
   (defvar weiss-pdf-candidates nil)
   (defun weiss-org-insert-pdf-link (pdf-path page)
     "DOCSTRING"
@@ -99,7 +101,7 @@
             (file-name-nondirectory
              (file-name-sans-extension pdf-path)))
            (image-path-dir
-            (concat "~/Downloads/my_tmp/pdf_images/" parent "/"))
+            (concat (expand-file-name "~/Downloads/my_tmp/pdf_images/") parent "/"))
            (image-path
             (format "%s%s-%s%s.png"
                     image-path-dir
@@ -112,10 +114,12 @@
                      ?0)
                     n)))
       ;; (ignore-errors )
+      (message "image-path-dir: %s" image-path-dir)
       (mkdir image-path-dir t)
       (unless (file-exists-p image-path)
+        (message "command: %s" (format "pdftoppm -png -f %s -l %s \"%s\" \"%s%s\"" n n pdf-path image-path-dir pdf-name))
         (shell-command-to-string
-         (format "pdftoppm -png -f %s -l %s %s %s%s" n n pdf-path image-path-dir pdf-name)))
+         (format "pdftoppm -png -f %s -l %s \"%s\" \"%s%s\"" n n pdf-path image-path-dir pdf-name)))
       image-path))
 
   (defun weiss-get-pdf-page-numbers (pdf-path)
@@ -229,11 +233,16 @@
                                   (if (string=
                                        (file-name-extension file)
                                        "pdf")
-                                      (weiss-get-pdf-image-by-page-number
-                                       file
-                                       (plist-get
-                                        (nth 1 link)
-                                        :search-option))
+                                      (progn
+                                        (message "file: %s, link: %s" file (plist-get
+                                                                            (nth 1 link)
+                                                                            :search-option))
+                                        (weiss-get-pdf-image-by-page-number
+                                         file
+                                         (plist-get
+                                          (nth 1 link)
+                                          :search-option))
+                                        )
                                     file)
                                   width)))
 			                (when image
