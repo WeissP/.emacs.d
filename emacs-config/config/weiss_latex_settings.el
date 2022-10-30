@@ -2,6 +2,8 @@
   (add-to-list 'load-language-list '(latex . t)))
 
 (with-eval-after-load 'latex
+  (setq reftex-ref-macro-prompt nil)
+
   (setq-mode-local
    latex-mode
    company-backends
@@ -15,7 +17,21 @@
     "if current prefix arg, then remove all latex preview, else display all of them."
     (if current-prefix-arg
         (preview-clearout-buffer)
-      (preview-buffer))))
+      (preview-buffer)))
+
+  (defun weiss-latex-to-pdf ()
+    "DOCSTRING"
+    (interactive)
+    (call-interactively 'save-buffer)
+    (TeX-master-file nil nil t)  ;; call to ask if necessary
+    (TeX-command "LaTeX" #'TeX-master-file))
+
+  (defun weiss-insert-label ()
+  "DOCSTRING"
+  (interactive)
+  (reftex-reference )
+  )
+  )
 
 ;; parent: 
 (provide 'weiss_latex_settings)

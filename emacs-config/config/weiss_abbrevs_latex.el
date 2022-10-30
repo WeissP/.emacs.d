@@ -168,7 +168,7 @@
     ("sd" "\\dots " weiss--ahf)
     ("sb" "\\  \\ \\text{\\faBolt}" weiss--ahf)
     ("sbs" "\\verb|\\|" weiss--ahf)
-    ("sqed" "$\\hfill\\blacksquare$" weiss--ahf)
+    ("sqed" "\\hfill\\blacksquare" weiss--ahf)
     ("sl" "\\lim_{n \\to \\infty}" weiss--ahf)
     ("sm" "\\mid " weiss--ahf)
     ("sn" "\\nabla " weiss--ahf)
@@ -185,7 +185,7 @@
 
 ;;;;; escape
     ("b" "\\" weiss--ahf)
-    ("bb" "\\\\" weiss--ahf)
+    ("bb" "\\\\\n" weiss--ahf)
     ("b-" "\\_ " weiss--ahf)
 
 ;;;;; algo2e(code)
@@ -214,6 +214,7 @@
     ("mbbb" "\\bigg" weiss--ahf)
     ("mbbbb" "\\Bigg" weiss--ahf)
     ("mnp" "\n\n\\newpage" weiss--ahf)    
+    ("mnl" "\n\n\\newline" weiss--ahf)    
     ("meq" "\\begin{equation*}\n▮\n\\end{equation}" weiss--ahf-indent)    
     ("mal" "\\begin{aligned}\n▮\n\\end{aligned}" weiss--ahf-indent)    
     ))
