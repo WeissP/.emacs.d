@@ -115,6 +115,7 @@
     ("lo" "\\vee " weiss--ahf)
     ("lrj" "{\\tiny \\textifsym{|><|d}}" weiss--ahf)  
     ("lsb" "\\subset " weiss--ahf)
+    ("lsbsq" "\\sqsubseteq " weiss--ahf)
     ("lsbe" "\\subseteq " weiss--ahf)
     ("lslj" "\\ltimes " weiss--ahf)  
     ("lsp" "\\supset " weiss--ahf)

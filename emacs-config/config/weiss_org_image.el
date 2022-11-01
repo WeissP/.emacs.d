@@ -97,6 +97,7 @@
     (let* ((n (string-to-number n-str))
            (parent
             (thread-first pdf-path (split-string "/") (last 2) car))
+           (pdf-path (expand-file-name pdf-path))
            (pdf-name
             (file-name-nondirectory
              (file-name-sans-extension pdf-path)))
@@ -113,11 +114,8 @@
                       (len-of-number n))
                      ?0)
                     n)))
-      ;; (ignore-errors )
-      (message "image-path-dir: %s" image-path-dir)
       (mkdir image-path-dir t)
       (unless (file-exists-p image-path)
-        (message "command: %s" (format "pdftoppm -png -f %s -l %s \"%s\" \"%s%s\"" n n pdf-path image-path-dir pdf-name))
         (shell-command-to-string
          (format "pdftoppm -png -f %s -l %s \"%s\" \"%s%s\"" n n pdf-path image-path-dir pdf-name)))
       image-path))

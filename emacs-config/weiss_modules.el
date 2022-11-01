@@ -18,6 +18,7 @@
                          (ob-java :skip-install t)
                          ob-sql-mode
                          (ob-javascript :github "zweifisch/ob-javascript")))
+                org-noter
                 (org-agenda :local t)
                 (org-tempo :local t)
                 (org-roam :then

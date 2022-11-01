@@ -9,7 +9,9 @@
 (defun weiss-one-window-p ()
   "DOCSTRING"
   (interactive)
-  (equal (length (cl-remove-if #'window-dedicated-p (window-list))) 1))
+  (one-window-p)
+  ;; (equal (length (cl-remove-if #'window-dedicated-p (window-list))) 1)
+  )
 
 (defun weiss-split-or-delete-window ()
   "DOCSTRING"

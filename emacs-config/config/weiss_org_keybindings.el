@@ -33,7 +33,7 @@
      ("C-c C-M-x e" . weiss-org-export-to-pdf)
      ("C-c C-M-x f" . weiss-org-insert-image)
      ("C-c C-M-x u" . weiss-check-umlaut)
-     ("y o" . org-noter)
+     ("C-c C-o" . org-noter)
      ("y d" . weiss-org-download-img)
      ("y g" . org-goto)
      ("C-c C-q" . weiss-set-org-tags)
