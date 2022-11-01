@@ -13,7 +13,7 @@
      ("i i" .  consult-imenu)
      ("i m i" .  consult-imenu-multi)
 
-     ("k f" .  consult-goto-line)
+     ("k l" .  consult-goto-line)
      )
    )
   
