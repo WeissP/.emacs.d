@@ -88,6 +88,7 @@
    ("," . xah-backward-left-bracket)
    ("-" . mark-defun)
    ("=" . xah-shrink-whitespaces)
+   ("0" . xah-shrink-whitespaces)
    ("." . xah-forward-right-bracket)
    ("1" . weiss-exchange-point-or-beginning-of-line)
    (":" . weiss-exchange-point-or-beginning-of-line)

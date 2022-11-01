@@ -4,7 +4,9 @@
  wks-latex-quick-insert-keymap ""
  '(
    ("i" . (weiss-latex-insert-mathit (weiss--quick-add-latex-style "mathit")))
-   ("t" . (weiss-latex-insert-texttt (weiss--quick-add-latex-style "texttt")))
+   ("0" . (weiss-latex-insert-texttt (weiss--quick-add-latex-style "texttt")))
+   ("=" . (weiss-latex-insert-texttt (weiss--quick-add-latex-style "texttt")))
+   ("t" . (weiss-latex-insert-text (weiss--quick-add-latex-style "text")))
    ("b" . (weiss-latex-insert-mathbb (weiss--quick-add-latex-style "mathbb")))
    ("r" . (weiss-latex-insert-textrm (weiss--quick-add-latex-style "textrm")))
    ("s" . (weiss-latex-insert-textsc (weiss--quick-add-latex-style "textsc")))

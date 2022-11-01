@@ -2,6 +2,10 @@
   (add-to-list 'load-language-list '(latex . t)))
 
 (with-eval-after-load 'latex
+  (setq reftex-label-alist
+        '(("algorithm"   ?a "alg:"  "~\\ref{%s}" nil ("algo" "algorithm"   "algo.") -2)
+          ))
+
   (setq reftex-ref-macro-prompt nil)
 
   (setq-mode-local
@@ -27,10 +31,10 @@
     (TeX-command "LaTeX" #'TeX-master-file))
 
   (defun weiss-insert-label ()
-  "DOCSTRING"
-  (interactive)
-  (reftex-reference )
-  )
+    "DOCSTRING"
+    (interactive)
+    (reftex-reference )
+    )
   )
 
 ;; parent: 
