@@ -7,6 +7,7 @@
 
 (setq
  ;; org-stored-links t
+ org-imenu-depth 10
  org-startup-with-inline-images nil
  org-src-preserve-indentation t
  org-directory weiss/org-file-path
