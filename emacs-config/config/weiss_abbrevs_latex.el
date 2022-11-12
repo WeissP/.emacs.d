@@ -150,8 +150,6 @@
 
 ;;;;; arrows
     ("ar" "\\Rightarrow " weiss--ahf)
-    ("aor" "\\overrightarrow{▮} " weiss--ahf)
-    ("aol" "\\overleftarrow{▮} " weiss--ahf)
     ("asr" "\\rightarrow " weiss--ahf)
     ("al" "\\Leftarrow " weiss--ahf)
     ("asl" "\\leftarrow " weiss--ahf)
@@ -160,6 +158,11 @@
     ("at" "\\to " weiss--ahf)
     ("atr" "\\twoheadrightarrow" weiss--ahf)
     ("atl" "\\twoheadleftarrow" weiss--ahf)
+
+;;;;; decoration
+    ("db" "\\bar{▮} " weiss--ahf)
+    ("dr" "\\overrightarrow{▮} " weiss--ahf)
+    ("dl" "\\overleftarrow{▮} " weiss--ahf)    
 
 ;;;;; Symbols
     ("sc" "\\textcircled" weiss--ahf)
@@ -173,6 +176,7 @@
     ("sqed" "\\hfill\\blacksquare" weiss--ahf)
     ("sl" "\\lim_{n \\to \\infty}" weiss--ahf)
     ("sm" "\\mid " weiss--ahf)
+    ("ssm" "\\setminus " weiss--ahf)
     ("sn" "\\nabla " weiss--ahf)
     ("sh" "\\hat{▮} " weiss--ahf)
     ("sp" "\\partial " weiss--ahf)
