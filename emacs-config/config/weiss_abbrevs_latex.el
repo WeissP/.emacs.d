@@ -225,6 +225,7 @@
     ("mbs" "\\bigskip" weiss--ahf)    
     ("meq" "\\begin{equation*}\n▮\n\\end{equation}" weiss--ahf-indent)    
     ("mal" "\\begin{aligned}\n▮\n\\end{aligned}" weiss--ahf-indent)    
+    ("men" "\\begin{enumerate}\n\\item▮\n\\item\n\\end{enumerate}" weiss--ahf-indent)    
     ))
 
 (provide 'weiss_abbrevs_latex)
