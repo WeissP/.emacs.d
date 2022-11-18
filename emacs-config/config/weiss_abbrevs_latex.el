@@ -161,6 +161,7 @@
 
 ;;;;; decoration
     ("db" "\\bar{▮} " weiss--ahf)
+    ("dt" "\\stackrel{\\text{▮}}{=} " weiss--ahf)
     ("dr" "\\overrightarrow{▮} " weiss--ahf)
     ("dl" "\\overleftarrow{▮} " weiss--ahf)    
 
@@ -188,6 +189,7 @@
     ("fz" "\\mathbb{Z}" weiss--ahf)
     ("fnz" "\\mathbb{N}_0" weiss--ahf)
     ("fn" "\\mathbb{N}" weiss--ahf)
+    ("fo" "\\mathcal{O}(▮)" weiss--ahf)
 
 ;;;;; escape
     ("b" "\\" weiss--ahf)
@@ -210,8 +212,9 @@
     ("ccm" "\\tcc{▮}" weiss--ahf-indent)
     
 ;;;;; Misc
-    ("ml" "\\left" weiss--ahf)
-    ("mr" "\\right" weiss--ahf)
+    ("ml" "\\label{▮}" weiss--ahf)
+    ("mlt" "\\left" weiss--ahf)
+    ("mrt" "\\right" weiss--ahf)
     ("mh" "\\hfill" weiss--ahf)
     ("mn" "\\not" weiss--ahf)
     ("mp" "\\path" weiss--ahf)
