@@ -45,6 +45,13 @@
                   (company-dabbrev-code company-gtags company-etags company-keywords)
                   company-oddmuse company-dabbrev))
 
+(setq-mode-local
+   agda2-mode
+   company-backends
+   '(company-bbdb company-semantic company-cmake company-clang company-files
+                  (company-dabbrev-code company-gtags company-etags company-keywords)
+                  company-oddmuse company-dabbrev))
+
   (defun weiss-company-select-next-or-toggle-main-frame ()
     "DOCSTRING"
     (interactive)

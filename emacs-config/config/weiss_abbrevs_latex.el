@@ -199,6 +199,7 @@
 ;;;;; algo2e(code)
     ("cn" "\\;\n" weiss--ahf)
     ("cf" "\\For{\\(▮ \\leftarrow \\) \\KwTo \\(\\)}{\n\n}" weiss--ahf-indent)
+    ("cfun" "\\SetKwFunction{▮}{fun\\_name}\n\\SetKwProg{Fn}{Function}{:}{}\n\\Fn{\\name{$arg1$}}{\n  \\KwRet 1  \\;\n}\n\\BlankLine" weiss--ahf-indent)
     ("cw" "\\While{\\(▮\\)}{\n\n}" weiss--ahf-indent)
     ("cfe" "\\ForEach{\\(▮ \\in \\)}{\n\n}" weiss--ahf-indent)
     ("cv" "\\SetKwData{▮}{}" weiss--ahf-indent)
@@ -228,8 +229,12 @@
     ("mbs" "\\bigskip" weiss--ahf)    
     ("meq" "\\begin{equation*}\n▮\n\\end{equation}" weiss--ahf-indent)    
     ("mal" "\\begin{aligned}\n▮\n\\end{aligned}" weiss--ahf-indent)    
+    ("mit" "\\begin{itemize}\n    \\item ▮\n    \\item \n\\end{itemize}" weiss--ahf-indent)    
+    ("mitem" "\\begin{itemize}\n    \\item ▮\n    \\item \n\\end{itemize}" weiss--ahf-indent)    
     ("men" "\\begin{enumerate}[label=\\Roman*.]\n\\item ▮ \n\\item  \n\\end{enumerate}\n" weiss--ahf-indent)    
     ("menum" "\\begin{enumerate}[label=\\Roman*.]\n\\item ▮ \n\\item  \n\\end{enumerate}\n" weiss--ahf-indent)
+    ("mcase" "▮(v)=\n    \\begin{cases}\n      case1 & \\text{if }  v \\in S \\\\\n      else & \\text{else} \\\\\n    \\end{cases}" weiss--ahf-indent)
     ))
-
+    
 (provide 'weiss_abbrevs_latex)
+

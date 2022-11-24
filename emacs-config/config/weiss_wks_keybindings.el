@@ -146,6 +146,7 @@
    ("y l" . "C-c C-l")
    ("y o" . "C-c C-o")
    ("y u" . "C-c '")
+   ("y SPC" . "C-c C-SPC")
    ("y t" . "C-c C-t")
    ("y n" . "C-c C-n")
    ("y r" . "C-c C-r")

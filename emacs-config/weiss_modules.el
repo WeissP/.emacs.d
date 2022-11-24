@@ -74,7 +74,7 @@
         (rjsx-mode :then ((prettier-js :disabled t)))
         json-mode
         (swagger-mode :github "Nooby/swagger-mode" :disabled t)
-        (cider :disabled t)
+        (cider :disabled nil :then ((zprint :github "git@github.com:DogLooksGood/zprint.el.git")))
         (python :local t :then (yapfify ein))
         (http :then (auto-rename-tag))
         markdown-mode
