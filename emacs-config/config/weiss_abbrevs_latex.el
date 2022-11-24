@@ -190,7 +190,8 @@
     ("fnz" "\\mathbb{N}_0" weiss--ahf)
     ("fn" "\\mathbb{N}" weiss--ahf)
     ("fo" "\\mathcal{O}(▮)" weiss--ahf)
-
+    ("fwlog" "w.l.o.g.\\ " weiss--ahf)
+    
 ;;;;; escape
     ("b" "\\" weiss--ahf)
     ("bb" "\\\\\n" weiss--ahf)
