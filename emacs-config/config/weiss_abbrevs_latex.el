@@ -228,6 +228,7 @@
     ("mnl" "\n\n\\newline" weiss--ahf)    
     ("mms" "\\medskip" weiss--ahf)    
     ("mbs" "\\bigskip" weiss--ahf)    
+    ("mpp" "\\begin{itemize}\n\\item[\\(\\Rightarrow\\)] ▮\n\n\\item[\\(\\Leftarrow\\)] \n\\end{itemize}" weiss--ahf)    
     ("meq" "\\begin{equation*}\n▮\n\\end{equation}" weiss--ahf-indent)    
     ("mal" "\\begin{aligned}\n▮\n\\end{aligned}" weiss--ahf-indent)    
     ("mit" "\\begin{itemize}\n    \\item ▮\n    \\item \n\\end{itemize}" weiss--ahf-indent)    
@@ -238,4 +239,5 @@
     ))
     
 (provide 'weiss_abbrevs_latex)
+
 
