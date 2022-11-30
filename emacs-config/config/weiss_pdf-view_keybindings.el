@@ -28,7 +28,7 @@
      ("h" .  pdf-view-fit-height-to-window)
      ("i" .  image-backward-hscroll)
      ("j" .  (weiss-pdf-next-page (pdf-view-next-page-command) (image-set-window-vscroll 0)))
-     ("k" .  (weiss-pdf-previous-page (pdf-view-previous-page-command) (image-set-window-vscroll 0)))
+     ("k" .  (weiss-pdf-previous-page (pdf-view-previous-page-command) (image-next-line 1000)))
      ("l" .  image-forward-hscroll)
      ("n" .  isearch-forward)
      ("p" .  pdf-view-fit-page-to-window)
