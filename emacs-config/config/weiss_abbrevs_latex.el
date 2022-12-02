@@ -191,6 +191,7 @@
     ("fn" "\\mathbb{N}" weiss--ahf)
     ("fo" "\\mathcal{O}(▮)" weiss--ahf)
     ("fwlog" "w.l.o.g.\\ " weiss--ahf)
+    ("fwrt" "with respect to " weiss--ahf)
     
 ;;;;; escape
     ("b" "\\" weiss--ahf)
@@ -226,6 +227,7 @@
     ("mbbbb" "\\Bigg" weiss--ahf)
     ("mnp" "\n\n\\newpage" weiss--ahf)    
     ("mnl" "\n\n\\newline" weiss--ahf)    
+    ("mss" "\\smallskip" weiss--ahf)    
     ("mms" "\\medskip" weiss--ahf)    
     ("mbs" "\\bigskip" weiss--ahf)    
     ("mpp" "\\begin{itemize}\n\\item[\\(\\Rightarrow\\)] ▮\n\n\\item[\\(\\Leftarrow\\)] \n\\end{itemize}" weiss--ahf)    
