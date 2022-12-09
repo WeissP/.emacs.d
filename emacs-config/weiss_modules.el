@@ -92,7 +92,8 @@
                         go-eldoc))
         (rustic :disabled nil) 
         (sql :then
-             ((sql-indent :github "alex-hhh/emacs-sql-indent")))
+             (ejc-sql
+              (sql-indent :github "alex-hhh/emacs-sql-indent")))
         (haskell :skip-install t :then
                  (haskell-mode
                   (hasky-stack :disabled t)

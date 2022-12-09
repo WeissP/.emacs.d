@@ -151,7 +151,6 @@
    ("l l" .  highlight-symbol)             ;wrap-line
    ("l m" .  shell-command)
    ("l n" .  display-line-numbers-mode)
-   ("l p" .  sql-postgres)
    ("l r" .  dired-toggle-read-only)
    ("l s" .  sudo-edit)
    ("l w" .  toggle-word-wrap)
