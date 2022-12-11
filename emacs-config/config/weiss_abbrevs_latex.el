@@ -206,7 +206,7 @@
 ;;;;; algo2e(code)
     ("cn" "\\;\n" weiss--ahf)
     ("cf" "\\For{\\(▮ \\leftarrow \\) \\KwTo \\(\\)}{\n\n}" weiss--ahf-indent)
-    ("cfun" "\\SetKwFunction{▮}{fun\\_name}\n\\SetKwProg{Fn}{Function}{:}{}\n\\Fn{\\name{$arg1$}}{\n  \\KwRet 1  \\;\n}\n\\BlankLine" weiss--ahf-indent)
+    ("cfun" "\\SetKwFunction{abbrev}{fun\\_name}\n\\SetKwProg{Fn}{Function}{:}{}\n\\Fn{\\abbrev{$arg1$}}{\n  \\KwRet 1  \\;\n}\n\\BlankLine" weiss--ahf-indent)
     ("cw" "\\While{\\(▮\\)}{\n\n}" weiss--ahf-indent)
     ("cfe" "\\ForEach{\\(▮ \\in \\)}{\n\n}" weiss--ahf-indent)
     ("cv" "\\SetKwData{▮}{}" weiss--ahf-indent)
