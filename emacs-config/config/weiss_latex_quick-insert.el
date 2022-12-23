@@ -6,7 +6,7 @@
    ("i" . (weiss-latex-insert-mathit (weiss--quick-add-latex-style "mathit")))
    ("0" . (weiss-latex-insert-texttt (weiss--quick-add-latex-style "texttt")))
    ("=" . (weiss-latex-insert-texttt (weiss--quick-add-latex-style "texttt")))
-   ("t" . (weiss-latex-insert-text (weiss--quick-add-latex-style "text")))
+   ("t" . (weiss-latex-insert-text (weiss--quick-add-latex-style "text" t)))
    ("b" . (weiss-latex-insert-mathbb (weiss--quick-add-latex-style "mathbb")))
    ("r" . (weiss-latex-insert-textrm (weiss--quick-add-latex-style "textrm")))
    ("s" . (weiss-latex-insert-textsc (weiss--quick-add-latex-style "textsc")))

@@ -197,7 +197,8 @@
     ("fmin" "_{min} " weiss--ahf)
     ("fmax" "_{max} " weiss--ahf)
     ("fie" ", i.e.,  " weiss--ahf)
-    
+    ("falgo" "  \\begin{algorithm}\n    \\SetKw{bk}{break}\n    \\SetKw{ct}{continue}\n    \\SetKwFunction{len}{len} \n    \\SetKwFunction{max}{max}\n    \\SetKwInOut{INPUT}{Input}\n    \\SetKwInOut{OUTPUT}{Output}\n    \\INPUT{\\(A\\) \\(\\leftarrow \\) A\n        \\\\ \\(B\\) \\(\\leftarrow \\) B}\n    \\OUTPUT{\\(O\\) \\(\\leftarrow\\) O}\n    \\BlankLine\n    \\Return d\\;\n    \\caption{\\label{alg:label} Algorithm to ▮}\n  \\end{algorithm}    " weiss--ahf)
+
 ;;;;; escape
     ("b" "\\" weiss--ahf)
     ("bb" "\\\\\n" weiss--ahf)

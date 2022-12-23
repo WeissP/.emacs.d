@@ -9,13 +9,16 @@
     (insert (format "$ \\sout{\\textrm{%s}} $" region-string))
     ))
 
-(defun weiss--quick-add-latex-style (latex-style)
+(defun weiss--quick-add-latex-style (latex-style &optional space-p)
   "Quick add latex style"
   (interactive)
   (let ((region-string
          (if (use-region-p)
              (delete-and-extract-region (region-beginning) (region-end))
            (delete-and-extract-region (point) (+ 1 (point))))))
+    (when space-p
+      (setq region-string (format " %s " region-string))
+      )
     (insert (format "\\%s{%s}" latex-style region-string))
     )
   )
