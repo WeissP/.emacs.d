@@ -11,12 +11,11 @@
    '(ejc-company-backend))
 
   (add-hook 'ejc-sql-minor-mode-hook
-            (lambda () (ejc-eldoc-setup)))
+            (lambda ()
+              (ejc-eldoc-setup)  ;; no width limit
+              (ejc-set-column-width-limit nil)))
 
   (advice-add 'ejc-cancel-query :before #'weiss-select-mode-turn-off)
-
-  ;; no width limit
-  (ejc-set-column-width-limit nil)
 
   (ejc-create-connection
    "digivine"
