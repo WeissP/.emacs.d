@@ -5,7 +5,7 @@
 
   (when (display-graphic-p)
     ;; Set default font
-    (cl-loop for font in '("JetBrainsMono" "Fira Code" "DejaVu Sans Mono" "M+1m" "SF Mono" "iosevka" "Hack" "Source Code Pro" 
+    (cl-loop for font in '("JetBrainsMono" "JetBrains Mono" "Fira Code" "DejaVu Sans Mono" "M+1m" "SF Mono" "iosevka" "Hack" "Source Code Pro" 
                            "Menlo" "Monaco" "Consolas")
              when (font-installed-p font)
              return (set-face-attribute 'default nil
@@ -24,6 +24,6 @@
 
   ;; (setq face-font-rescale-alist '(("LXGW WenKai" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))  
 )
-;; (font-installed-p "Futurist Fixed\-width")
+;; (font-installed-p "JetBrains Mono")
 
 (provide 'weiss_ui_font)
