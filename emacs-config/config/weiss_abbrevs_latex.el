@@ -126,6 +126,7 @@
     ("lt" "\\top " weiss--ahf)
     ("lv" "\\vdash " weiss--ahf)
     ("lvd" "\\vDash " weiss--ahf)
+
 ;;;;; equal symbols
     ("es" "\\stackrel{IV}{=} " weiss--ahf)
     ("el" "\\leq " weiss--ahf)
@@ -224,6 +225,8 @@
     ("ml" "\\label{▮}" weiss--ahf)
     ("mlt" "\\left" weiss--ahf)
     ("mrt" "\\right" weiss--ahf)
+    ("mlrl" "\\left\\{ ▮ \\right\\}" weiss--ahf)
+    ("mlrk" "\\left\\[ ▮ \\right\\]" weiss--ahf)
     ("mh" "\\hfill" weiss--ahf)
     ("mn" "\\not" weiss--ahf)
     ("mp" "\\path" weiss--ahf)
