@@ -965,7 +965,7 @@ Version 2017-08-19"
       (deactivate-mark)
       (web-beautify-html-buffer))
      ((eq major-mode 'haskell-mode)
-      (lsp-format-buffer))
+      (ormolu))
      ((eq major-mode 'go-mode)
       (gofmt)
       (lsp-organize-imports)

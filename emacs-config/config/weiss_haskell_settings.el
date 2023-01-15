@@ -1,11 +1,15 @@
 (with-eval-after-load 'haskell-mode
   ;; (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
   ;; (setq haskell-process-path-ghci "~/.ghcup/bin/ghci-9.0.1")
+  ;; (with-eval-after-load 'eglot
+  ;;   (add-to-list 'eglot-server-programs
+  ;;                '(haskell-mode . ("haskell-language-server-wrapper-1.9.0.0" "--lsp"))))
+
   (add-hook 'haskell-mode-hook
             (lambda ()
               (interactive-haskell-mode t)
               (haskell-indentation-mode -1)))
-  ;; (setq haskell-process-type 'stack-ghci)
+  (setq haskell-process-type 'stack-ghci)
   (defun weiss-haskell-load-process-and-switch-buffer ()
     "DOCSTRING"
     (interactive)
