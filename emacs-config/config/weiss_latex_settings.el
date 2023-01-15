@@ -7,7 +7,8 @@
           ))
 
   (setq reftex-ref-macro-prompt nil)
-
+  (add-hook 'LaTeX-mode-hook #'reftex-mode)
+  
   (setq-mode-local
    latex-mode
    company-backends
