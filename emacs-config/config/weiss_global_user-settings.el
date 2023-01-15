@@ -107,6 +107,8 @@
 ;; (defun yas-expand-snippet (&rest args)
 ;;   "avoid installing yas"
 ;;   (interactive))
+(setq auth-sources '("~/.authinfo.gpg" "~/.authinfo"))
+
 
 ;; parent: 
 (provide 'weiss_global_user-settings)
