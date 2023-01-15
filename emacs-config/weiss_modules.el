@@ -4,6 +4,7 @@
         (table :skip-install t)
         rg
         (server  :local t)
+        (email :skip-install t)
         quickrun esup which-key super-save keyfreq bind-key
         (wks :skip-install t :first (;; (weiss-select-mode :local t)
                                      ;; (weiss-temp-insert-mode :local t)
@@ -152,6 +153,7 @@
         (show-paren-mode :skip-install t)
         (mac :skip-install t :when (string= emacs-host (nth 3 emacs-host-list)))
         (agda2-mode :skip-install t)
+        nov
         ))
 
 

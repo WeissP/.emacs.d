@@ -1,14 +1,16 @@
 (defun weiss-insert-file-to-recentf ()
   "DOCSTRING"
   (interactive)
-  (call-process
-   "~/rust/recentf/recentf"
-   nil
-   0
-   t
-   "add"
-   (buffer-file-name)
-   )
+  (when-let ((name (buffer-file-name)))
+    (call-process
+     "~/rust/recentf/recentf"
+     nil
+     0
+     t
+     "add"
+     name
+     )
+    )  
   )
 
 (add-hook 'find-file-hook 'weiss-insert-file-to-recentf)
