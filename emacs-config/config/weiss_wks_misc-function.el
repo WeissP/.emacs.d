@@ -1,3 +1,28 @@
+(defun weiss-json-to-yaml ()
+  "DOCSTRING"
+  (interactive)
+  (let* (
+         (source-path (buffer-file-name))
+         (dest-path (concat (file-name-sans-extension source-path) ".yaml"))
+         (yq (executable-find "yq"))
+         )
+    (find-file dest-path)
+    ;; (message "dest-path: %s" dest-path)
+    (if yq
+        (call-process
+         yq
+         nil
+         t
+         t
+         "-P"
+         "."
+         source-path
+         )
+      (message "program yq is not found")
+      )
+    )
+  )
+
 (defun weiss-alphabet-t (char)
   "DOCSTRING"
   (interactive)
