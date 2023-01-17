@@ -15,6 +15,7 @@
    ("q" . (weiss-org-babel-insert-sql (weiss-insert-pair "#+begin_src sql" "#+end_src" t)))
    ("r" . (weiss-org-babel-insert-rust (weiss-insert-pair "#+begin_src rust" "#+end_src" t)))
    ("s" . (weiss-org-babel-insert-sh (weiss-insert-pair "#+begin_src sh" "#+end_src" t)))
+   ("m" . (weiss-org-babel-insert-mustache (weiss-insert-pair "#+begin_src mustache" "#+end_src" t)))
    ("RET" . (weiss-org-latex-insert-newline (insert "$\\\\$\n")))
    ;; ("c" . (weiss-org-latex-insert-color (weiss-insert-pair "$\\color{code}\\texttt{" "}$" nil)))
    )
