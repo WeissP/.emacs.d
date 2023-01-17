@@ -155,6 +155,7 @@
         (agda2-mode :skip-install t)
         nov
         mustache-mode
+        smtpmail-multi
         ))
 
 

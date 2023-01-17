@@ -51,6 +51,11 @@
   (wks-unset-key debugger-mode-map '("h" "j" "i" "l" "k")))
 (wks-unset-key messages-buffer-mode-map '("h"))
 
+(with-eval-after-load 'message
+  (wks-unset-key message-mode-map '("<tab>" "TAB"))
+  )
+
+
 (with-eval-after-load 'image-mode
   (wks-unset-key image-mode-map '("SPC" "a" "s"))
   (wks-define-key
