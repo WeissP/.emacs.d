@@ -67,8 +67,8 @@
  '(font-lock-type-face ((t (:foreground "#986801"))))
  '(font-lock-variable-name-face
    ((t
-     (:underline
-      (:color foreground-color :style line)
+     (;; :underline
+      ;; (:color foreground-color :style line)
       :foreground "#383a42"))))
  '(font-lock-warning-face
    ((t (:inherit (warning)))))
