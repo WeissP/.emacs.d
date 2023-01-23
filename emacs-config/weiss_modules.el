@@ -97,6 +97,7 @@
               (sql-indent :github "alex-hhh/emacs-sql-indent")))
         (haskell :skip-install t :then
                  (haskell-mode
+                  dante
                   (hasky-stack :disabled t)
                   ormolu))
         (lsp-mode :disabled t :first (yasnippet) :then (lsp-ui lsp-java ccls lsp-haskell lsp-pyright))
