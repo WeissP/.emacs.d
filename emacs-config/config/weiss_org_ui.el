@@ -10,12 +10,13 @@
  org-pretty-entities nil
  ;; hide ** //
  org-hide-emphasis-markers t
+ org-n-level-faces 15
  )
 
 
 
 (with-eval-after-load 'org
-    (add-hook 'org-mode-hook (lambda () (variable-pitch-mode)))
+  (add-hook 'org-mode-hook (lambda () (variable-pitch-mode)))
   (defun weiss-shrink-window-if-larger-than-buffer (&optional window min-window-size)
     "Weiss: add optional arg min-window-size
 Shrink height of WINDOW if its buffer doesn't need so many lines.

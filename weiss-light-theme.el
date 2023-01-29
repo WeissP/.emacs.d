@@ -283,5 +283,11 @@
      (:height 1.0 :foreground "#040404" :weight normal :inherit 'org-level-6))))
  '(org-level-8
    ((t
-     (:height 1.0 :foreground "#040404" :weight normal :inherit 'org-level-7)))))
+     (:height 1.0 :foreground "#040404" :weight normal :inherit 'org-level-7))))
+ '(org-level-9
+   ((t
+     (:height 1.0 :foreground "#040404" :weight normal :inherit 'org-level-8))))
+ '(org-level-10
+   ((t
+     (:height 1.0 :foreground "#040404" :weight normal :inherit 'org-level-9)))))
 ;; (provide-theme 'weiss-light)
