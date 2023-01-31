@@ -20,11 +20,6 @@
        ((string-prefix-p "/ssh:" target-path)
         (dolist (x marked-files)
           (let ((target-paths (split-string target-path ":")))
-            (message "%s" (format "rsync -PaAXv -e ssh %s \"%s:%s\""
-                                  x
-                                  (nth 1 target-paths)
-                                  (nth 2 target-paths)
-                                  ))
             (weiss-start-process "rsync-ssh"
                                  (format "rsync -PaAXv -e ssh %s \"%s:%s\""
                                          x
