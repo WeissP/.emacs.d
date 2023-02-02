@@ -63,7 +63,50 @@
            (string-prefix-p  "https://github.com/" git-path)
            (string-prefix-p  "git@" git-path))
           (weiss-start-process "git clone" command)
-        (message "check your clipboard!" )))))
+        (message "check your clipboard!" ))))
+
+  (defun weiss-extract-audio (video-path out-dir &optional audio-type)
+    "DOCSTRING"
+    (interactive)
+    (let* ((audio-type (or audio-type "aac"))
+           (bangou (weiss-extract-bangou video-path))
+           (out-path (format "%s/%s.%s" out-dir bangou audio-type))
+           )
+      (weiss-start-process
+       (format "Extracting audio from %s" video-path)
+       (format "ffmpeg -i \"%s\" -vn -acodec copy \"%s\" " video-path out-path )) 
+      )
+    )
+
+  (defun weiss-dired-extract-audios ()
+    "DOCSTRING"
+    (interactive)
+    (let* ((videos (dired-get-marked-files nil nil nil nil t))
+           (out-dir (expand-file-name "~/Downloads"))
+           )
+      (dolist (video videos) 
+        (weiss-extract-audio video out-dir)
+        )
+      ))
+
+  (defun weiss-dired-merge-videos ()
+    "merge videos by its lexicographical order"
+    (interactive)
+    (let* ((input-file (concat user-emacs-directory ".temp/videomerger"))
+           (videos (dired-get-marked-files nil nil nil nil t))
+           (new-name (read-string  "new video name: "  (format "%s" (file-name-nondirectory (car videos)))))
+           (cmd (format "ffmpeg -f concat -safe 0 -i %s -c copy '%s%s'"  input-file (file-name-directory (car videos)) new-name) )
+           )
+      (if (file-exists-p new-name)
+          (message "new-name: %s already exists!" new-name)
+        (with-temp-buffer
+          (insert (mapconcat (lambda (x) (format "file '%s'" x)) videos "\n"))
+          (sort-lines nil (point-min) (point-max))
+          (write-region (point-min) (point-max) input-file))
+        (weiss-start-process "ffmpeg_merge" cmd)
+        )
+      ))
+  )
 
 ;; parent: 
 (provide 'weiss_dired_process)

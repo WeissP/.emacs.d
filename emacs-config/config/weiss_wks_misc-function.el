@@ -1,3 +1,9 @@
+(defun weiss-extract-bangou (s)
+  "DOCSTRING"
+  (string-match "[a-zA-Z]\\{3,5\\}-?[0-9]\\{3\\}" s)
+  (match-string 0 s)
+  )
+
 (defun weiss-json-to-yaml ()
   "DOCSTRING"
   (interactive)
@@ -308,7 +314,7 @@
          )
     (start-process-shell-command proc-name b command)
     (display-buffer b)))
-;; (weiss-start-process "echo" "echo 1")
+
 (defun weiss-eval-last-sexp-this-line()
   "eval last sexp this line"
   (interactive)
