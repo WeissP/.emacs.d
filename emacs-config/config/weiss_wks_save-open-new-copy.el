@@ -293,18 +293,23 @@ Version 2015-10-14"
     (setq buffer-offer-save t)
     $buf))
 
-(defun weiss-mplayer-video (file)
+(defun weiss-mplayer-video (file &optional subtitle-path)
   "DOCSTRING"
   (interactive)
-    (start-process-shell-command
+  (start-process-shell-command
    "mplayer" nil
-   (format "mplayer -ao pulse -softvol -softvol-max 2000 -title  \"%s\" -fs \"%s\""
+   (format "mplayer -ao pulse -softvol -softvol-max 2000 -title  \"%s\" -fs \"%s\" %s"
            (thread-last file
                         (file-name-nondirectory)
                         (file-name-sans-extension)
                         (s-replace "\"" "\"")
                         )
-           file)))
+           file
+           (if subtitle-path
+               (format "-sub \"%s\"" subtitle-path)
+             ""
+             )
+           )))
 
 (defun xah-open-in-external-app (&optional @fname)
   "Open the current file or dired marked files in external app.

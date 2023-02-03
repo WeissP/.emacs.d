@@ -22,10 +22,11 @@
 (defun weiss-single-hand-play-movie ()
   "DOCSTRING"
   (interactive)
-  (let ((file (car (dired-get-marked-files nil nil nil nil t))))
-    (weiss-mplayer-video file)))
-
-
+  (let* ((file (car (dired-get-marked-files nil nil nil nil t)))
+         (bangou (weiss-extract-bangou file))
+         (subtitle-path (when bangou (format "%ssubtitles/%s.srt" (file-name-directory file) bangou)))
+         )
+    (weiss-mplayer-video file (when (file-exists-p subtitle-path) subtitle-path))))
 
 (define-minor-mode weiss-dired-single-handed-mode
   "weiss-dired-single-handed-mode"
