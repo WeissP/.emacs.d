@@ -16,6 +16,11 @@
       (rime--return)
       )
     )
+
+  (when (string= emacs-host (nth 3 emacs-host-list))
+    (setq rime-emacs-module-header-root "/opt/homebrew/include/")
+    (setq rime-share-data-dir "/Users/bozhoubai/Library/Rime/")    
+    )
   )
 
 ;; parent: 
