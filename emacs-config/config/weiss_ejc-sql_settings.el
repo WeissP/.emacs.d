@@ -17,11 +17,16 @@
 
   (advice-add 'ejc-cancel-query :before #'weiss-select-mode-turn-off)
 
+  (setq weiss/postgres-user
+        (pcase emacs-host
+          ("arch" "weiss" )
+          ("mac" "bozhoubai")))
+
   (ejc-create-connection
    "digivine"
    :classpath "[/home/weiss/.m2/repository/postgresql/postgresql/9.3-1102.jdbc41/postgresql-9.3-1102.jdbc41.jar]"
    :password ""
-   :user "weiss"
+   :user weiss/postgres-user
    :port "5432"
    :host "localhost"
    :dbname "digivine"
