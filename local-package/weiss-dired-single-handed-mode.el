@@ -26,6 +26,7 @@
          (bangou (weiss-extract-bangou file))
          (subtitle-path (when bangou (format "%ssubtitles/%s.srt" (file-name-directory file) bangou)))
          )
+    (message "subtitle-path: %s" subtitle-path)
     (weiss-mplayer-video file (when (file-exists-p subtitle-path) subtitle-path))))
 
 (define-minor-mode weiss-dired-single-handed-mode

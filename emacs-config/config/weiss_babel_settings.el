@@ -18,6 +18,7 @@
                            (C . t)
                            (plantuml . t)
                            (yaml . t)
+                           (agda . t)
                            (conf-toml . t)))
 
 ;; parent: 

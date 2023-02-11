@@ -51,16 +51,28 @@
   ()
   (wks-vanilla-mode-enable))
 
+(defvar wks-vanilla-mode-auto-enable-p t)
+(defun disable-wks-vanilla-mode (&rest args)
+  "DOCSTRING"
+  (interactive)
+  (setq wks-vanilla-mode-auto-enable-p nil)
+  )
+(defun disable-wks-vanilla-mode-interactive (&rest args)
+  "DOCSTRING"
+  (interactive "P")
+  (setq wks-vanilla-mode-auto-enable-p nil)
+  )
+
 (defun wks-vanilla-mode-auto-enable (&rest args)
   "DOCSTRING"
   (interactive)
-  ;; (message "last-command: %s" last-command)
-  ;; (message "real-last-command: %s" real-last-command)
-  ;; (message "this-command: %s" this-command)
   ;; (message "real-this-command: %s" real-this-command)
-  (unless (member real-this-command wks-vanilla-black-list)
+  (when wks-vanilla-mode-auto-enable-p
     (wks-vanilla-mode 1)
-    (wks-vanilla-bind-keymap)))
+    (wks-vanilla-bind-keymap)
+    )
+  (setq wks-vanilla-mode-auto-enable-p t)
+  )
 
 (dolist (x '(snails-mode-hook minibuffer-setup-hook))
 

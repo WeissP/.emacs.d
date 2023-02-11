@@ -27,10 +27,7 @@
        (weiss-dired-single-handed-mode
         (set (make-local-variable 'hl-line-face) 'emphasis-hl-line)
         )
-       ((eq major-mode 'dired-mode)
-        (set (make-local-variable 'hl-line-face) 'normal-hl-line)
-        )
-       ((eq major-mode 'org-agenda-mode)
+       ((member major-mode '(dired-mode org-agenda-mode notmuch-tree-mode))
         (set (make-local-variable 'hl-line-face) 'normal-hl-line)
         )
        ((or (eq major-mode 'telega-root-mode) (eq major-mode 'telega-chat-mode))
@@ -41,7 +38,7 @@
       (hl-line-mode 1)
       )
     )
-
+  
   (defun weiss-toggle-hl-line ()
     "toggle hl line using weiss-enable-hl-line"
     (interactive)

@@ -52,6 +52,16 @@
                   (company-dabbrev-code company-gtags company-etags company-keywords)
                   company-oddmuse company-dabbrev))
 
+  (setq-mode-local
+   nix-mode
+   company-backends
+   '(
+     company-nixos-options
+     company-nix
+     company-dabbrev company-bbdb company-oddmuse company-eclim company-semantic company-xcode company-cmake company-capf company-files
+     (company-dabbrev-code company-gtags company-etags company-keywords))
+   )
+
   (defun weiss-company-select-next-or-toggle-main-frame ()
     "DOCSTRING"
     (interactive)

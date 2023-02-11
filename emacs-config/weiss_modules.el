@@ -157,6 +157,8 @@
         nov
         mustache-mode
         smtpmail-multi
+        notmuch
+        (nix-mode :then (nixos-options company-nixos-options))
         ))
 
 

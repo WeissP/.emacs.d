@@ -54,8 +54,6 @@
     "delete files without ask"
     (interactive)
     (dired-delete-file weiss-dired-marked-files)
-    ;; (dired-delete-file "~/Downloads/mp1.pdf")
-    ;; (message "%s" "123")
     )
 
   (defun weiss-revert-all-dired-buffer ()

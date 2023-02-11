@@ -1,4 +1,6 @@
 (with-eval-after-load 'dired
+  (advice-add 'dired-query :before #'disable-wks-vanilla-mode)
+  
   (wks-unset-key
    dired-mode-map
    (mapcar 'number-to-string (number-sequence 0 9))

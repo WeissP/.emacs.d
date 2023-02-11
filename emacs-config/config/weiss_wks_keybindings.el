@@ -143,6 +143,13 @@
    ("C-M-S-s-k" . weiss-switch-to-same-side-frame)
    ("C-M-S-s-l" . weiss-switch-to-otherside-top-frame)))
 
+(wks-define-key
+ minibuffer-local-map
+ ""
+ '(
+   ("<f12>" . minibuffer-force-complete)
+   ))
+
 (wks-trans-keys
  '(("y c" . "C-c C-c")
    ("y d" . "C-c C-d")
@@ -151,6 +158,7 @@
    ("y l" . "C-c C-l")
    ("y o" . "C-c C-o")
    ("y u" . "C-c '")
+   ("y s" . "C-c C-s")
    ("y SPC" . "C-c C-SPC")
    ("y t" . "C-c C-t")
    ("y n" . "C-c C-n")
