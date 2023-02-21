@@ -63,6 +63,7 @@
   (setq wks-vanilla-mode-auto-enable-p nil)
   )
 
+(advice-add 'read-char-choice :before #'disable-wks-vanilla-mode)
 (defun wks-vanilla-mode-auto-enable (&rest args)
   "DOCSTRING"
   (interactive)

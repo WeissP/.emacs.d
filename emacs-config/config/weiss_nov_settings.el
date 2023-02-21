@@ -19,7 +19,6 @@
     ;; (call-interactively 'visual-fill-column-mode)
     )
 
-  (message ": %s" (window-total-width ))
   (add-hook 'nov-mode-hook 'weiss-nov-setup)
 
   )

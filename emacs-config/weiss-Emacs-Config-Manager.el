@@ -118,7 +118,6 @@
                         '(,name :files
                                 ,(plist-get plist :file)))))
                ((plist-member plist :straight)
-                ;; (message "quelpa: %s" (plist-get plist :quelpa))
                 (setq install-command
                       `(straight-use-package
                         ',(plist-get plist :straight))))

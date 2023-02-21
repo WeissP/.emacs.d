@@ -4,7 +4,6 @@
    "SPC "
    '(
      ("l p" .  ejc-get-temp-editor-buffer)
-     ("j t" .  ejc-describe-table)
      ))
   
   (wks-define-key
@@ -23,6 +22,7 @@
      ("<backtab>" . weiss-indent-paragraph)
      ("t c" . ejc-connect)
      ("t e" . ejc-get-temp-editor-buffer)
+     ("t t" . ejc-describe-table)
      )
    )
   )

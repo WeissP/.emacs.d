@@ -31,6 +31,16 @@
    :host "localhost"
    :dbname "digivine"
    :dbtype "postgresql")
+
+  (ejc-create-connection
+   "recentf_pg"
+   :classpath "[/home/weiss/.m2/repository/postgresql/postgresql/9.3-1102.jdbc41/postgresql-9.3-1102.jdbc41.jar]"
+   :password ""
+   :user "weiss"
+   :port "5432"
+   :host "localhost"
+   :dbname "recentf"
+   :dbtype "postgresql")
   )
 
 (provide 'weiss_ejc-sql_settings)

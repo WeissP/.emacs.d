@@ -127,7 +127,7 @@
                   )
         (flyspell :skip-install t :then (wucuo))
         rime
-        telega
+        (telega :straight (telega :type git :host github :repo "zevlg/telega.el" :branch "release-0.8.0"))
         (yasdcv :local t)
         projectile maxima magit
         (tramp :local t :then (sudo-edit docker-tramp))
@@ -158,7 +158,9 @@
         mustache-mode
         smtpmail-multi
         notmuch
+        dotenv-mode
         (nix-mode :then (nixos-options company-nixos-options))
+        apheleia
         ))
 
 

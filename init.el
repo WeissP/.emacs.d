@@ -9,6 +9,7 @@
 
 (load (with-init-path "/weiss-emacs-host.el"))
 (load (with-init-path "/emacs-config/weiss_init.el"))
+(load (with-init-path "/nix-extra.el"))
 
 (put 'dired-find-alternate-file 'disabled nil)
 

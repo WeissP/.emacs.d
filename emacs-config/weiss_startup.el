@@ -12,6 +12,9 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+(setq straight-disable-native-compile t)
+(setq native-comp-deferred-compilation nil)
+(setq native-comp-speed -1)
 
 (add-to-list 'load-path weiss/config-path)
 (add-to-list 'load-path (concat weiss/config-path "config"))

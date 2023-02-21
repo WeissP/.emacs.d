@@ -18,8 +18,9 @@
                            (C . t)
                            (plantuml . t)
                            (yaml . t)
-                           (agda . t)
-                           (conf-toml . t)))
+                           (agda2 . t)
+                           (conf-toml . t)
+                           (nix . t)))
 
 ;; parent: 
 (provide 'weiss_babel_settings)
