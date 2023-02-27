@@ -1,4 +1,4 @@
-(with-eval-after-load 'org-mode
+(with-eval-after-load 'org
   (when (boundp 'org-mode-abbrev-table)
     (clear-abbrev-table org-mode-abbrev-table))
 
@@ -44,8 +44,8 @@
       ("fst" "the first " weiss--ahf)    
       ("json" "JSON " weiss--ahf)    
       ("joda" "JODA " weiss--ahf)    
+      ("algo" "algorithm" weiss--ahf)
 ;;;;; for Germany language
-      ("algo" "Algorithmus" weiss--ahf)
       ("ht" "heute" weiss--ahf)
       ("ad" "außerdem" weiss--ahf)
       ("ag" "Aufgabe" weiss--ahf)

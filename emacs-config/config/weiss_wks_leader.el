@@ -57,12 +57,10 @@
 
    ("d b" .  weiss-save-current-content)
    ;; ("d d" .  weiss-switch-and-bookmarks-search)
-   ("d j" . yasdcv-translate-input)
    ("d l" .  list-buffers)
    ("d m" .  magit-status)
    ("d n" .  weiss-new-temp-file)
    ("d o" .  xah-open-file-at-cursor)
-   ("d s" . yasdcv-translate-at-point)
 
    ("d w" .  xah-open-in-external-app)
 
@@ -75,7 +73,6 @@
 
    ("i d" .  weiss-insert-date)
    ("i e" .  find-file)
-   ("i j" .  yasdcv-translate-input)
    ("i v" .  yank-pop)
    ("i m s" .  all-the-icons-insert)
    ("i i" .  imenu)

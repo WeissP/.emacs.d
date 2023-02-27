@@ -16,7 +16,7 @@
                 "   "
                 (,line-number-mode "L%l/")
                 (,line-number-mode weiss-mode-line-buffer-line-count)
-                (,column-number-mode " C%c ")        
+                (,column-number-mode (5 " C%c "))        
                 ;; weiss-mode-line-flycheck-errors
                 "   "
                 weiss-mode-line-projectile-root-dir

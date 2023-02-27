@@ -15,20 +15,16 @@
     (interactive)
     (setq mode-line-format
           `(
-            " "
-            (:eval (if wks-vanilla-mode "Vanilla" "Normal "))
-            "   "
-            weiss-mode-line-pdf-pages
-            "   "
-            "Root:" weiss-mode-line-projectile-root-dir
             "   "
             "%e" mode-line-buffer-identification "   " 
+            " "
+            weiss-mode-line-pdf-pages
+            "   "
             (vc-mode vc-mode)
             "  " mode-line-misc-info mode-line-end-spaces
             )
           ))
   (add-hook 'pdf-view-change-page-hook #'weiss-mode-line-pdf-mode)  
-  ;; (remove-hook 'pdf-view-mode #'weiss-mode-line-pdf-mode)  
   )
 
 ;; parent: ui

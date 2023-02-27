@@ -274,7 +274,7 @@ Version 2015-10-14"
   (interactive)
   (let ((prefix "temp-")
         (date (format-time-string "%S-[%H-%M]-{%0d.%m.%Y}"))
-        (dir (concat user-emacs-directory "/.temp/"))
+        (dir (with-init-path "/.temp/"))
         (ext ".el"))
     (find-file (concat dir prefix date ext))))
 

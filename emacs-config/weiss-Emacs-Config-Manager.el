@@ -84,10 +84,6 @@
                     (eval condition))))
             (weiss-load-module (plist-get plist :first) log-file)
 
-            (weiss-require-config-by-class
-             (symbol-name name)
-             log-file)
-
             (setq install-command nil)            
             (cond
              ((plist-get plist :local)
@@ -145,8 +141,7 @@
                          log-file
                          (format "%s" cmd))
                       (eval cmd)) 
-                    )
-                  
+                    )                  
                   )              
               )
             (when (plist-member plist :load)
@@ -155,7 +150,9 @@
                                         (symbol-name name))
                 (require name))
               )              
-            
+            (weiss-require-config-by-class
+             (symbol-name name)
+             log-file)            
             (weiss-load-module (plist-get plist :then) log-file)
             ))
       (unless (emacs-config-disabled-per-host-p package)                

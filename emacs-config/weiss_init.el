@@ -11,12 +11,17 @@
 (defun weiss-update-local-packages-autoloads ()
   "DOCSTRING"
   (interactive)
-  (let ((dirs (seq-filter
-               'file-directory-p
-               (directory-files weiss/local-package-path)))
-        )
-    (make-directory-autoloads dirs weiss/local-package-path-autoloads)    
+  (dolist (dir (seq-filter
+                'file-directory-p
+                (directory-files weiss/local-package-path t "^[^.]") ;ignore /. and /..
+                )) 
+    (make-directory-autoloads dir weiss/local-package-path-autoloads)
     )
+  )
+
+(unless (file-exists-p weiss/local-package-path-autoloads)
+  (message "autoloads of local packages do not exist, generating...")
+  (weiss-update-local-packages-autoloads)
   )
 (load weiss/local-package-path-autoloads)
 

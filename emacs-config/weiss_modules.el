@@ -2,9 +2,8 @@
       '((global :local t)
         (s :autoloads (s-replace))
         exec-path-from-shell
-        ;; dash
         rg
-        (server :local t)
+        (server :local t :load t)
         (email :local t)
         quickrun esup which-key (super-save :load t) bind-key
         (keyfreq :disabled t)
@@ -129,11 +128,12 @@
         (flyspell :local t :then (wucuo))
         rime
         (telega :straight (telega :type git :host github :repo "zevlg/telega.el" :branch "release-0.8.0"))
+        fanyi
         ;; (yasdcv :local t)
         ;; projectile 
         (tramp :local t :then (sudo-edit docker-tramp))
         (recentf-db :local t)
-        gcmh
+        (gcmh :load t)
         (weiss-paredit :disabled t :local t)
         (citre :github "universal-ctags/citre" :disabled nil)
         (elfmt :github "git@github.com:riscy/elfmt.git")
@@ -153,7 +153,7 @@
                     ((agda-input :local t)))
         nov
         mustache-mode
-        smtpmail-multi
+        (smtpmail-multi :disabled t)
         notmuch
         dotenv-mode
         nix-mode
