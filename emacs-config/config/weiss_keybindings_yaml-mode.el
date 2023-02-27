@@ -1,4 +1,4 @@
-(with-eval-after-load 'keybindings
+(with-eval-after-load 'yaml-mode
   (wks-unset-key yaml-mode-map '("." "-"))
   )
 

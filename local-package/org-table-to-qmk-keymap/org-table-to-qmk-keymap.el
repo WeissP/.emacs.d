@@ -79,6 +79,7 @@
     )
   )
 
+;;;###autoload
 (defun tbl2qmk-convert-region ()
   "DOCSTRING"
   (interactive)

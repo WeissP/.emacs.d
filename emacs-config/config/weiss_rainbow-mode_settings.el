@@ -1,6 +1,6 @@
-(with-eval-after-load 'rainbow-mode
-  (add-hook 'prog-mode #'rainbow-mode)
+(add-hook 'prog-mode #'rainbow-mode)
 
+(with-eval-after-load 'rainbow-mode
   (setq
    rainbow-html-colors nil
    rainbow-html-colors nil

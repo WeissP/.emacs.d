@@ -1,7 +1,8 @@
 (add-to-list 'auto-mode-alist '("\\.[pP][dD][fF]\\'" . pdf-view-mode))
 (add-hook 'pdf-annot-list-mode-hook #'hide-mode-line-mode)
 
-(with-eval-after-load 'pdf-tools
+(with-eval-after-load 'pdf-view
+  (require 'pdf-tools)
   (setq-default pdf-view-display-size 'fit-page
                 pdf-view-use-scaling t
                 pdf-view-use-imagemagick nil)

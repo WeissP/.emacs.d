@@ -19,7 +19,7 @@
                 (,column-number-mode " C%c ")        
                 ;; weiss-mode-line-flycheck-errors
                 "   "
-                "Root:" weiss-mode-line-projectile-root-dir
+                weiss-mode-line-projectile-root-dir
                 "   "
                 "%e" mode-line-buffer-identification "   " 
                 ;; weiss-mode-line-git

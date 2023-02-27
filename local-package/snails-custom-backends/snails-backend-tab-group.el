@@ -1,11 +1,4 @@
-;; file-bookmark
-
-;;; Require
 (require 'snails-core)
-;; (require 'bookmark)
-
-;;; Code:
-
 
 (snails-create-sync-backend
  :name "Tab-Group"
@@ -34,6 +27,7 @@
 
  :candidate-do (lambda
                  (candidate)
+                 (require 'tab-line)
                  (pcase candidate
                    ("[unbind group]" (weiss-tab-unbind-group))
                    (_ (weiss-tab-bind-group candidate)))))
@@ -45,6 +39,8 @@
                      (input)
                      (let ((current-group (weiss-tab-get-current-group-name))
                            candidates)
+                       (unless weiss-file-groups 
+                         (weiss-load-file-groups))
                        (dolist (group
                                 (mapcar 'symbol-name
                                         (seq-filter
@@ -59,8 +55,9 @@
 
  :candidate-do (lambda
                  (candidate)
+                 (require 'tab-line)
                  (weiss-load-file-group-to-tab candidate)
                  (weiss-tab-bind-group candidate)))
 
 (provide 'snails-backend-tab-group)
-;; file-bookmark:1 ends here
+

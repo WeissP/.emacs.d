@@ -7,7 +7,7 @@
 (defvar weiss-org-sp-sharp-end "^#\\+end_src"
   "Shortcut for the org's #+ regex.")
 
-(defvar weiss-org-sp-regex "^\\(?:\\*\\)"
+(defvar weiss-org-sp-regex "^\\(?:\\*+ \\)"
   "Shortcut for weiss-org-sp's special regex.")
 ;; (setq weiss-org-sp-regex "^\\(?:#\\+\\(?:\\(?:begin\\|end\\)_src\\)\\|\\*\\)" )
 
@@ -21,10 +21,11 @@ When point is special, alphanumeric keys call commands instead of
 calling `self-insert-command'."
   (and (bolp)
        (or
-        (looking-at weiss-org-sp-regex)
+        ;; (looking-at weiss-org-sp-regex)
         ;; (looking-at weiss-org-sp-sharp)
         ;; (weiss-org-sp--at-property-p)
-        (looking-back "^\\*+" (line-beginning-position))
+        ;; (looking-back "^\\*+" (line-beginning-position))
+        (looking-at "^\\*+ ")
         (looking-at "CLOCK:"))))
 
 (defun weiss-org-sp--ensure-visible ()
@@ -52,4 +53,4 @@ calling `self-insert-command'."
   (message ": %s" (weiss-org-sp--special-p)))
 
 ;; parent: org
-(provide 'weiss_weiss-org-sp-mode_predicate)
+(provide 'weiss-org-sp_predicate)

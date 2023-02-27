@@ -1,11 +1,10 @@
-(setq
- org-tag-alist '(("China" . ?c)("shoppingList" . ?s)("board-game" . ?b)("emacs" . ?e) ("video" . ?v)("misc" . ?m)("article" . ?a) ("eaf") ("snails") ("dired")("roam"))
- org-tags-column -80
- org-fast-tag-selection-single-key t
-
- )
-
 (with-eval-after-load 'org
+  (setq
+   org-tag-alist '(("China" . ?c)("shoppingList" . ?s)("board-game" . ?b)("emacs" . ?e) ("video" . ?v)("misc" . ?m)("article" . ?a) ("eaf") ("snails") ("dired")("roam"))
+   org-tags-column -80
+   org-fast-tag-selection-single-key t
+   )
+
   (defun weiss-set-org-tags (&optional arg)
     "set tags with counsel, using org-use-fast-tag-selection if `arg' =4, align tags if `arg' = 16"
     (interactive "P")

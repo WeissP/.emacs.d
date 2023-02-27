@@ -1,14 +1,16 @@
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(when (fboundp 'scroll-bar-mode)
-  (scroll-bar-mode -1))
+(setq gc-cons-threshold most-positive-fixnum)
 
-;; (ignore-errors (savehist-mode 1))
-;; (save-place-mode 1)
+;; Inhibit resizing frame
+(setq frame-inhibit-implied-resize t)
+
+;; Faster to disable these here (before they've been initialized)
+(push '(menu-bar-lines . 0) default-frame-alist)
+(push '(tool-bar-lines . 0) default-frame-alist)
+(push '(vertical-scroll-bars) default-frame-alist)
+(when (featurep 'ns)
+  (push '(ns-transparent-titlebar . t) default-frame-alist))
+(setq-default mode-line-format nil)
+
 
 (setq package-enable-at-startup nil)
 
-;; (when (file-exists-p (expand-file-name "~/.emacs.d/emacs.pdmp"))
-;;   (setq package-enable-at-startup nil
-;;         file-name-handler-alist nil
-;;         auto-window-vscroll nil))

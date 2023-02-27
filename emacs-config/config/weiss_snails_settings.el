@@ -21,39 +21,25 @@
    snails-default-show-prefix-tips nil
    snails-fuz-library-load-status "unload")
 
-  (require 'snails-backend-command)
   (require 'snails-backend-buffer)
-  (require 'snails-backend-projectile)
-  (require 'snails-backend-imenu)
-  (require 'snails-backend-directory-files)
-  (require 'snails-backend-current-buffer)
   (require 'snails-backend-search-pdf)
   (require 'snails-backend-emacs-config)
-  (with-eval-after-load 'org-roam (require 'snails-backend-org-roam))
-  (require 'snails-backend-file-bookmark)
-  (require 'snails-backend-filter-buffer)
-  ;; (require 'snails-backend-recentf-weiss)
-  (require 'snails-backend-rg-curdir)
-  (require 'snails-backend-filter-buffer)
-  (require 'snails-backend-preview)
+  (with-eval-after-load 'org-roam (require 'snails-backend-org-roam))  
+  (require 'snails-backend-filter-buffer)  
   (require 'snails-backend-recentf-db)
   (require 'snails-backend-tab-group)
 
   (setq snails-prefix-backends
-        '((";"
-           '(snails-backend-projectile snails-backend-fd snails-backend-rg-curdir))
-          (","
-           '(snails-backend-imenu snails-backend-directory-files snails-backend-current-buffer))
-          ("=" '(snails-backend-buffer))
+        '(("=" '(snails-backend-buffer))
           ("?" '(snails-backend-file-group snails-backend-tab-group))
           (":" '(snails-backend-search-pdf))))
 
   (setq snails-default-backends
-        '(snails-backend-preview
-          snails-backend-filter-buffer
+        '(snails-backend-filter-buffer
           snails-backend-recentf-db
           snails-backend-emacs-config
           snails-backend-emacs-config-new))
+
 
   (defun weiss-snails-cmds ()
     "DOCSTRING"
@@ -63,20 +49,16 @@
 
   (with-eval-after-load 'snails-roam
     (setq snails-default-backends
-          '(snails-backend-preview
-            snails-backend-filter-buffer
-            snails-backend-recentf-db
-            snails-backend-emacs-config
-            snails-backend-file-bookmark
-            snails-backend-org-roam-link
-            snails-backend-org-roam-focusing
-            snails-backend-org-roam-uc
-            snails-backend-org-roam-project
-            snails-backend-org-roam-note
-            snails-backend-org-roam-tutorial
-            snails-backend-org-roam-all
-            snails-backend-org-roam-new
-            snails-backend-emacs-config-new)))
+          (append snails-default-backends 
+                  '(snails-backend-org-roam-link
+                    snails-backend-org-roam-focusing
+                    snails-backend-org-roam-uc
+                    snails-backend-org-roam-project
+                    snails-backend-org-roam-note
+                    snails-backend-org-roam-tutorial
+                    snails-backend-org-roam-all
+                    snails-backend-org-roam-new
+                    snails-backend-emacs-config-new))))
 
   )
 

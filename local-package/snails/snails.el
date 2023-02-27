@@ -82,27 +82,7 @@
 ;;; Require
 (require 'snails-core)
 (require 'snails-extensions)
-(require 'snails-backend-buffer)
-(require 'snails-backend-current-buffer)
-;; (require 'snails-backend-recentf)
-(require 'snails-backend-awesome-tab-group)
-(require 'snails-backend-fd)
-(require 'snails-backend-mdfind)
-(require 'snails-backend-imenu)
-(require 'snails-backend-command)
-(require 'snails-backend-bookmark)
-(require 'snails-backend-rg)
-(require 'snails-backend-everything)
-(require 'snails-backend-projectile)
-(require 'snails-backend-directory-files)
-(require 'snails-backend-eaf-pdf-table)
-(require 'snails-backend-eaf-browser-history)
-(require 'snails-backend-eaf-browser-open)
-(require 'snails-backend-eaf-browser-search)
-(require 'snails-backend-eaf-github-search)
-(require 'snails-backend-google-suggestion)
-(require 'snails-backend-fasd)
-(require 'snails-backend-search-pdf)
+
 
 (provide 'snails)
 ;;; snails.el ends here

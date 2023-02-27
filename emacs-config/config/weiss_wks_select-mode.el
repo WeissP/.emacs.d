@@ -52,36 +52,31 @@
      (advice-add cmd :before #'weiss-select-mode-turn-on-mark))
    cmds))
 
-(with-eval-after-load 'expand-region
-  (let ((cmds
-         '(xah-forward-right-bracket
-           xah-backward-left-bracket
-           xah-select-block
-           weiss-select-sexp
-           exchange-point-and-mark
-           weiss-mark-brackets
-           mark-defun
-           weiss-select-sexp
-           weiss-expand-region-by-word
-           weiss-contract-region-by-word
-           weiss-expand-region-by-sexp
-           weiss-contract-region-by-sexp
-           mark-whole-buffer
-           weiss-move-to-next-punctuation
-           weiss-move-to-previous-punctuation
-           weiss-puni-forward-sexp
-           weiss-puni-backward-sexp
-           ;; paredit-forward
-           ;; paredit-backward
-           ;; xref-find-definitions
-           ;; er/expand-region
-           weiss-tsc-expand-region
-           weiss-split-region
-           )))
-    (weiss-select-add-advice-turn-on cmds))
-  (advice-add 'er/expand-region :after #'weiss-select-mode-turn-on-p-interactive)
-  ;; (advice-add 'xref-find-definitions :after #'weiss-select-mode-turn-on-xref-interactive)
-  )
+(let ((cmds
+       '(xah-forward-right-bracket
+         xah-backward-left-bracket
+         xah-select-block
+         weiss-select-sexp
+         exchange-point-and-mark
+         weiss-mark-brackets
+         mark-defun
+         weiss-select-sexp
+         weiss-expand-region-by-word
+         weiss-contract-region-by-word
+         weiss-expand-region-by-sexp
+         weiss-contract-region-by-sexp
+         mark-whole-buffer
+         weiss-move-to-next-punctuation
+         weiss-move-to-previous-punctuation
+         weiss-puni-forward-sexp
+         weiss-puni-backward-sexp
+         ;; paredit-forward
+         ;; paredit-backward
+         ;; xref-find-definitions
+         weiss-tsc-expand-region
+         weiss-split-region
+         )))
+  (weiss-select-add-advice-turn-on cmds))
 
 (defun weiss-deactivate-mark-unless-in-select-mode (&rest args)
   "deactivate mark unless in select mode"
@@ -123,17 +118,17 @@
   (weiss-select-add-advice-deactivate-mark cmds))
 (advice-add 'xref-find-definitions :before #'weiss-deactivate-mark-unless-in-select-mode-interactive)
 
-(defun anzu-query-replace (arg)
-  "anzu version of `query-replace'."
-  (interactive "p")
-  (weiss-deactivate-mark-unless-in-select-mode)
-  (anzu--query-replace-common nil :prefix-arg arg))
+;; (defun anzu-query-replace (arg)
+;;   "anzu version of `query-replace'."
+;;   (interactive "p")
+;;   (weiss-deactivate-mark-unless-in-select-mode)
+;;   (anzu--query-replace-common nil :prefix-arg arg))
 
-(defun anzu-query-replace-regexp (arg)
-  "anzu version of `query-replace-regexp'."
-  (interactive "p")
-  (weiss-deactivate-mark-unless-in-select-mode)
-  (anzu--query-replace-common t :prefix-arg arg))
+;; (defun anzu-query-replace-regexp (arg)
+;;   "anzu version of `query-replace-regexp'."
+;;   (interactive "p")
+;;   (weiss-deactivate-mark-unless-in-select-mode)
+;;   (anzu--query-replace-common t :prefix-arg arg))
 
 (defun weiss-select-mode-enable ()
   "DOCSTRING"

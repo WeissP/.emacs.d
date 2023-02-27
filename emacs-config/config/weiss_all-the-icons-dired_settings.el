@@ -1,4 +1,4 @@
-(with-eval-after-load 'all-the-icons-dired
+(with-eval-after-load 'dired
   (defun weiss-show-icons-in-dired ()
     "Don't show icons in some Dir due to low performance"
     (interactive)
@@ -9,7 +9,8 @@
         (all-the-icons-dired-mode))
       )
     )
-
+  (add-hook 'dired-mode-hook #'weiss-show-icons-in-dired)
+  
   (with-no-warnings
     (advice-add #'dired-do-create-files :around #'all-the-icons-dired--refresh-advice)
     (advice-add #'dired-create-directory :around #'all-the-icons-dired--refresh-advice)
@@ -39,9 +40,6 @@
               (forward-line 1)))
         (message "Not display icons because of too many items.")))
     (advice-add #'all-the-icons-dired--refresh :override #'my-all-the-icons-dired--refresh))
-
-  (add-hook 'dired-mode-hook #'weiss-show-icons-in-dired)
   )
 
-;; parent: dired
 (provide 'weiss_all-the-icons-dired_settings)

@@ -1,4 +1,4 @@
-(with-eval-after-load 'weiss_html<abbrevs
+(with-eval-after-load 'php-mode
   (when (boundp 'php-mode-abbrev-table)
     (clear-abbrev-table php-mode-abbrev-table))
 

@@ -1,10 +1,9 @@
+(dolist (x
+         '(prog-mode-hook conf-mode-hook eshell-mode-hook org-mode-hook))
+  (add-hook x #'company-mode))
+
 (with-eval-after-load 'company
   (add-hook 'company-mode-hook #'company-tng-mode)
-
-  (dolist (x
-           '(prog-mode-hook conf-mode-hook eshell-mode-hook org-mode-hook))
-    (add-hook x #'company-mode))
-
   (setq
    company-tng-auto-configure nil
    company-frontends

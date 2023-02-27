@@ -1,21 +1,19 @@
-(setq
- org-hide-leading-stars nil
- org-indent-mode-turns-on-hiding-stars nil
- org-list-description-max-indent 4
- org-startup-indented t
- org-startup-folded t
- org-src-window-setup 'split-window-below
- org-image-actual-width nil
- org-fontify-done-headline t
- org-pretty-entities nil
- ;; hide ** //
- org-hide-emphasis-markers t
- org-n-level-faces 15
- )
-
-
-
 (with-eval-after-load 'org
+  (setq
+   org-hide-leading-stars nil
+   org-indent-mode-turns-on-hiding-stars nil
+   org-list-description-max-indent 4
+   org-startup-indented t
+   org-startup-folded t
+   org-src-window-setup 'split-window-below
+   org-image-actual-width nil
+   org-fontify-done-headline t
+   org-pretty-entities nil
+   ;; hide ** //
+   org-hide-emphasis-markers t
+   org-n-level-faces 15
+   )
+
   (add-hook 'org-mode-hook (lambda () (variable-pitch-mode)))
   (defun weiss-shrink-window-if-larger-than-buffer (&optional window min-window-size)
     "Weiss: add optional arg min-window-size

@@ -6,10 +6,15 @@
  org-agenda-files `(,(concat org-roam-directory org-roam-dailies-directory))
  )
 
+(with-eval-after-load 'org
+  (require 'org-roam)
+  )
+
 (with-eval-after-load 'org-roam
   (org-roam-setup)
   (require 'org-roam-protocol)
   )
 
-;; parent: org
+
+
 (provide 'weiss_org-roam_settings)

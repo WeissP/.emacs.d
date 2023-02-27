@@ -1,67 +1,72 @@
 (setq weiss/emacs-config-modules
-      '((global :skip-install t)
+      '((global :local t)
+        (s :autoloads (s-replace))
         exec-path-from-shell
-        (table :skip-install t)
+        ;; dash
         rg
-        (server  :local t)
-        (email :skip-install t)
-        quickrun esup which-key super-save keyfreq bind-key
-        (wks :skip-install t :first (;; (weiss-select-mode :local t)
-                                     ;; (weiss-temp-insert-mode :local t)
-                                     hydra))
+        (server :local t)
+        (email :local t)
+        quickrun esup which-key (super-save :load t) bind-key
+        (keyfreq :disabled t)
+        (wks :local t :first (hydra))
         (org
-         :first ((weiss-org-sp-mode :skip-install t))
+         :first ((weiss-org-sp :local t :load t))
          :then ((babel
-                 :skip-install t
-                 :first (ob-fsharp
-                         (ob-C :skip-install t)
-                         ob-go
-                         (ob-java :skip-install t)
+                 :local t
+                 :first (ob-go
                          ob-sql-mode
                          (ob-javascript :github "zweifisch/ob-javascript")))
                 org-noter
-                (org-agenda :local t)
-                (org-tempo :local t)
                 (org-roam :then
                           ((snails-roam :github "WeissP/snails-roam")))
                 org-fancy-priorities
                 (org-appear :github "awth13/org-appear" :disabled nil)
                 (org-table-to-qmk-keymap :local t)
-                (org-bullets :disabled t)
-                (org-rich-yank :disabled t)))
+                )
+         )
         (latex
          :name auctex
-         :then ((ox-latex :local t)
-                (org-edit-latex :local t)
+         :then (org-edit-latex
                 org-ref
                 magic-latex-buffer
                 latex-preview-pane))
         (dired
          :local t
-         :then (wdired diredfl (all-the-icons-dired :github "jtbm37/all-the-icons-dired") dired-hacks-utils dired-avfs dired-collapse
-                       dired-quick-sort peep-dired dired-filter
-                       (weiss-dired-single-handed-mode :local t)))
-        (snails :local t)
-        (mct :gitlab "protesilaos/mct" :disabled t)
-        (vertico :then ((vertico-directory :local t))) 
-        orderless
-        marginalia
+         :then (wdired
+                diredfl
+                (all-the-icons-dired :github "jtbm37/all-the-icons-dired")
+                dired-hacks-utils
+                dired-avfs
+                dired-collapse
+                peep-dired 
+                (dired-quick-sort :autoloads (hydra-dired-quick-sort/body)) 
+                (weiss-dired-single-handed-mode :local t :first (dired-filter))
+                ))
+        (snails :local t :load t)
+        (vertico :load t
+                 :straight
+                 (vertico :includes vertico-directory
+                          :files (:defaults "extensions/vertico-directory.el"))
+                 :then ((vertico-directory :local t :load t))
+                 ) 
+        (orderless :load t)
+        (marginalia :load t)
         consult
-        (isearch :skip-install t)
-        (abbrevs :skip-install t)
+        (abbrevs :local t)
         (ui
-         :skip-install t
-         :then ((modeline :skip-install t)
-                popwin
+         :local t
+         :then ((modeline :local t)
+                (popwin :load t)
                 (nyan-mode :disabled t)
+                (delight :load t)
                 highlight-indent-guides
                 highlight-defined
                 (rainbow-mode :github "emacsmirror/rainbow-mode")
-                highlight-parentheses hl-todo
+                highlight-parentheses (hl-todo :load t)
                 (color-outline :disabled t :local t)
-                highlight-symbol anzu hl-line web-beautify origami
+                highlight-symbol anzu (hl-line :load t) web-beautify origami
                 (whitespace :disabled t)
-                (ligature :github "mickeynp/ligature.el")
+                (ligature :load t :github "mickeynp/ligature.el")
                 (all-the-icons :when (display-graphic-p))
                 command-log-mode emojify
                 (hideshow :disabled t)
@@ -71,18 +76,18 @@
         (company :then (company-box))
         (rotate-text :github "nschum/rotate-text.el")
         (casease :github "DogLooksGood/casease" :disabled t)
-        expand-region
+        (expand-region :disabled t)
         (rjsx-mode :then ((prettier-js :disabled t)))
         json-mode
         (swagger-mode :github "Nooby/swagger-mode" :disabled t)
-        (cider :disabled nil :then ((zprint :github "git@github.com:DogLooksGood/zprint.el.git")))
-        (python :local t :then (yapfify ein))
+        cider
+        python 
         (http :then (auto-rename-tag))
         markdown-mode
-        (xml-mode :skip-install t)
-        (mhtml-mode :skip-install t :disabled nil)
+        (xml-mode :local t)
+        (mhtml-mode :local t :disabled nil)
         web-mode php-mode dockerfile-mode
-        (gud :skip-install t)
+        (gud :local t)
         (go-mode
          :then (go-impl go-fill-struct
                         (go-tag :disabled t)
@@ -95,11 +100,7 @@
         (sql :then
              (ejc-sql
               (sql-indent :github "alex-hhh/emacs-sql-indent")))
-        (haskell :skip-install t :then
-                 (haskell-mode
-                  dante
-                  (hasky-stack :disabled t)
-                  ormolu))
+        (haskell-mode :then (dante))
         (lsp-mode :disabled t :first (yasnippet) :then (lsp-ui lsp-java ccls lsp-haskell lsp-pyright))
         (lsp-bridge :disabled t :local t :github  "manateelazycat/lsp-bridge" :first ( yasnippet (posframe :local nil)))
         (lspce :disabled t :local t :first (yasnippet f)) 
@@ -111,9 +112,9 @@
         (aweshell :github "manateelazycat/aweshell")
         (vterm :disabled t)
         (pdf-tools :then
-                   ((pdf-view :skip-install t)
+                   ((pdf-view :local t :autoloads (pdf-view-mode))
                     pdf-view-restore))
-        (flymake :skip-install t)
+        (flymake :local t)
         (flycheck :disabled t
                   :then
                   ((zprint :github "git@github.com:DogLooksGood/zprint.el.git")
@@ -125,45 +126,40 @@
                    flycheck-hledger
                    )
                   )
-        (flyspell :skip-install t :then (wucuo))
+        (flyspell :local t :then (wucuo))
         rime
         (telega :straight (telega :type git :host github :repo "zevlg/telega.el" :branch "release-0.8.0"))
-        (yasdcv :local t)
-        projectile maxima magit
+        ;; (yasdcv :local t)
+        ;; projectile 
         (tramp :local t :then (sudo-edit docker-tramp))
-        (recentf :local t :disabled t)
-        (recentf-db :skip-install t)
+        (recentf-db :local t)
         gcmh
         (weiss-paredit :disabled t :local t)
         (citre :github "universal-ctags/citre" :disabled nil)
         (elfmt :github "git@github.com:riscy/elfmt.git")
-        tab-line
-        (sort-tab :github "git@github.com:manateelazycat/sort-tab.git" :disabled t)
+        (tab-line :load t)
         yaml-mode
         pass
         ledger-mode
-        ;; fsharp-mode
-        ;; dap-mode
-        (puni :github "git@github.com:AmaiKinono/puni.git")
-        (tree-sitter :disabled nil :then (tree-sitter-langs (weiss-tsc-mode :local t)))
-        
-        (combobulate :github "git@github.com:mickeynp/combobulate.git" :disabled t)
-        (grammatical-edit :github "git@github.com:manateelazycat/grammatical-edit.git" :disabled t)
-        (tree-edit :github "git@github.com:ethan-leba/tree-edit.git" :disabled t)
-        diminish
-        (show-paren-mode :skip-install t)
-        (mac :skip-install t :when (string= emacs-host (nth 3 emacs-host-list)))
-        (agda2-mode :skip-install t)
+        dap-mode
+        (puni
+         :github "git@github.com:AmaiKinono/puni.git"
+         :autoloads (puni-strict-forward-sexp puni-strict-backward-sexp))
+        (tree-sitter :disabled nil :then (tree-sitter-langs (weiss-tsc-mode :local t )))
+        (diminish :load t)
+        (show-paren-mode :local t)
+        (mac :disabled t :local t :when (string= emacs-host (nth 3 emacs-host-list)))
+        (agda2-mode :local t :then
+                    ((agda-input :local t)))
         nov
         mustache-mode
         smtpmail-multi
         notmuch
         dotenv-mode
-        (nix-mode :then (nixos-options company-nixos-options))
+        nix-mode
         apheleia
+        lua-mode
         ))
-
-
 
 (provide 'weiss_modules)
 

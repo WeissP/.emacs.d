@@ -24,7 +24,7 @@
     (hl-line-mode -1)
     (unless (member major-mode weiss/disable-hl-mode-list)
       (cond
-       (weiss-dired-single-handed-mode
+       ((and (featurep 'weiss-dired-single-handed-mode) weiss-dired-single-handed-mode) 
         (set (make-local-variable 'hl-line-face) 'emphasis-hl-line)
         )
        ((member major-mode '(dired-mode org-agenda-mode notmuch-tree-mode))

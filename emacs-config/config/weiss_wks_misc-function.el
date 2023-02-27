@@ -1,7 +1,7 @@
 (defun weiss-extract-bangou (s)
   "DOCSTRING"
   (string-match "[a-zA-Z]\\{3,5\\}-?[0-9]\\{3\\}" s)
-  (match-string 0 s)
+  (ignore-errors (match-string 0 s))
   )
 
 (defun weiss-json-to-yaml ()

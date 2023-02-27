@@ -1,8 +1,5 @@
-(with-eval-after-load 'emojify
-  (wks-define-key
-   wks-leader-keymap ""
-   '(("i m e" . emojify-insert-emoji)))
-  
-  )
+(wks-define-key
+ wks-leader-keymap ""
+ '(("i m e" . emojify-insert-emoji)))
 
 (provide 'weiss_emojify_keybindings)

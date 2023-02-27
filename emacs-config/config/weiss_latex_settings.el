@@ -1,7 +1,7 @@
-(with-eval-after-load 'org
-  (add-to-list 'load-language-list '(latex . t)))
-
 (with-eval-after-load 'latex
+  (with-eval-after-load 'org
+    (add-to-list 'load-language-list '(latex . t)))
+
   (setq reftex-label-alist
         '(("algorithm"   ?a "alg:"  "~\\ref{%s}" nil ("algo" "algorithm"   "algo.") -2)
           ))

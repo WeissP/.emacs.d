@@ -1,3 +1,4 @@
+(add-hook 'org-mode-hook #'org-appear-mode)
 (with-eval-after-load 'org-appear
   (setq
    org-appear-autolinks t

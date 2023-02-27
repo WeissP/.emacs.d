@@ -1,6 +1,5 @@
+(add-hook 'company-mode-hook #'company-box-mode)
 (with-eval-after-load 'company-box
-  (add-hook 'company-mode-hook #'company-box-mode)
-
   (setq company-box-enable-icon nil)
   (setq company-box-doc-enable nil)
   (setq company-box-show-single-candidate t)

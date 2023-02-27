@@ -176,7 +176,6 @@
 (with-eval-after-load 'tab-line
   (setq tab-line-tabs-function 'weiss-tab-get-current-group)
   (global-tab-line-mode)
-  (weiss-load-file-groups)
   )
 
 ;; parent: 

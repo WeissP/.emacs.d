@@ -273,5 +273,4 @@ otherwise, go to next special position
                        (point-max)))
            (signal (car e) (cdr e))))))))
 
-;; parent: org
-(provide 'weiss_weiss-org-sp-mode_functions)
+(provide 'weiss-org-sp_functions)

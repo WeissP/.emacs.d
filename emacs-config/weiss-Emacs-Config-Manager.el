@@ -74,7 +74,6 @@
               (plist (cdr package))
               (condition (plist-get (cdr package) :when))
               install-command after-dump-p)
-          (setq after-dump-p (member name after-dump-packages))
           (when (and
                  (not (plist-get plist :disabled))
                  (not (emacs-config-disabled-per-host-p name))
@@ -89,57 +88,74 @@
              (symbol-name name)
              log-file)
 
-            (setq install-command nil)
-            (when (not (plist-get plist :skip-install))
-              (cond
-               ((plist-get plist :local)
-                (ignore))
-               ((plist-get plist :skip-install)
-                (ignore))
-               ((plist-member plist :github)
-                (setq install-command
-                      `(straight-use-package
-                        '(,name
-                          :type git
-                          :host github
-                          :repo ,(weiss-process-git-link
-                                  (plist-get plist :github))))))
-               ((plist-member plist :gitlab)
-                (setq install-command
-                      `(straight-use-package
-                        '(,name
-                          :type git
-                          :host gitlab
-                          :repo ,(weiss-process-git-link
-                                  (plist-get plist :gitlab))))))
-               ((plist-member plist :file)
-                (setq install-command
-                      `(straight-use-package
-                        '(,name :files
-                                ,(plist-get plist :file)))))
-               ((plist-member plist :straight)
-                (setq install-command
-                      `(straight-use-package
-                        ',(plist-get plist :straight))))
-               ((plist-member plist :name)
-                ;; (message "quelpa: %s" (plist-get plist :quelpa))
-                (setq install-command
-                      `(straight-use-package
-                        ',(plist-get plist :name))))
-               (t
-                (setq install-command `(straight-use-package ',name))))
-              (when install-command
-                (if log-file
-                    (weiss-insert-to-log-file log-file
-                                              (format "%s" install-command))
-                  (eval install-command)))
-              (unless after-dump-p
-                (if log-file
-                    (weiss-insert-require log-file
-                                          (symbol-name name))
-                  (require name))                
-                )
+            (setq install-command nil)            
+            (cond
+             ((plist-get plist :local)
+              (ignore)
               )
+             ((plist-member plist :github)
+              (setq install-command
+                    `(straight-use-package
+                      '(,name
+                        :type git
+                        :host github
+                        :repo ,(weiss-process-git-link
+                                (plist-get plist :github))))))
+             ((plist-member plist :gitlab)
+              (setq install-command
+                    `(straight-use-package
+                      '(,name
+                        :type git
+                        :host gitlab
+                        :repo ,(weiss-process-git-link
+                                (plist-get plist :gitlab))))))
+             ((plist-member plist :file)
+              (setq install-command
+                    `(straight-use-package
+                      '(,name :files
+                              ,(plist-get plist :file)))))
+             ((plist-member plist :straight)
+              (setq install-command
+                    `(straight-use-package
+                      ',(plist-get plist :straight))))
+             ((plist-member plist :name)
+              (setq install-command
+                    `(straight-use-package
+                      ',(plist-get plist :name))))
+             (t
+              (setq install-command `(straight-use-package ',name))))
+            
+            (when (plist-member plist :build)
+              (let* ((pl (cadr (cadr install-command)))
+                     (new-pl (append pl (list :build (plist-get plist :build)))))
+                (setq install-command `(straight-use-package ',new-pl)) 
+                )                
+              )
+            (when install-command
+              (if log-file
+                  (weiss-insert-to-log-file log-file
+                                            (format "%s" install-command))
+                (eval install-command)))
+            (if-let ((autoloads (plist-get plist :autoloads)))
+                (dolist (fn autoloads) 
+                  (let ((cmd `(autoload ',fn ,(symbol-name name)))
+                        )
+                    (if log-file
+                        (weiss-insert-to-log-file
+                         log-file
+                         (format "%s" cmd))
+                      (eval cmd)) 
+                    )
+                  
+                  )              
+              )
+            (when (plist-member plist :load)
+              (if log-file
+                  (weiss-insert-require log-file
+                                        (symbol-name name))
+                (require name))
+              )              
+            
             (weiss-load-module (plist-get plist :then) log-file)
             ))
       (unless (emacs-config-disabled-per-host-p package)                
@@ -152,30 +168,15 @@
                                        "(straight-use-package '%s)" package))
           (straight-use-package package)          
           )
-        (unless (member package after-dump-packages)
-          (if log-file
-              (weiss-insert-require log-file (symbol-name package))
-            (require package)))
         )
       )))
 
-;; weiss/emacs-config-modules-ros
 (defun weiss-insert-require-to-log-file ()
   "DOCSTRING"
   (interactive)
-  (let ((file "~/.emacs.d/dumped-packages.el")
-        )
-    (find-file file)
+  (let ((inhibit-message t))
     (erase-buffer)
-    (weiss-load-module weiss/emacs-config-modules file)))
+    (weiss-load-module weiss/emacs-config-modules (buffer-file-name)))
+  )
 
-(defun weiss-test ()
-  "DOCSTRING"
-  (interactive)
-  (snails '(snails-backend-emacs-config-test)))
-
-;; (setq weiss/emacs-config-modules '((global  :skip-install t)))
-;; (weiss-require-config-by-class "global" "~/.emacs.d/dumped-packages.el")
-;; (emacs-config-get-files-by-class "global")
 (provide 'weiss-Emacs-Config-Manager)
-;; (emacs-config-get-files-by-class "")

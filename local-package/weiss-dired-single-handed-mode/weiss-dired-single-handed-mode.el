@@ -1,3 +1,5 @@
+(require 'weiss-dired-single-handed-filter)
+
 (defvar weiss-dired-single-handed-mode-map (make-sparse-keymap))
 
 (wks-define-key
@@ -27,8 +29,9 @@
          (subtitle-path (when bangou (format "%ssubtitles/%s.srt" (file-name-directory file) bangou)))
          )
     (message "subtitle-path: %s" subtitle-path)
-    (weiss-mplayer-video file (when (file-exists-p subtitle-path) subtitle-path))))
+    (weiss-mplayer-video file (when (ignore-errors (file-exists-p subtitle-path)) subtitle-path))))
 
+;;;###autoload
 (define-minor-mode weiss-dired-single-handed-mode
   "weiss-dired-single-handed-mode"
   :lighter " single-hand"
@@ -36,15 +39,8 @@
   :group 'weiss-dired-single-handed-mode
   (if weiss-dired-single-handed-mode
       (progn
-        ;; (make-local-variable cursor-type)
-        ;; (setq cursor-type nil)
-        ;; (hl-line-mode nil)
-        ;; (set (make-local-variable 'hl-line-face) 'emphasis-hl-line)
-        ;; (hl-line-mode t)
         (set-face-background 'hl-line "#ffb5ff")
         (set-face-background 'normal-hl-line "#ffb5ff"))
-    ;; (setq cursor-type t)
-    ;; (hl-line-mode -1)
     (set-face-background 'hl-line "#ffe8e8")
     (set-face-background 'normal-hl-line "#ffe8e8")))
 

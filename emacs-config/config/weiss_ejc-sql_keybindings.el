@@ -1,11 +1,11 @@
-(with-eval-after-load 'ejc-sql
-  (wks-define-key
-   (current-global-map)
-   "SPC "
-   '(
-     ("l p" .  ejc-get-temp-editor-buffer)
-     ))
-  
+(wks-define-key
+ (current-global-map)
+ "SPC "
+ '(
+   ("l p" .  ejc-get-temp-editor-buffer)
+   ))
+
+(with-eval-after-load 'ejc-sql  
   (wks-define-key
    sql-mode-map
    "SPC "

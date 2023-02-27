@@ -1,10 +1,12 @@
-(when (boundp 'maxima-mode-abbrev-table)
-  (clear-abbrev-table maxima-mode-abbrev-table))
-(define-abbrev-table 'maxima-mode-abbrev-table
-  '(
-    ("t" "apply (tex, [%i▮]);" weiss--ahf)
-    ("e" ":= " weiss--ahf)
-    ("plt" "plot2d(▮,[x,0,1]);" weiss--ahf)
+(with-eval-after-load 'maxima-mode
+  (when (boundp 'maxima-mode-abbrev-table)
+    (clear-abbrev-table maxima-mode-abbrev-table))
+  (define-abbrev-table 'maxima-mode-abbrev-table
+    '(
+      ("t" "apply (tex, [%i▮]);" weiss--ahf)
+      ("e" ":= " weiss--ahf)
+      ("plt" "plot2d(▮,[x,0,1]);" weiss--ahf)
+      )
     )
   )
 

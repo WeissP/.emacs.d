@@ -150,24 +150,28 @@
    ("<f12>" . minibuffer-force-complete)
    ))
 
+;; y [a~z] → C-c C-[a~z]
+;; expect u x y
 (wks-trans-keys
- '(("y c" . "C-c C-c")
-   ("y d" . "C-c C-d")
-   ("y e" . "C-c C-e")
-   ("y k" . "C-c C-k")
-   ("y l" . "C-c C-l")
-   ("y o" . "C-c C-o")
-   ("y u" . "C-c '")
-   ("y s" . "C-c C-s")
+ (mapcar
+  (lambda (char)
+    (let ((s (char-to-string char))
+          )
+      `(,(format "y %s" s) . ,(format "C-c C-%s" s))     
+      )    
+    )
+  (seq-filter (lambda (char) (not (member char '(?u ?x ?y ?j)))) 
+              (number-sequence 97 122))
+  ))
+
+(wks-trans-keys
+ '(
    ("y SPC" . "C-c C-SPC")
-   ("y t" . "C-c C-t")
-   ("y n" . "C-c C-n")
-   ("y r" . "C-c C-r")
-   ("y q" . "C-c C-q")
-   ("y a" . "C-c C-a")
-   ("y y" . "C-c C-M-x")
+   ("y u" . "C-c '")
    ("y x b" . "C-x C-a C-b")
    ("y x p" . "C-x C-a C-p")
-   ("y x r" . "C-x C-a C-r")))
+   ("y x r" . "C-x C-a C-r")
+   ("y y" . "C-c C-M-x")
+   ))
 
 (provide 'weiss_wks_keybindings)

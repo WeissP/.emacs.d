@@ -1,9 +1,19 @@
+(wks-define-key
+ (current-global-map)
+ "SPC "
+ '(("d a" .  weiss-custom-daily-agenda)
+   ("d c" .  org-roam-capture)
+   ("d t" .  org-todo-list)))
+
 (with-eval-after-load 'org
+  (require 'weiss_org_quick-insert)
+
   (defun weiss-org-return ()
     "DOCSTRING"
     (interactive)
     (deactivate-mark)
     (call-interactively 'org-return))
+
   (wks-define-key
    org-mode-map ""
    '(("M-i" . org-shiftmetaleft)
@@ -37,22 +47,14 @@
      ("y d" . weiss-org-download-img)
      ("y g" . org-goto)
      ("C-c C-q" . weiss-set-org-tags)
-     ("y s" . org-id-get-create)
-     ("y t" . org-todo)
-     ("y b" . org-mark-ring-goto)
+     ("C-c C-s" . org-id-get-create)
+     ("C-c C-t" . org-todo)
+     ("C-c C-b" . org-mark-ring-goto)
      ("y <tab>" . org-table-create-with-table\.el)
      ("y j s" . weiss-org-copy-heading-link)
      ;; ("<f5>" . org-beamer-export-to-pdf)
 
      ("<escape> <escape>" . wks-org-quick-insert-keymap)))
-
-  (wks-define-key
-   (current-global-map)
-   "SPC "
-   '(("d a" .  weiss-custom-daily-agenda)
-     ("d c" .  org-roam-capture)
-     ("d t" .  org-todo-list)))
-
   )
 
 (with-eval-after-load 'org-agenda

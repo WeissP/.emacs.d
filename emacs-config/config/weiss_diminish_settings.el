@@ -20,6 +20,6 @@
   (diminish 'org-edit-latex-mode)
   (diminish 'org-fancy-priorities-mode)
   (diminish 'visual-line-mode)
-)
+  )
 
 (provide 'weiss_diminish_settings)

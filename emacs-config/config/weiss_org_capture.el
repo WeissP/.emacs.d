@@ -1,12 +1,13 @@
-(setq
- org-capture-templates   '(("o" "org-noter" entry (file "~/Documents/OrgFiles/Vorlesungen.org")
-                            "* %f \n :PROPERTIES: \n :NOTER_DOCUMENT: %F \n :END: \n [[%F][Filepath]]")
-                           ("a" "Abgabe" entry (file "~/Documents/OrgFiles/Vorlesungen.org")
-                            "* [[%F][%f]]  \n ")
-                           )
- )
 
 (with-eval-after-load 'org
+  (setq
+   org-capture-templates   '(("o" "org-noter" entry (file "~/Documents/OrgFiles/Vorlesungen.org")
+                              "* %f \n :PROPERTIES: \n :NOTER_DOCUMENT: %F \n :END: \n [[%F][Filepath]]")
+                             ("a" "Abgabe" entry (file "~/Documents/OrgFiles/Vorlesungen.org")
+                              "* [[%F][%f]]  \n ")
+                             )
+   )
+
   (defun weiss-after-org-capture ()
     "DOCSTRING"
     (interactive)

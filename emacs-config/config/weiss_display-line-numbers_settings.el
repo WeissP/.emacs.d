@@ -1,3 +1,7 @@
+(dolist (x '(prog-mode-hook dired-mode-hook)) 
+  (add-hook x #'display-line-numbers-mode)
+  )
+
 (with-eval-after-load 'display-line-numbers
   (setq
    display-line-numbers-grow-only t
@@ -8,10 +12,6 @@
   ;;   (eval `(setq-mode-local
   ;;           ,x display-line-numbers 'relative))    
   ;;   )
-  
-  (dolist (x '(prog-mode-hook dired-mode-hook)) 
-    (add-hook x #'display-line-numbers-mode)
-    )
   )
 
 ;; parent: 
