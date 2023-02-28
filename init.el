@@ -1,11 +1,23 @@
+(setq gc-cons-threshold most-positive-fixnum ; 2^61 bytes
+      gc-cons-percentage 0.6)
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold
+                  (* (expt 1024 3) 6)
+                  gc-cons-percentage 0.5
+                  garbage-collection-messages nil)))
+
+(defun display-startup-time ()
+  (message
+   "Emacs is ready, startup cost: %.3f seconds."
+   (float-time
+    (time-subtract after-init-time before-init-time))))
+(add-hook 'emacs-startup-hook #'display-startup-time)
+
 (setq emacs-host-list '("arch" "arch without roam" "ros" "mac"))
 (setq weiss/init-path "~/.emacs.d")
 
-(defun with-init-path (p)
-  "DOCSTRING"
-  (interactive)
-  (concat weiss/init-path p)
-  )
+(defun with-init-path (p) (concat weiss/init-path p))
 
 (load (with-init-path "/weiss-emacs-host.el"))
 (load (with-init-path "/emacs-config/weiss_init.el"))
@@ -20,7 +32,8 @@
  ;; If there is more than one, they won't work right.
  '(ignored-local-variable-values '((eval eglot-ensure)))
  '(safe-local-variable-values
-   '((weiss-pdf-candidates "/home/weiss/Documents/Vorlesungen/data-visualization/Slides/09_Graphs_small.pdf")
+   '((weiss-pdf-candidates "/home/weiss/Documents/Vorlesungen/data-visualization/Slides/10_Scalarfields_small.pdf")
+     (weiss-pdf-candidates "/home/weiss/Documents/Vorlesungen/data-visualization/Slides/09_Graphs_small.pdf")
      (weiss-pdf-candidates "/home/weiss/Documents/Vorlesungen/data-visualization/Slides/06_HighD_PCA.pdf")
      (weiss-pdf-candidates "/home/weiss/Documents/Vorlesungen/data-visualization/Slides/06_HighDData_small.pdf")
      (dired-listing-switches . "-al")

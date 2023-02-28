@@ -12,6 +12,8 @@
    ;; hide ** //
    org-hide-emphasis-markers t
    org-n-level-faces 15
+   ;; controls the size of latex previews 
+   org-format-latex-options (plist-put org-format-latex-options :scale 1.8)
    )
 
   (add-hook 'org-mode-hook (lambda () (variable-pitch-mode)))

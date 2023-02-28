@@ -87,23 +87,6 @@
   (string-match mode
                 (format "%s" (with-current-buffer buf major-mode))))
 
-(lambda (input)
-  (let (candidates)
-    (catch 'search-end
-      (dolist (command snails-backend-command-list)
-        (when (or
-               (string-equal input "")
-               (snails-match-input-p input command))
-          (snails-add-candiate 'candidates
-                               (snails-backend-command-wrap-command-with-key command)
-                               command)
-
-          (when (>
-                 (length candidates)
-                 snails-backend-command-filter-number)
-            (throw 'search-end nil)))))
-    (snails-sort-candidates input candidates 0 0)))
-
 (snails-create-sync-backend
  :name "FILTER-BUFFER"
 

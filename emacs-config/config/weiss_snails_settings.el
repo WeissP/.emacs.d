@@ -8,12 +8,6 @@
     (save-excursion
       (goto-char (point-min))
       (while (re-search-forward "\n" nil t) (replace-match ""))))
-  ;; (defvar snails-current-dir nil)
-  ;; (defun weiss-snails-get-current-dir ()
-  ;;   "get the path of current file"
-  ;;   (interactive)
-  ;;   (ignore-errors (setq snails-current-dir (expand-file-name default-directory))))
-  ;; (advice-add 'snails :before 'weiss-snails-get-current-dir)
 
   (setq
    snails-show-with-frame nil
@@ -37,15 +31,14 @@
   (setq snails-default-backends
         '(snails-backend-filter-buffer
           snails-backend-recentf-db
-          snails-backend-emacs-config
+          snails-backend-emacs-configs
           snails-backend-emacs-config-new))
 
 
-  (defun weiss-snails-cmds ()
+  (defun weiss-test ()
     "DOCSTRING"
     (interactive)
-    (snails '(snails-backend-command))
-    )
+    (snails '(snails-backend-emacs-configs)))
 
   (with-eval-after-load 'snails-roam
     (setq snails-default-backends
@@ -58,7 +51,7 @@
                     snails-backend-org-roam-tutorial
                     snails-backend-org-roam-all
                     snails-backend-org-roam-new
-                    snails-backend-emacs-config-new))))
+                    ))))
 
   )
 

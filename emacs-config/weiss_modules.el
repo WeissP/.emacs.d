@@ -101,7 +101,10 @@
               (sql-indent :github "alex-hhh/emacs-sql-indent")))
         (haskell-mode :then (dante))
         (lsp-mode :disabled t :first (yasnippet) :then (lsp-ui lsp-java ccls lsp-haskell lsp-pyright))
-        (lsp-bridge :disabled t :local t :github  "manateelazycat/lsp-bridge" :first ( yasnippet (posframe :local nil)))
+        (lsp-bridge
+         :disabled t
+         :straight (lsp-bridge :host github :repo "manateelazycat/lsp-bridge" :files (:defaults "*"))
+         :first ( yasnippet (posframe :local nil)))
         (lspce :disabled t :local t :first (yasnippet f)) 
         (eglot :disabled nil :then ((eglot-java :disabled t)))
         (csv-mode :elpa csv-mode)
@@ -146,7 +149,7 @@
          :github "git@github.com:AmaiKinono/puni.git"
          :autoloads (puni-strict-forward-sexp puni-strict-backward-sexp))
         (tree-sitter :disabled nil :then (tree-sitter-langs (weiss-tsc-mode :local t )))
-        (diminish :load t)
+        (diminish :load t :disabled t)
         (show-paren-mode :local t)
         (mac :disabled t :local t :when (string= emacs-host (nth 3 emacs-host-list)))
         (agda2-mode :local t :then

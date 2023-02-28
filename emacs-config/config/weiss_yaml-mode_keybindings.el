@@ -2,4 +2,4 @@
   (wks-unset-key yaml-mode-map '("." "-"))
   )
 
-(provide 'weiss_keybindings_yaml-mode)
+(provide 'weiss_yaml-mode_keybindings)

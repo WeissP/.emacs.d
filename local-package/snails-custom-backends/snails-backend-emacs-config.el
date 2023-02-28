@@ -5,27 +5,36 @@
 (add-to-list 'exec-path "~/.cargo/bin/")
 
 (defvar snails-emacs-config-new-length 1)
-(snails-create-async-backend
- :name "EMACS-CONFIG"
+(snails-create-sync-backend
+ :name
+ "EMACS CONFIGS"
+ :candidate-filter
+ (lambda (input)
+   (when (> (length input) 0)
+     (let ((candidates)
+           )
+       (dolist (file
+                (directory-files weiss/configs-dir nil)
+                candidates
+                )
+         (when (and (> (length file) 6) 
+                    (or
+                     (string-equal input "")
+                     (snails-match-input-p input (substring file 6)))
+                    )
+           (snails-add-candiate 'candidates file (concat weiss/configs-dir file))
+           ))
+       )     
+     ))
 
- :build-command (lambda
-                  (input)
-                  (when (and EmacsConfigManager-path (> (length input) 1))
-                    (cons EmacsConfigManager-path (split-string input " "))))
+ :candidate-icon
+ (lambda (candidate)
+   (snails-render-file-icon candidate))
 
- :candidate-filter (lambda
-                     (candidate-list)
-                     (let (candidates)
-                       (dolist (candidate candidate-list)
-                         (when (> (length candidate) 1)
-                           (snails-add-candiate 'candidates candidate candidate)))
-                       candidates))
+ :candidate-do
+ (lambda (candidate)
+   (snails-find-file candidate)))
 
- :candidate-icon (lambda (candidate) (snails-render-file-icon candidate))
-
- :candidate-do (lambda
-                 (candidate)
-                 (find-file (concat snails-emacs-config-path candidate))))
 
 (snails-create-sync-backend
  :name "EMACS-CONFIG-NEW"
@@ -45,7 +54,7 @@
                       ]
                    (setq full (format "weiss_%s_%s" pkg module))
                    (find-file
-                    (concat snails-emacs-config-path full ".el"))
+                    (concat weiss/configs-dir full ".el"))
                    (insert
                     (format "(with-eval-after-load '%s\n\n)\n\n(provide '%s)" pkg full))
                    (goto-char (point-min)))))
@@ -83,5 +92,6 @@
 
 (provide 'snails-backend-emacs-config)
 ;;; snails-backend-emacs-config.el ends here
+
 
 

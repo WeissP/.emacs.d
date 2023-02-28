@@ -1,9 +1,3 @@
-(defvar snails-emacs-config-path "~/.emacs.d/emacs-config/config/")
-(defvar EmacsConfigManager-path
-  (or
-   (ignore-errors (executable-find "emacs_config_finder"))
-   "~/.cargo/bin/emacs_config_finder"))
-
 (defvar emacs-config-disabled-pkg-per-host
   '(("arch without roam" . (org-roam snails-roam))))
 
@@ -25,7 +19,7 @@
   (interactive)
   (seq-filter
    (lambda (x) (string-prefix-p (concat "weiss_" class "_") x))
-   (directory-files snails-emacs-config-path)))
+   (directory-files weiss/configs-dir)))
 
 (defun weiss-process-provide (filename)
   "DOCSTRING"
